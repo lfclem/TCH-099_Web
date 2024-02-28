@@ -1,0 +1,45 @@
+.grid {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 5rem auto;
+    grid-template-columns: 15rem auto;
+    grid-template-areas:
+        "header header"
+        "navbar main";
+}
+
+header {
+    grid-area: header;
+    display: flex;
+    background-color: red;
+    align-items: center;
+
+    .logo {
+        padding-left: 0.5rem;
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .titre{
+        font-size: 2rem;
+        justify-content: center
+    }
+
+    div a img{
+        justify-content: end;
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+nav {
+    grid-area: navbar;
+    display: flex;
+    background-color: blue;
+}
+
+main {
+    grid-area: main;
+    display: flex;
+    background-color: green;
+}
