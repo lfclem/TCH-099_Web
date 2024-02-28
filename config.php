@@ -1,23 +1,30 @@
 <?php
-// Démarrage de la session
+
 session_start();
 
-//Configuration et connexion à la base de données
-$host = 'db';
-$db   = 'mydatabase';
-$user = 'user';
-$pass = 'password';
-$charset = 'utf8mb4';
+class Database {
+    private static $instance = null;
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
+    private function __construct() {}
 
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    public static function getInstance() {
+        $host = "db";
+        $database = "mydatabase";
+        $username = "user";
+        $password = "password";
+
+        if (!self::$instance) {
+            try {
+                self::$instance = new PDO("mysql:host=$host;dbname=$database", 
+                      $username, $password);
+                self::$instance->setAttribute(PDO::ATTR_ERRMODE, 
+                      PDO::ERRMODE_EXCEPTION);
+            } 
+            catch(PDOException $e) {
+                echo "Connexion échouée: " . $e->getMessage();
+            }
+        }
+        return self::$instance;
+    }
 }
+

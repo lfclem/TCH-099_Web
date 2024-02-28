@@ -1,0 +1,2 @@
+*Ajouter un signe de dollar apres le montant max/min rentrer par lutilisateur
+!Changer relation BDD Publication = UNE categorie

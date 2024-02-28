@@ -1,45 +1,119 @@
+$font: "Roboto", sans-serif;
+$headerColor: rgb(30, 30, 30);
+$navColor: rgb(40, 40, 40);
+$mainColor: rgb(50, 50, 50);
+$backgroundTextColor: rgb(200, 200, 200);
+$textColor: rgb(144, 238, 144);
+$darktextColor: rgb(50, 150, 50);
+
+body {
+  font-family: $font;
+}
+
 .grid {
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 5rem auto;
-    grid-template-columns: 15rem auto;
-    grid-template-areas:
-        "header header"
-        "navbar main";
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 5rem 5rem auto;
+  grid-template-columns: auto;
+  grid-template-areas:
+    "header"
+    "navbar"
+    "main";
 }
 
 header {
-    grid-area: header;
-    display: flex;
-    background-color: red;
-    align-items: center;
+  grid-area: header;
+  display: flex;
+  background-color: $headerColor;
+  align-items: center;
+  justify-content: space-between;
 
-    .logo {
-        padding-left: 0.5rem;
-        width: 4rem;
-        height: 4rem;
-    }
+  .logo {
+    margin-left: 0.5rem;
+    width: 4rem;
+    height: 4rem;
+  }
 
-    .titre{
-        font-size: 2rem;
-        justify-content: center
-    }
+  .titre {
+    color: $textColor;
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    font-size: 3rem;
+  }
 
-    div a img{
-        justify-content: end;
-        width: 3rem;
-        height: 3rem;
-    }
+  .icons {
+    margin-right: 0.5rem;
+  }
+
+  .icons img {
+    margin: 1rem;
+    width: 3rem;
+    height: 3rem;
+  }
 }
 
 nav {
-    grid-area: navbar;
+  background-color: $navColor;
+  grid-area: navbar;
+  display: flex;
+
+  .navbar {
+    margin-top: 1.5rem;
+    margin-left: 0.5rem;
     display: flex;
-    background-color: blue;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .textSearchbar,
+  .textMaxPrice,
+  .textMinPrice,
+  .choiceCategory,
+  .choiceCondition {
+    border-radius: 0.3rem;
+    border: none;
+    height: 2rem;
+    background-color: $backgroundTextColor;
+  }
+
+  .buttonSearchbar {
+    background-color: $textColor;
+    color: black;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 2rem;
+  }
+
+  .buttonSearchbar:hover {
+    background-color: $darktextColor;
+  }
+
+  label {
+    color: white;
+    font-size: 1rem;
+    font-weight: bolder;
+  }
+
+  .textSearchbar::placeholder,
+  .textMaxPrice::placeholder,
+  .textMinPrice::placeholder {
+    color: black;
+    font-size: 1rem;
+  }
+
+  .textMaxPrice::-webkit-outer-spin-button,
+  .textMaxPrice::-webkit-inner-spin-button,
+  .textMinPrice::-webkit-outer-spin-button,
+  .textMinPrice::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 }
 
 main {
-    grid-area: main;
-    display: flex;
-    background-color: green;
+  grid-area: main;
+  display: flex;
+  background-color: $mainColor;
 }
