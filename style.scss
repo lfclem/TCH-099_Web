@@ -122,7 +122,8 @@ body {
     margin-left: 1rem;
   }
 
-  .buttonSearchbar {
+  .buttonSearchbar,
+  .buttonAddListing {
     background-color: $limeGreen;
     color: black;
     border: none;
@@ -135,9 +136,15 @@ body {
   .buttonSearchbar:hover {
     background-color: $darkGreen;
   }
+  
   .textSearchbar::placeholder {
     color: black;
     font-size: 1rem;
+  }
+
+  .buttonAddListing {
+    margin-left: auto;
+    margin-right: 5rem;
   }
 }
 
@@ -151,8 +158,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin: 0 1rem;
 
     article {
       display: flex;
@@ -191,6 +197,10 @@ main {
         font-size: 1rem;
       }
     }
+  }
+
+  article:hover {
+    filter: brightness(50%);
   }
 }
 

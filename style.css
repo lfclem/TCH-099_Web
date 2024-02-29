@@ -104,7 +104,8 @@ body {
   background-color: rgb(200, 200, 200);
   margin-left: 1rem;
 }
-.mainOptions .buttonSearchbar {
+.mainOptions .buttonSearchbar,
+.mainOptions .buttonAddListing {
   background-color: rgb(144, 238, 144);
   color: black;
   border: none;
@@ -124,6 +125,10 @@ body {
   color: black;
   font-size: 1rem;
 }
+.mainOptions .buttonAddListing {
+  margin-left: auto;
+  margin-right: 5rem;
+}
 
 main {
   grid-area: main;
@@ -135,8 +140,7 @@ main .listingsContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin: 0 1rem;
 }
 main .listingsContainer article {
   display: flex;
@@ -171,6 +175,9 @@ main .listingsContainer article p {
   margin-left: 1rem;
   font-weight: bolder;
   font-size: 1rem;
+}
+main article:hover {
+  filter: brightness(50%);
 }
 
 ::-webkit-scrollbar {

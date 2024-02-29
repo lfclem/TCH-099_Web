@@ -73,6 +73,7 @@ require("./config.php");
         <option value="self">Vos Publications</option>
       </select>
     </div>
+    <button type="submit" class="buttonAddListing">Ajouter une annonce</button>
   </form>
 
   <main>
