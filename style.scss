@@ -151,10 +151,45 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    align-content: flex-start;
+    margin-left: 1rem;
+    margin-right: 1rem;
 
     article {
-      margin: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      height: auto;
+      width: 15.2rem;
+      background-color: $navColor;
+      margin-right: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 2rem;
+
+      img {
+        height: 15rem;
+        width: 100%;
+        border-radius: 2rem;
+      }
+
+      h2 {
+        color: white;
+        margin: 0.5rem 1rem;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        color: $limeGreen;
+        margin-top: auto;
+        margin-left: 1rem;
+        font-weight: bolder;
+        font-size: 1rem;
+      }
     }
   }
 }
