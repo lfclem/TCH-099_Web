@@ -3,8 +3,8 @@ $headerColor: rgb(30, 30, 30);
 $navColor: rgb(40, 40, 40);
 $mainColor: rgb(50, 50, 50);
 $backgroundTextColor: rgb(200, 200, 200);
-$textColor: rgb(144, 238, 144);
-$darktextColor: rgb(50, 150, 50);
+$limeGreen: rgb(144, 238, 144);
+$darkGreen: rgb(50, 150, 50);
 
 body {
   font-family: $font;
@@ -13,15 +13,16 @@ body {
 .grid {
   height: 100vh;
   display: grid;
-  grid-template-rows: 5rem 5rem auto;
+  grid-template-rows: 5rem 5rem 5rem auto;
   grid-template-columns: auto;
   grid-template-areas:
     "header"
     "navbar"
+    "navbar2"
     "main";
 }
 
-header {
+.headerInfos {
   grid-area: header;
   display: flex;
   background-color: $headerColor;
@@ -34,8 +35,8 @@ header {
     height: 4rem;
   }
 
-  .titre {
-    color: $textColor;
+  .title {
+    color: $limeGreen;
     position: absolute;
     transform: translate(-50%, 0);
     left: 50%;
@@ -53,20 +54,24 @@ header {
   }
 }
 
-nav {
+.navbarOptions,
+.mainOptions {
   background-color: $navColor;
-  grid-area: navbar;
   display: flex;
 
-  .navbar {
-    margin-top: 1.5rem;
-    margin-left: 0.5rem;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
+  label {
+    color: white;
+    font-size: 1rem;
+    font-weight: bolder;
   }
+}
 
-  .textSearchbar,
+.navbarOptions {
+  grid-area: navbar;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
   .textMaxPrice,
   .textMinPrice,
   .choiceCategory,
@@ -77,27 +82,6 @@ nav {
     background-color: $backgroundTextColor;
   }
 
-  .buttonSearchbar {
-    background-color: $textColor;
-    color: black;
-    border: none;
-    border-radius: 0.3rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    height: 2rem;
-  }
-
-  .buttonSearchbar:hover {
-    background-color: $darktextColor;
-  }
-
-  label {
-    color: white;
-    font-size: 1rem;
-    font-weight: bolder;
-  }
-
-  .textSearchbar::placeholder,
   .textMaxPrice::placeholder,
   .textMinPrice::placeholder {
     color: black;
@@ -112,8 +96,83 @@ nav {
   }
 }
 
+.mainOptions {
+  display: flex;
+  grid-area: navbar2;
+  background-color: $mainColor;
+  justify-content: flex-start;
+  align-items: center;
+
+  .choiceTab {
+    border-radius: 0.3rem;
+    border: none;
+    height: 2rem;
+    background-color: $backgroundTextColor;
+  }
+
+  .labelChoiceTab {
+    margin-left: 1.5rem;
+  }
+
+  .textSearchbar {
+    border-radius: 0.3rem;
+    border: none;
+    height: 2rem;
+    background-color: $backgroundTextColor;
+    margin-left: 1rem;
+  }
+
+  .buttonSearchbar {
+    background-color: $limeGreen;
+    color: black;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 2rem;
+  }
+
+  .buttonSearchbar:hover {
+    background-color: $darkGreen;
+  }
+  .textSearchbar::placeholder {
+    color: black;
+    font-size: 1rem;
+  }
+}
+
 main {
   grid-area: main;
   display: flex;
+  overflow-y: auto;
   background-color: $mainColor;
+
+  .listingsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+
+    article {
+      margin: 0.5rem;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $limeGreen;
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $darkGreen;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $headerColor;
+  border-radius: 1rem;
 }

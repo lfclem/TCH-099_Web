@@ -5,62 +5,106 @@ body {
 .grid {
   height: 100vh;
   display: grid;
-  grid-template-rows: 5rem 5rem auto;
+  grid-template-rows: 5rem 5rem 5rem auto;
   grid-template-columns: auto;
-  grid-template-areas: "header" "navbar" "main";
+  grid-template-areas: "header" "navbar" "navbar2" "main";
 }
 
-header {
+.headerInfos {
   grid-area: header;
   display: flex;
   background-color: rgb(30, 30, 30);
   align-items: center;
   justify-content: space-between;
 }
-header .logo {
+.headerInfos .logo {
   margin-left: 0.5rem;
   width: 4rem;
   height: 4rem;
 }
-header .titre {
+.headerInfos .title {
   color: rgb(144, 238, 144);
   position: absolute;
   transform: translate(-50%, 0);
   left: 50%;
   font-size: 3rem;
 }
-header .icons {
+.headerInfos .icons {
   margin-right: 0.5rem;
 }
-header .icons img {
+.headerInfos .icons img {
   margin: 1rem;
   width: 3rem;
   height: 3rem;
 }
 
-nav {
+.navbarOptions,
+.mainOptions {
   background-color: rgb(40, 40, 40);
+  display: flex;
+}
+.navbarOptions label,
+.mainOptions label {
+  color: white;
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
+.navbarOptions {
   grid-area: navbar;
   display: flex;
-}
-nav .navbar {
-  margin-top: 1.5rem;
-  margin-left: 0.5rem;
-  display: flex;
   justify-content: space-around;
-  width: 100%;
+  align-items: center;
 }
-nav .textSearchbar,
-nav .textMaxPrice,
-nav .textMinPrice,
-nav .choiceCategory,
-nav .choiceCondition {
+.navbarOptions .textMaxPrice,
+.navbarOptions .textMinPrice,
+.navbarOptions .choiceCategory,
+.navbarOptions .choiceCondition {
   border-radius: 0.3rem;
   border: none;
   height: 2rem;
   background-color: rgb(200, 200, 200);
 }
-nav .buttonSearchbar {
+.navbarOptions .textMaxPrice::-moz-placeholder, .navbarOptions .textMinPrice::-moz-placeholder {
+  color: black;
+  font-size: 1rem;
+}
+.navbarOptions .textMaxPrice::placeholder,
+.navbarOptions .textMinPrice::placeholder {
+  color: black;
+  font-size: 1rem;
+}
+.navbarOptions .textMaxPrice::-webkit-outer-spin-button,
+.navbarOptions .textMaxPrice::-webkit-inner-spin-button,
+.navbarOptions .textMinPrice::-webkit-outer-spin-button,
+.navbarOptions .textMinPrice::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.mainOptions {
+  display: flex;
+  grid-area: navbar2;
+  background-color: rgb(50, 50, 50);
+  justify-content: flex-start;
+  align-items: center;
+}
+.mainOptions .choiceTab {
+  border-radius: 0.3rem;
+  border: none;
+  height: 2rem;
+  background-color: rgb(200, 200, 200);
+}
+.mainOptions .labelChoiceTab {
+  margin-left: 1.5rem;
+}
+.mainOptions .textSearchbar {
+  border-radius: 0.3rem;
+  border: none;
+  height: 2rem;
+  background-color: rgb(200, 200, 200);
+  margin-left: 1rem;
+}
+.mainOptions .buttonSearchbar {
   background-color: rgb(144, 238, 144);
   color: black;
   border: none;
@@ -69,33 +113,48 @@ nav .buttonSearchbar {
   transition: background-color 0.3s;
   height: 2rem;
 }
-nav .buttonSearchbar:hover {
+.mainOptions .buttonSearchbar:hover {
   background-color: rgb(50, 150, 50);
 }
-nav label {
-  color: white;
-  font-size: 1rem;
-  font-weight: bolder;
-}
-nav .textSearchbar::-moz-placeholder, nav .textMaxPrice::-moz-placeholder, nav .textMinPrice::-moz-placeholder {
+.mainOptions .textSearchbar::-moz-placeholder {
   color: black;
   font-size: 1rem;
 }
-nav .textSearchbar::placeholder,
-nav .textMaxPrice::placeholder,
-nav .textMinPrice::placeholder {
+.mainOptions .textSearchbar::placeholder {
   color: black;
   font-size: 1rem;
-}
-nav .textMaxPrice::-webkit-outer-spin-button,
-nav .textMaxPrice::-webkit-inner-spin-button,
-nav .textMinPrice::-webkit-outer-spin-button,
-nav .textMinPrice::-webkit-inner-spin-button {
-  -webkit-appearance: none;
 }
 
 main {
   grid-area: main;
   display: flex;
+  overflow-y: auto;
   background-color: rgb(50, 50, 50);
+}
+main .listingsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+main .listingsContainer article {
+  margin: 0.5rem;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(144, 238, 144);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(50, 150, 50);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(30, 30, 30);
+  border-radius: 1rem;
 }/*# sourceMappingURL=style.css.map */
