@@ -133,10 +133,11 @@ body {
     height: 2rem;
   }
 
-  .buttonSearchbar:hover {
+  .buttonSearchbar:hover,
+  .buttonAddListing:hover {
     background-color: $darkGreen;
   }
-  
+
   .textSearchbar::placeholder {
     color: black;
     font-size: 1rem;

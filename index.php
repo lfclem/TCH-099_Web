@@ -51,12 +51,12 @@ require("./config.php");
       </select>
     </div>
     <div>
-      <label for="maxPrice">Prix maximal :</label>
-      <input type="number" id="maxPrice" name="maxPrice" class="textMaxPrice" placeholder="Entrez le prix maximal" />
-    </div>
-    <div>
       <label for="minPrice">Prix minimal :</label>
       <input type="number" id="minPrice" name="minPrice" class="textMinPrice" placeholder="Entrez le prix minimal" />
+    </div>
+    <div>
+      <label for="maxPrice">Prix maximal :</label>
+      <input type="number" id="maxPrice" name="maxPrice" class="textMaxPrice" placeholder="Entrez le prix maximal" />
     </div>
   </form>
 
@@ -73,7 +73,7 @@ require("./config.php");
         <option value="self">Vos Publications</option>
       </select>
     </div>
-    <button type="submit" class="buttonAddListing">Ajouter une annonce</button>
+    <button type="submit" class="buttonAddListing">Créer une annonce</button>
   </form>
 
   <main>

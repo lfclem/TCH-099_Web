@@ -114,7 +114,8 @@ body {
   transition: background-color 0.3s;
   height: 2rem;
 }
-.mainOptions .buttonSearchbar:hover {
+.mainOptions .buttonSearchbar:hover,
+.mainOptions .buttonAddListing:hover {
   background-color: rgb(50, 150, 50);
 }
 .mainOptions .textSearchbar::-moz-placeholder {
