@@ -6,10 +6,75 @@ $backgroundTextColor: rgb(200, 200, 200);
 $limeGreen: rgb(144, 238, 144);
 $darkGreen: rgb(50, 150, 50);
 
+//* REGLES GENERALES
+button {
+  background-color: $limeGreen;
+  color: black;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: $limeGreen;
+}
+
+button:hover {
+  background-color: $darkGreen;
+}
+
+input,
+select {
+  border-radius: 0.3rem;
+  border: none;
+  height: 2rem;
+  background-color: $backgroundTextColor;
+}
+
+::placeholder {
+  color: black;
+  font-size: 1rem;
+}
+
+label {
+  color: white;
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
 body {
   font-family: $font;
 }
 
+input[type="number"] {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $limeGreen;
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $darkGreen;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $headerColor;
+  border-radius: 1rem;
+}
+
+//* GRID
 .grid {
   height: 100vh;
   display: grid;
@@ -22,6 +87,7 @@ body {
     "main";
 }
 
+//* HEADER
 .headerInfos {
   grid-area: header;
   display: flex;
@@ -54,48 +120,22 @@ body {
   }
 }
 
+//* OPTIONS
 .navbarOptions,
 .mainOptions {
   background-color: $navColor;
   display: flex;
-
-  label {
-    color: white;
-    font-size: 1rem;
-    font-weight: bolder;
-  }
 }
 
+//* NAVBAR
 .navbarOptions {
   grid-area: navbar;
   display: flex;
   justify-content: space-around;
   align-items: center;
-
-  .textMaxPrice,
-  .textMinPrice,
-  .choiceCategory,
-  .choiceCondition {
-    border-radius: 0.3rem;
-    border: none;
-    height: 2rem;
-    background-color: $backgroundTextColor;
-  }
-
-  .textMaxPrice::placeholder,
-  .textMinPrice::placeholder {
-    color: black;
-    font-size: 1rem;
-  }
-
-  .textMaxPrice::-webkit-outer-spin-button,
-  .textMaxPrice::-webkit-inner-spin-button,
-  .textMinPrice::-webkit-outer-spin-button,
-  .textMinPrice::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-  }
 }
 
+//* NAVBAR2 (MAIN OPTIONS)
 .mainOptions {
   display: flex;
   grid-area: navbar2;
@@ -103,44 +143,12 @@ body {
   justify-content: flex-start;
   align-items: center;
 
-  .choiceTab {
-    border-radius: 0.3rem;
-    border: none;
-    height: 2rem;
-    background-color: $backgroundTextColor;
-  }
-
   .labelChoiceTab {
     margin-left: 1.5rem;
   }
 
   .textSearchbar {
-    border-radius: 0.3rem;
-    border: none;
-    height: 2rem;
-    background-color: $backgroundTextColor;
     margin-left: 1rem;
-  }
-
-  .buttonSearchbar,
-  .buttonAddListing {
-    background-color: $limeGreen;
-    color: black;
-    border: none;
-    border-radius: 0.3rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    height: 2rem;
-  }
-
-  .buttonSearchbar:hover,
-  .buttonAddListing:hover {
-    background-color: $darkGreen;
-  }
-
-  .textSearchbar::placeholder {
-    color: black;
-    font-size: 1rem;
   }
 
   .buttonAddListing {
@@ -149,6 +157,7 @@ body {
   }
 }
 
+//* MAIN
 main {
   grid-area: main;
   display: flex;
@@ -205,20 +214,25 @@ main {
   }
 }
 
-::-webkit-scrollbar {
-  width: 0.5rem;
-}
+//* LOGIN.PHP
+.login {
+  display: flex;
+  background-color: $mainColor;
+  position: fixed;
+  top: 5rem;
+  width: 100%;
+  height: calc(100% - 5rem);
+  align-items: center;
+  justify-content: center;
 
-::-webkit-scrollbar-thumb {
-  background-color: $limeGreen;
-  border-radius: 1rem;
-}
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: $darkGreen;
-}
-
-::-webkit-scrollbar-track {
-  background-color: $headerColor;
-  border-radius: 1rem;
+    a {
+      margin-top: 2rem;
+    }
+  }
 }

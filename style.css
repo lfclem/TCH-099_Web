@@ -1,5 +1,70 @@
+button {
+  background-color: rgb(144, 238, 144);
+  color: black;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(144, 238, 144);
+}
+
+button:hover {
+  background-color: rgb(50, 150, 50);
+}
+
+input,
+select {
+  border-radius: 0.3rem;
+  border: none;
+  height: 2rem;
+  background-color: rgb(200, 200, 200);
+}
+
+::-moz-placeholder {
+  color: black;
+  font-size: 1rem;
+}
+
+::placeholder {
+  color: black;
+  font-size: 1rem;
+}
+
+label {
+  color: white;
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
 body {
   font-family: "Roboto", sans-serif;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(144, 238, 144);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(50, 150, 50);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(30, 30, 30);
+  border-radius: 1rem;
 }
 
 .grid {
@@ -43,42 +108,12 @@ body {
   background-color: rgb(40, 40, 40);
   display: flex;
 }
-.navbarOptions label,
-.mainOptions label {
-  color: white;
-  font-size: 1rem;
-  font-weight: bolder;
-}
 
 .navbarOptions {
   grid-area: navbar;
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-.navbarOptions .textMaxPrice,
-.navbarOptions .textMinPrice,
-.navbarOptions .choiceCategory,
-.navbarOptions .choiceCondition {
-  border-radius: 0.3rem;
-  border: none;
-  height: 2rem;
-  background-color: rgb(200, 200, 200);
-}
-.navbarOptions .textMaxPrice::-moz-placeholder, .navbarOptions .textMinPrice::-moz-placeholder {
-  color: black;
-  font-size: 1rem;
-}
-.navbarOptions .textMaxPrice::placeholder,
-.navbarOptions .textMinPrice::placeholder {
-  color: black;
-  font-size: 1rem;
-}
-.navbarOptions .textMaxPrice::-webkit-outer-spin-button,
-.navbarOptions .textMaxPrice::-webkit-inner-spin-button,
-.navbarOptions .textMinPrice::-webkit-outer-spin-button,
-.navbarOptions .textMinPrice::-webkit-inner-spin-button {
-  -webkit-appearance: none;
 }
 
 .mainOptions {
@@ -88,43 +123,11 @@ body {
   justify-content: flex-start;
   align-items: center;
 }
-.mainOptions .choiceTab {
-  border-radius: 0.3rem;
-  border: none;
-  height: 2rem;
-  background-color: rgb(200, 200, 200);
-}
 .mainOptions .labelChoiceTab {
   margin-left: 1.5rem;
 }
 .mainOptions .textSearchbar {
-  border-radius: 0.3rem;
-  border: none;
-  height: 2rem;
-  background-color: rgb(200, 200, 200);
   margin-left: 1rem;
-}
-.mainOptions .buttonSearchbar,
-.mainOptions .buttonAddListing {
-  background-color: rgb(144, 238, 144);
-  color: black;
-  border: none;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  height: 2rem;
-}
-.mainOptions .buttonSearchbar:hover,
-.mainOptions .buttonAddListing:hover {
-  background-color: rgb(50, 150, 50);
-}
-.mainOptions .textSearchbar::-moz-placeholder {
-  color: black;
-  font-size: 1rem;
-}
-.mainOptions .textSearchbar::placeholder {
-  color: black;
-  font-size: 1rem;
 }
 .mainOptions .buttonAddListing {
   margin-left: auto;
@@ -181,20 +184,22 @@ main article:hover {
   filter: brightness(50%);
 }
 
-::-webkit-scrollbar {
-  width: 0.5rem;
+.login {
+  display: flex;
+  background-color: rgb(50, 50, 50);
+  position: fixed;
+  top: 5rem;
+  width: 100%;
+  height: calc(100% - 5rem);
+  align-items: center;
+  justify-content: center;
 }
-
-::-webkit-scrollbar-thumb {
-  background-color: rgb(144, 238, 144);
-  border-radius: 1rem;
+.login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
 }
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(50, 150, 50);
-}
-
-::-webkit-scrollbar-track {
-  background-color: rgb(30, 30, 30);
-  border-radius: 1rem;
+.login form a {
+  margin-top: 2rem;
 }/*# sourceMappingURL=style.css.map */

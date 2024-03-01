@@ -1,5 +1,4 @@
 <?php
-
 require_once "./config.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,11 +22,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sell-it!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/normalize.css" />
+    <script src="/script.js"></script>
 </head>
+
 <body>
+    <header class="headerInfos">
+        <a href=""><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
+        <h1 class="title">Sell-it!</h1>
+        <div class="icons">
+            <a href=""><img src="/IMG/profil.png" alt="Profil" /></a>
+        </div>
+    </header>
+
+    <main>
+        <div class="login">
+            <form method="POST">
+                <label for="username">Nom d'utilisateur:</label><br>
+                <input type="text" id="username" name="username" required><br>
+
+                <label for="password">Mot de passe:</label><br>
+                <input type="password" id="password" name="password" required><br>
+
+                <button type="submit">Se connecter</button>
+
+                <a href="/newUser.php">Se créer un compte</a>
+            </form>
+
+        </div>
+    </main>
 </body>
+
 </html>
