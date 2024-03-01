@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt = $db->prepare('INSERT INTO Profil (username, email, password, info_paiement, date_naissance, photo_profil, statut, adresse, montant_balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
         if ($stmt->execute([$username, $emailNettoye, $passwordHash, $info_paiement, $date_naissance, $photo_profil, $statut, $adresse, $montant_balance])) {
-            header("Location: login.php");
+            header("Location: login");
             exit;
         } else {
             $error_message = "Erreur lors de la création du compte.";

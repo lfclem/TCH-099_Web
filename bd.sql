@@ -5,7 +5,7 @@ CREATE TABLE Profil (
     password VARCHAR(255) NOT NULL,
     info_paiement VARCHAR(255) NULL,
     date_naissance DATE NOT NULL,
-    photo_profil VARCHAR(255) NULL,
+    photo_profil BLOB NULL,
     statut INTEGER NOT NULL,
     adresse VARCHAR(255) NOT NULL,
     montant_balance DECIMAL(10,2) NOT NULL
@@ -27,8 +27,8 @@ CREATE TABLE Publication (
     titre VARCHAR(255) NOT NULL,
     prix DECIMAL(10,2) NOT NULL,
     description VARCHAR(255) NULL,
-    image VARCHAR(255) NOT NULL,
-    video VARCHAR(255) NULL,
+    image BLOB NOT NULL,
+    video BLOB NULL,
     id_profil INTEGER REFERENCES Profil (id_profil) ON DELETE CASCADE,
     id_categorie INTEGER REFERENCES Categorie (id_categorie) ON DELETE CASCADE
 );

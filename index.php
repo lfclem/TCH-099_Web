@@ -21,7 +21,18 @@ require("./config.php");
     <div class="icons">
       <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
       <a href=""><img src="/IMG/cart.png" alt="Panier" /></a>
-      <a href=""><img src="/IMG/profil.png" alt="Profil" /></a>
+      <?php if (isset($_SESSION['usager'])) : ?>
+        <?php
+        $db = Database::getInstance();
+        $stmt = $db->prepare('SELECT photo_profil FROM Profil WHERE id_profil = ?');
+        $stmt->execute([$_SESSION['usager']]);
+        $user = $stmt->fetch();
+        $photo_profil = $user['photo_profil'];
+        ?>
+        <a href=""><img class="pfp" src="<?php echo $photo_profil; ?>" alt="Profil" /></a>
+      <?php else : ?>
+        <a href=""><img class="pfp" src="/IMG/profil.png" alt="Profil" /></a>
+      <?php endif; ?>
     </div>
   </header>
 
@@ -75,7 +86,7 @@ require("./config.php");
         <option value="self">Vos Publications</option>
       </select>
     </div>
-    
+
     <button type="submit" class="buttonAddListing">Créer une annonce</button>
   </form>
 

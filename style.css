@@ -94,6 +94,9 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   left: 50%;
   font-size: 3rem;
 }
+.headerInfos .pfp {
+  border-radius: 1.5rem;
+}
 .headerInfos .icons {
   margin-right: 0.5rem;
 }
