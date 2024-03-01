@@ -21,7 +21,6 @@ require("./config.php");
     <div class="icons">
       <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
       <a href=""><img src="/IMG/cart.png" alt="Panier" /></a>
-      <a href=""><img src="/IMG/notifications.png" alt="Notifications" /></a>
       <a href=""><img src="/IMG/profil.png" alt="Profil" /></a>
     </div>
   </header>

@@ -1,9 +1,9 @@
 <?php
-require_once "./config.php";
+require_once './config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
     $db = Database::getInstance();
     $stmt = $db->prepare('SELECT * FROM Profil WHERE username = ?');
@@ -11,11 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['usager'] = $user['type_usager'];
-        header("Location: /");
+        $_SESSION['usager'] = $user['id_profil'];
+        header('Location: /');
         exit;
     } else {
         $error = "Nom d'utilisateur ou mot de passe incorrect.";
+        echo $error;
     }
 }
 ?>
@@ -43,18 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main>
         <div class="login">
-            <form method="POST">
-                <label for="username">Nom d'utilisateur:</label><br>
-                <input type="text" id="username" name="username" required><br>
+            <form action="" method="POST">
+                <label for="username">Nom d'utilisateur:</label>
+                <input type="text" id="username" name="username" required>
 
-                <label for="password">Mot de passe:</label><br>
-                <input type="password" id="password" name="password" required><br>
+                <label for="password">Mot de passe:</label>
+                <input type="password" id="password" name="password" required>
 
                 <button type="submit">Se connecter</button>
 
-                <a href="/newUser.php">Se créer un compte</a>
+                <a href="/newUser">Se créer un compte</a>
             </form>
-
         </div>
     </main>
 </body>

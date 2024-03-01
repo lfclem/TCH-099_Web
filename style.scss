@@ -214,8 +214,9 @@ main {
   }
 }
 
-//* LOGIN.PHP
-.login {
+//* LOGIN & NEWUSER
+.login,
+.newUser {
   display: flex;
   background-color: $mainColor;
   position: fixed;
@@ -230,6 +231,10 @@ main {
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+
+    input {
+      margin: 1rem;
+    }
 
     a {
       margin-top: 2rem;

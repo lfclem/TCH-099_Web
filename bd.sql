@@ -8,9 +8,7 @@ CREATE TABLE Profil (
     photo_profil VARCHAR(255) NULL,
     statut INTEGER NOT NULL,
     adresse VARCHAR(255) NOT NULL,
-    montant_balance DECIMAL(10,2) NOT NULL,
-    id_parent INTEGER NULL,
-    FOREIGN KEY (id_parent) REFERENCES Profil(id_profil)
+    montant_balance DECIMAL(10,2) NOT NULL
 );
 
 CREATE TABLE Categorie (

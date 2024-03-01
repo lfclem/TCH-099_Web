@@ -184,7 +184,8 @@ main article:hover {
   filter: brightness(50%);
 }
 
-.login {
+.login,
+.newUser {
   display: flex;
   background-color: rgb(50, 50, 50);
   position: fixed;
@@ -194,12 +195,18 @@ main article:hover {
   align-items: center;
   justify-content: center;
 }
-.login form {
+.login form,
+.newUser form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
 }
-.login form a {
+.login form input,
+.newUser form input {
+  margin: 1rem;
+}
+.login form a,
+.newUser form a {
   margin-top: 2rem;
 }/*# sourceMappingURL=style.css.map */
