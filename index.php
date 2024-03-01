@@ -25,7 +25,7 @@ require("./config.php");
     </div>
   </header>
 
-  <form action="" method="GET" class="navbarOptions">
+  <form method="GET" class="navbarOptions">
     <div>
       <label for="category">Catégorie :</label>
       <select id="category" name="category" class="choiceCategory">
@@ -49,10 +49,12 @@ require("./config.php");
         <option value="refurbished">Reconditionné</option>
       </select>
     </div>
+
     <div>
       <label for="minPrice">Prix minimal :</label>
       <input type="number" id="minPrice" name="minPrice" class="textMinPrice" placeholder="Entrez le prix minimal" />
     </div>
+
     <div>
       <label for="maxPrice">Prix maximal :</label>
       <input type="number" id="maxPrice" name="maxPrice" class="textMaxPrice" placeholder="Entrez le prix maximal" />
@@ -64,6 +66,7 @@ require("./config.php");
       <input type="text" class="textSearchbar" name="searchbar" placeholder="Rechercher..." />
       <button type="submit" class="buttonSearchbar">Rechercher</button>
     </div>
+
     <div>
       <label for="tab" class="labelChoiceTab">Onglet :</label>
       <select id="tab" name="tab" class="choiceTab">
@@ -72,108 +75,106 @@ require("./config.php");
         <option value="self">Vos Publications</option>
       </select>
     </div>
+    
     <button type="submit" class="buttonAddListing">Créer une annonce</button>
   </form>
 
-  <main>
-    <div class="listingsContainer">
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Elegant Chair</h2>
-        <p>Price: $99.99</p>
-      </article>
+  <main class="listingsContainer">
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Elegant Chair</h2>
+      <p>Price: $99.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Cozy Sofa</h2>
-        <p>Price: $249.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Cozy Sofa</h2>
+      <p>Price: $249.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Vintage Desk</h2>
-        <p>Price: $199.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Vintage Desk</h2>
+      <p>Price: $199.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Modern Lamp</h2>
-        <p>Price: $39.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Modern Lamp</h2>
+      <p>Price: $39.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Rustic Table</h2>
-        <p>Price: $149.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Rustic Table</h2>
+      <p>Price: $149.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Luxury Ottoman</h2>
-        <p>Price: $299.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Luxury Ottoman</h2>
+      <p>Price: $299.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Stylish Bookshelf</h2>
-        <p>Price: $179.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Stylish Bookshelf</h2>
+      <p>Price: $179.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Chic Coffee Table</h2>
-        <p>Price: $129.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Chic Coffee Table</h2>
+      <p>Price: $129.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Minimalist Chair</h2>
-        <p>Price: $79.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Minimalist Chair</h2>
+      <p>Price: $79.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Contemporary Rug</h2>
-        <p>Price: $199.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Contemporary Rug</h2>
+      <p>Price: $199.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Elegant Dining Table</h2>
-        <p>Price: $349.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Elegant Dining Table</h2>
+      <p>Price: $349.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Vintage Armchair</h2>
-        <p>Price: $219.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Vintage Armchair</h2>
+      <p>Price: $219.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Modern Side Table</h2>
-        <p>Price: $69.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Modern Side Table</h2>
+      <p>Price: $69.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Rustic Bench</h2>
-        <p>Price: $99.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Rustic Bench</h2>
+      <p>Price: $99.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Luxury Chandelier</h2>
-        <p>Price: $499.99</p>
-      </article>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Luxury Chandelier</h2>
+      <p>Price: $499.99</p>
+    </article>
 
-      <article>
-        <img src="/IMG/peter.jpg" alt="Placeholder" />
-        <h2>Stylish Ottoman</h2>
-        <p>Price: $179.99</p>
-      </article>
-
-    </div>
+    <article>
+      <img src="/IMG/peter.jpg" alt="Placeholder" />
+      <h2>Stylish Ottoman</h2>
+      <p>Price: $179.99</p>
+    </article>
   </main>
 </body>
 

@@ -56,8 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </header>
 
-    <main>
-        <div class="newUser">
+    <main class="newUser">
             <form method="POST">
                 <label for="username">Nom d'utilisateur:</label>
                 <input type="text" id="username" name="username" required>
@@ -84,7 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <a href="/login">Se connecter à un compte</a>
             </form>
-        </div>
     </main>
     <script>
         function showErrorMessage(message) {
