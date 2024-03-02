@@ -31,7 +31,7 @@ require("./config.php");
         ?>
         <a href=""><img class="pfp" src="<?php echo $photo_profil; ?>" alt="Profil" /></a>
       <?php else : ?>
-        <a href=""><img class="pfp" src="/IMG/profil.png" alt="Profil" /></a>
+        <a href="/login"><img class="pfp" src="/IMG/profil.png" alt="Profil" /></a>
       <?php endif; ?>
     </div>
   </header>
@@ -72,13 +72,11 @@ require("./config.php");
     </div>
   </form>
 
-  <form action="" method="GET" class="mainOptions">
+  <form method="GET" class="mainOptions">
     <div>
       <input type="text" class="textSearchbar" name="searchbar" placeholder="Rechercher..." />
       <button type="submit" class="buttonSearchbar">Rechercher</button>
-    </div>
 
-    <div>
       <label for="tab" class="labelChoiceTab">Onglet :</label>
       <select id="tab" name="tab" class="choiceTab">
         <option value="public">Publiques</option>

@@ -1,4 +1,4 @@
-*Ajouter un signe de dollar apres le montant max/min rentrer par lutilisateur
+!Ajouter un signe de dollar apres le montant max/min rentrer par lutilisateur
+!Afficher un message quand les logins infos sont mauvais
 
-
-!Axios et JQuery
+?Axios et JQuery

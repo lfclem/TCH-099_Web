@@ -17,7 +17,7 @@ class Database {
             try {
                 self::$instance = new PDO("mysql:host=$host;dbname=$database", 
                       $username, $password);
-                self::$instance->setAttribute(PDO::ATTR_ERRMODE, 
+                self::$instance->setAttribute(PDO::ATTR_ERRMODE,
                       PDO::ERRMODE_EXCEPTION);
             } 
             catch(PDOException $e) {

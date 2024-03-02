@@ -144,30 +144,22 @@ input[type="number"] {
   display: flex;
   grid-area: navbar2;
   background-color: $mainColor;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
+  padding-left: 1rem;
+  padding-right: 1.5rem;
 
   .labelChoiceTab {
     margin-left: 1.5rem;
-  }
-
-  .textSearchbar {
-    margin-left: 1rem;
-  }
-
-  .buttonAddListing {
-    margin-left: auto;
-    margin-right: 1.5rem;
   }
 }
 
 //* MAIN
 .listingsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15.2%, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
   grid-gap: 1.5%;
   justify-items: center;
-  padding: 0 1rem;
   overflow-y: auto;
   background-color: $mainColor;
   padding: 0 1rem;
@@ -178,7 +170,7 @@ input[type="number"] {
     flex-direction: column;
     cursor: pointer;
     height: auto;
-    width: 15.2rem;
+    width: 100%;
     background-color: $navColor;
     border-radius: 2rem;
 
