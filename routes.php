@@ -6,11 +6,14 @@ any('/', 'index.php');
 any('/index', 'index.php');
 any('/login', 'login.php');
 any('/newUser', 'newUser.php');
+any('/jsonConverter.php', 'jsonConverter.php');
 
-get('/getProfils', '/api/getProfils/getProfils.php');
-get('/getCategories', '/api/getCategories/getCategories.php');
-get('/getPublications/$id', '/api/getPublications/getPublications.php');
-get('/getPanier/$id', '/api/getPanier/getPanier.php');
-get('/getPaiement/$id', '/api/getPaiement/getPaiement.php');
+get('/api/getProfils', '/api/getProfils/getProfils.php');
+get('/api/getCategories', '/api/getCategories/getCategories.php');
+get('/api/getPublications/$id', '/api/getPublications/getPublications.php');
+get('/api/getAllPublications', '/api/getAllPublications/getAllPublications.php');
+get('/api/getPanier/$id', '/api/getPanier/getPanier.php');
+get('/api/getPaiement/$id', '/api/getPaiement/getPaiement.php');
+post('/api/postPublication', '/api/postPublication/postPublication.php');
 
 any('/404', '404.php');
