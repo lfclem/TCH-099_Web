@@ -3,7 +3,7 @@ let categories = [];
 let profils = [];
 let type_usager;
 window.onload = function(){
-    fetch('/jsonConverter.php',
+    fetch('/jsonConverter',
     { methode: "GET"})
     
         .then(response => response.json())
@@ -13,16 +13,6 @@ window.onload = function(){
             profils = data.profil;
             user = data.usagers;
             renderPub();
-
-            // if(window.location.pathname === '/index.php'){
-            //     console.log("test");
-            //     renderPub();
-            // } else if(window.location.pathname === '/newPublication.php'){
-            //     const btn = document.getElementById('creerPub');
-            //     btn.addEventListener('click', (event) => {
-            //     newPub(); 
-            //     });
-            // }
         })
         .catch(error => console.error('Erreur lors de la récupération des données:', error));
 }

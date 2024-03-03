@@ -6,7 +6,7 @@ any('/', 'index.php');
 any('/index', 'index.php');
 any('/login', 'login.php');
 any('/newUser', 'newUser.php');
-any('/jsonConverter.php', 'jsonConverter.php');
+any('/jsonConverter', 'jsonConverter.php');
 
 get('/api/getProfils', '/api/getProfils/getProfils.php');
 get('/api/getCategories', '/api/getCategories/getCategories.php');

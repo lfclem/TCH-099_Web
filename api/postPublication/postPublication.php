@@ -2,7 +2,6 @@
 require_once __DIR__."/../../config.php";
 
 
-echo "testest";
 $db = Database::getInstance();
 
 if(!isset($_SERVER["CONTENT_TYPE"]) || $_SERVER["CONTENT_TYPE"]!='application/json'){
@@ -37,26 +36,26 @@ if(!isset($body->id_categorie) || $body->id_categorie == ""){
     exit;
 }
 
-if(!isset($body->id_publication) || $body->id == ""){
+if(!isset($body->id_publication) || $body->id_publication == ""){
     http_response_code(400);
     echo "L'id est obligatoire";
     exit;
 }
 
 try{
-    $stmt = $db->prepare("INSERT INTO `Publication` (`titre`, `prix`, `description`, `image`, `video`, `id_profil`, `id_categorie`) VALUES (:titre, :prix, :des, :img, :vid, :id_p, :id_cat)");
+    $stmt = $db->prepare("INSERT INTO `Publication` (`id_publication`, `titre`, `prix`, `description`, `image`, `video`, `id_profil`, `id_categorie`) VALUES (:id_pub, :titre, :prix, :descriptions, :img, :vid, :id_p, :id_cat)");
+    $stmt->bindValue(":id_pub", $body->id_publication);
     $stmt->bindValue(":titre", $body->titre);
     $stmt->bindValue(":prix", $body->prix);
-    $stmt->bindValue(":des", $body->description);
+    $stmt->bindValue(":descriptions", $body->description);
     $stmt->bindValue(":img", $body->image);
     $stmt->bindValue(":vid", $body->video);
     $stmt->bindValue(":id_p", $body->id_profil);
     $stmt->bindValue(":id_cat", $body->id_categorie);
     $stmt->execute();
 
-    $id = $db->lastInsertId();
 
-    $insertion = ["id_publication"=>$id, "titre"=>$body->titre, "prix"=>$body->prix, "img"=>$body->url_image];
+    $insertion = ["id_publication"=>$body->id_publication, "titre"=>$body->titre, "prix"=>$body->prix, "img"=>$body->image];
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($insertion);
 

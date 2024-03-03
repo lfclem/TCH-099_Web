@@ -2,8 +2,9 @@ let tabPublications = [];
 let tabCategories = [];
 let tabProfils = [];
 let user;
+let apiPub = "/api/"
 window.onload = function(){
-    fetch('/jsonConverter.php',
+    fetch('/jsonConverter',
     { methode: "GET"})
     
         .then(response => response.json())
@@ -12,17 +13,10 @@ window.onload = function(){
             tabCategories = data.categories;
             tabProfils = data.profil;
             user = data.usagers;
-            console.log("test");
-
         })
         .catch(error => console.error('Erreur lors de la récupération des données:', error));
 }
-// const btn = document.getElementById('creerPub');
-// console.log(btn);
-// btn.addEventListener('click', (event) => {
-//     console.log("test");
-//     newPub(); 
-// });
+
 
 function newPub(){
     const titre = document.getElementById('titre');
@@ -41,17 +35,18 @@ function newPub(){
 
     if(!(titre.value === "") && !(prix.value === "") && !(img.value === "")){
         pubTemp.push({
-            id_publication : -1,
+            id_publication : tabPublications[tabPublications.length-1].id_publication + 1,
             titre : titre.value,
             prix : prix.value,
             description : desc.value,
             image : img.value,
             video : vid.value,
-            id_profil : user,
-            id_categorie : listeCat
+            id_profil : 1,
+            id_categorie : 1
         });
-        
-        fetch("/api/postPublication", {
+        console.log(pubTemp[0]);
+        let apiPub = "/api/postPublication/postPublication.php";
+        fetch(apiPub, {
             method: 'POST', // Méthode HTTP
             headers: {
                 'Content-Type': 'application/json'
@@ -65,15 +60,12 @@ function newPub(){
             return response.json(); // Convertir la réponse en JSON
         })
         .then(data => {
-            pubTemp[0].id_publication = data.id;
             tabPublications.push(pubTemp[0]);
-            //window.location.href = '/index.php';
-            //renderPub();
+            window.location.href = '/index.php';
         })
         .catch(error => {
-            tabPublications = tabPublications.filter((p)=>p.id_publication!=-1);
+            tabPublications = tabPublications.filter((p)=>p.id_publication != tabPublications[tabPublications.length-1].id_publication + 1);
             alert("Erreur lors de l'ajout de la publication: "+error);
-            //renderPub();
             console.error('Erreur lors de la requête:', error);
         });
     }
