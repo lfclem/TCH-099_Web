@@ -204,4 +204,66 @@ article:hover {
 .login form a,
 .newUser form a {
   margin-top: 5%;
+}
+
+.newPublications {
+  background-color: rgb(50, 50, 50);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin-bottom: -2rem;
+}
+.newPublications h2 {
+  color: rgb(144, 238, 144);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+.newPublications form {
+  width: 100%;
+  max-width: 400px;
+}
+.newPublications .form-group {
+  margin-bottom: 1rem;
+}
+.newPublications label {
+  color: white;
+  font-size: 1rem;
+}
+.newPublications .image-upload input[type=file] {
+  width: calc(100% - 2rem);
+}
+.newPublications input[type=text],
+.newPublications input[type=number],
+.newPublications input[type=url],
+.newPublications input[type=image],
+.newPublications select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  background-color: rgb(200, 200, 200);
+  color: rgb(144, 238, 144);
+}
+.newPublications select {
+  height: 2rem;
+}
+.newPublications button[type=submit] {
+  background-color: rgb(40, 40, 40);
+  color: black;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.newPublications button[type=submit]:hover {
+  background-color: rgb(144, 238, 144);
+}
+
+.body-background {
+  background-color: rgb(50, 50, 50);
 }/*# sourceMappingURL=style.css.map */

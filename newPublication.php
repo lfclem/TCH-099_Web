@@ -28,42 +28,43 @@ require("./config.php");
             <form method="post">
                 <div class="form-group">
                     <label for="titre">Title:</label>
-                    <input type="text" id="titre" name="titre" class="form-control" required />
+                    <input type="text" id="titre" name="titre" class="form-control" required placeholder="Entrez le titre de votre publication" />
                 </div>
 
                 <div class="form-group">
                   <label for="prix">Price:</label>
-                  <input type="number" id="prix" name="prix" class="form-control" required />
+                  <input type="number" id="prix" name="prix" class="form-control" required placeholder="Entrez le prix de votre publication"/>
                 </div>
 
                 <div class="form-group">
                   <label for="description">Description:</label>
-                  <input type="text" id="description" name="description" class="form-control"/>
+                  <input type="text" id="description" name="description" placeholder="Entrez une description de votre publication" class="form-control"/>
                 </div>
 
                 <div class="form-group">
                     <label for="video">Video:</label>
-                    <input type="url" id="video" name="video" class="form-control" />
+                    <input type="url" id="video" name="video"  placeholder="Entrez le lien de la vidéo de votre publication" class="form-control" />
+                </div>
+
+                <div class="form-group image-upload">
+                    <label for="img">Image:</label>
+                    <input type="file" id="img" name="img" class="form-control" accept="image/*" required />
                 </div>
 
                 <div class="form-group">
-                    <label for="img">Image:</label>
-                    <input type="text" id="img" name="img" class="form-control" required />
-                </div>
-                
-                <div class="form-group">
-                    <label for="categories">Categories:</label>
-                    <select name="categories" id="categories" multiple>
-                        <option value="vetement">Vêtements</option>
-                        <option value="chaussures">Chaussures</option>
-                        <option value="accessoires">Accessoires</option>
-                        <option value="electroniques">Électroniques</option>
-                        <option value="livres">Livres</option>
-                        <option value="meubles">Meubles</option>
-                        <option value="jouets">Jouets</option>
-                        <option value="vehicules">Véhicules</option>
-                    </select>
-                </div>
+                  <label for="categories">Categories:</label>
+                  <select name="categories" id="categories" required>
+                    <option value="" disabled selected>Choisissez une catégorie</option>
+                    <option value="vetement">Vêtements</option>
+                    <option value="chaussures">Chaussures</option>
+                    <option value="accessoires">Accessoires</option>
+                    <option value="electroniques">Électroniques</option>
+                    <option value="livres">Livres</option>
+                    <option value="meubles">Meubles</option>
+                    <option value="jouets">Jouets</option>
+                    <option value="vehicules">Véhicules</option>
+                  </select>
+            </div>
 
                 <button type="button" onclick="newPub()" id="creerPub">Créer</button>
 
