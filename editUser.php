@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <button type="submit">Modifier mes informations</button>
         </form>
-        <a href="?delete=1">Supprimer le compte</a>
+        <a href="?delete=1" onclick="return confirm('Êtes-vous sûr de vouloir supprimer le compte?');">Supprimer le compte</a>
     </main>
 </body>
 
