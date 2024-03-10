@@ -1,11 +1,12 @@
 CREATE TABLE Profil (
-    id_profil INTEGER PRIMARY KEY,
+    id_profil INTEGER PRIMARY KEY AUTOINCREMENT,
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     info_paiement VARCHAR(255) NULL,
     date_naissance DATE NOT NULL,
     photo_profil BLOB NULL,
+    bio VARCHAR(255) NULL,
     statut INTEGER NOT NULL,
     adresse VARCHAR(255) NOT NULL,
     montant_balance DECIMAL(10,2) NOT NULL

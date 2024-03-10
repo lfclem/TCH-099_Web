@@ -81,6 +81,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   background-color: rgb(30, 30, 30);
   align-items: center;
   justify-content: space-between;
+  height: 5rem;
 }
 .headerInfos .logo {
   margin-left: 0.5rem;

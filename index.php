@@ -29,7 +29,7 @@ require("./config.php");
         $user = $stmt->fetch();
         $photo_profil = $user['photo_profil'];
         ?>
-        <a href=""><img class="pfp" src="<?php echo $photo_profil; ?>" alt="Profil" /></a>
+        <a href="/editUser"><img class="pfp" src="<?php echo $photo_profil; ?>" alt="Profil" /></a>
       <?php else : ?>
         <a href="/login"><img class="pfp" src="/IMG/profil.png" alt="Profil" /></a>
       <?php endif; ?>

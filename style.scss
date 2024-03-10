@@ -94,6 +94,7 @@ input[type="number"] {
   background-color: $headerColor;
   align-items: center;
   justify-content: space-between;
+  height: 5rem;
 
   .logo {
     margin-left: 0.5rem;
@@ -164,7 +165,7 @@ input[type="number"] {
   background-color: $mainColor;
   padding: 0 1rem;
   grid-area: main;
-  
+
   article {
     display: flex;
     flex-direction: column;
@@ -233,6 +234,10 @@ article:hover {
     }
   }
 }
+
+.editUser {
+}
+
 .newPublications {
   background-color: $mainColor;
   display: flex;
@@ -240,7 +245,7 @@ article:hover {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  margin-bottom: -2rem; 
+  margin-bottom: -2rem;
   h2 {
     color: $limeGreen;
     margin-bottom: 2rem;
@@ -249,7 +254,7 @@ article:hover {
 
   form {
     width: 100%;
-    max-width: 400px; 
+    max-width: 400px;
   }
 
   .form-group {
@@ -261,30 +266,30 @@ article:hover {
     font-size: 1rem;
   }
   .image-upload {
-    input[type='file'] {
-      width: calc(100% - 2rem); 
+    input[type="file"] {
+      width: calc(100% - 2rem);
     }
   }
 
-  input[type='text'],
-  input[type='number'],
-  input[type='url'],
-  input[type='image'],
+  input[type="text"],
+  input[type="number"],
+  input[type="url"],
+  input[type="image"],
   select {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.3rem;
     font-size: 1rem;
-    background-color: $backgroundTextColor; 
-    color: $limeGreen; 
+    background-color: $backgroundTextColor;
+    color: $limeGreen;
   }
 
   select {
-    height: 2rem; 
+    height: 2rem;
   }
 
-  button[type='submit'] {
+  button[type="submit"] {
     background-color: $navColor;
     color: black;
     padding: 0.5rem 1rem;
