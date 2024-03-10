@@ -1,9 +1,77 @@
 <?php
-require("./config.php");
+require './config.php';
+
+$_SESSION['error_message'] = "";
+
+$db = Database::getInstance();
+$stmt = $db->prepare('SELECT * FROM Profil WHERE id_profil = ?');
+$stmt->execute([$_SESSION['usager']]);
+$user = $stmt->fetch();
+
 if (isset($_GET['deconnexion'])) {
     unset($_SESSION['usager']);
     header('Location: /');
     exit();
+}
+
+if (isset($_GET['delete'])) {
+    $db = Database::getInstance();
+    $stmt = $db->prepare('DELETE FROM Profil WHERE id_profil = ?');
+    $stmt->execute([$_SESSION['usager']]);
+    unset($_SESSION['usager']);
+    header('Location: /');
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = htmlspecialchars($_POST['username']);
+    $emailNettoye = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $password = htmlspecialchars($_POST['password']);
+    $info_paiement = htmlspecialchars($_POST['info_paiement']);
+    $photo_profil = filter_var($_POST['photo_profil'], FILTER_SANITIZE_URL);
+    $adresse = htmlspecialchars($_POST['adresse']);
+    $bio = htmlspecialchars($_POST['bio']);
+
+    $db = Database::getInstance();
+    $stmt = $db->prepare('SELECT * FROM Profil WHERE email = ?');
+    $stmt->execute([$emailNettoye]);
+    if ($stmt->fetch() && $emailNettoye != $user['email']) {
+        $_SESSION['error_message'] = "Cet email est déjà utilisé.";
+    }
+
+    $stmt = $db->prepare('SELECT * FROM Profil WHERE username = ?');
+    $stmt->execute([$username]);
+    if ($stmt->fetch() && $username != $user['username']) {
+        $_SESSION['error_message'] = "Ce nom d'utilisateur est déjà utilisé.";
+    }
+
+    if (!filter_var($emailNettoye, FILTER_SANITIZE_EMAIL)) {
+        $_SESSION['error_message'] = "Email non valide";
+    }
+
+    if ($_POST['password'] != "") {
+        $password = htmlspecialchars($_POST['password']);
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $db->prepare('UPDATE Profil SET username = ?, email = ?, password = ?, info_paiement = ?, photo_profil = ?, adresse = ?, bio = ? WHERE id_profil = ?');
+        if ($stmt->execute([$username, $emailNettoye, $passwordHash, $info_paiement, $photo_profil, $adresse, $bio, $_SESSION['usager']])) {
+            $_SESSION['error_message'] = "Informations modifiées avec succès.";
+            $stmt = $db->prepare('SELECT * FROM Profil WHERE id_profil = ?');
+            $stmt->execute([$_SESSION['usager']]);
+            $user = $stmt->fetch();
+        } else {
+            $_SESSION['error_message'] = "Erreur lors de la modification des informations.";
+        }
+    } else {
+        $stmt = $db->prepare('UPDATE Profil SET username = ?, email = ?, info_paiement = ?, photo_profil = ?, adresse = ?, bio = ? WHERE id_profil = ?');
+        if ($stmt->execute([$username, $emailNettoye, $info_paiement, $photo_profil, $adresse, $bio, $_SESSION['usager']])) {
+            $_SESSION['error_message'] = "Informations modifiées avec succès.";
+            $stmt = $db->prepare('SELECT * FROM Profil WHERE id_profil = ?');
+            $stmt->execute([$_SESSION['usager']]);
+            $user = $stmt->fetch();
+        } else {
+            $_SESSION['error_message'] = "Erreur lors de la modification des informations.";
+        }
+    }
 }
 ?>
 
@@ -16,9 +84,10 @@ if (isset($_GET['deconnexion'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/normalize.css" />
+    <script src="/script.js"></script>
 </head>
 
-<body>
+<body data-error-message="<?php echo $_SESSION['error_message'] ?>" data-reload="false">
     <header class="headerInfos">
         <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
         <h1 class="title">Sell-it!</h1>
@@ -26,10 +95,6 @@ if (isset($_GET['deconnexion'])) {
             <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
             <a href=""><img src="/IMG/cart.png" alt="Panier" /></a>
             <?php
-            $db = Database::getInstance();
-            $stmt = $db->prepare('SELECT photo_profil FROM Profil WHERE id_profil = ?');
-            $stmt->execute([$_SESSION['usager']]);
-            $user = $stmt->fetch();
             $photo_profil = $user['photo_profil'];
             ?>
             <?php if ($photo_profil) : ?>
@@ -44,60 +109,30 @@ if (isset($_GET['deconnexion'])) {
         <a href="?deconnexion=1">Deconnecter</a>
         <form method="POST">
             <label for="username">Nom d'utilisateur:</label>
-            <input type="text" id="username" name="username">
+            <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>">
 
             <label for="password">Mot de passe:</label>
             <input type="password" id="password" name="password">
 
             <label for="email">Adresse email:</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>">
 
             <label for="info_paiement">Numéro de votre carte:</label>
-            <input type="number" id="info_paiement" name="info_paiement">
+            <input type="number" id="info_paiement" name="info_paiement" value="<?php echo $user['info_paiement']; ?>">
 
             <label for="photo_profil">Photo de profil:</label>
-            <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png">
+            <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png" value="<?php echo $user['photo_profil']; ?>">
 
             <label for="adresse">Adresse:</label>
-            <input type="text" id="adresse" name="adresse">
+            <input type="text" id="adresse" name="adresse" value="<?php echo $user['adresse']; ?>">
 
             <label for="bio">Bio:</label>
-            <input type="text" id="bio" name="bio">
+            <input type="text" id="bio" name="bio" value="<?php echo $user['bio']; ?>">
 
-            <button type="submit">Créer le compte</button>
+            <button type="submit">Modifier mes informations</button>
         </form>
+        <a href="?delete=1">Supprimer le compte</a>
     </main>
-    <script>
-        function showErrorMessage(message) {
-            const modal = document.createElement("div");
-            modal.style.position = "fixed";
-            modal.style.zIndex = "1";
-            modal.style.left = "0";
-            modal.style.top = "0";
-            modal.style.width = "100%";
-            modal.style.height = "100%";
-            modal.style.overflow = "auto";
-            modal.style.backgroundColor = "rgba(0,0,0,0.4)";
-            const modalContent = document.createElement("div");
-            modalContent.style.backgroundColor = "#fefefe";
-            modalContent.style.margin = "15% auto";
-            modalContent.style.padding = "20px";
-            modalContent.style.border = "1px solid #888";
-            modalContent.style.width = "20%";
-            modalContent.textContent = message;
-            modal.appendChild(modalContent);
-            document.body.appendChild(modal);
-            setTimeout(function() {
-                modal.remove();
-            }, 2000);
-        }
-
-        <?php
-        if ($error_message != "") {
-            echo "showErrorMessage('$error_message');";
-        }
-        ?>
-    </script>
 </body>
 
 </html>

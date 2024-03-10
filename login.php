@@ -1,5 +1,6 @@
 <?php
-$error_message = "";
+
+$_SESSION['error_message'] = "";
 
 require_once './config.php';
 
@@ -16,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['usager'] = $user['id_profil'];
         header('Location: /');
     } else {
-        $error_message = "Nom d'utilisateur ou mot de passe incorrect.";
+        $_SESSION['error_message'] = "Nom d'utilisateur ou mot de passe incorrect.";
     }
 }
 ?>
@@ -30,9 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/normalize.css" />
+    <script src="/script.js"></script>
 </head>
 
-<body>
+<body data-error-message="<?php echo $_SESSION['error_message'] ?>" data-reload="false">
     <header class="headerInfos">
         <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
         <h1 class="title">Sell-it!</h1>
@@ -54,37 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="/newUser">Se créer un compte</a>
         </form>
     </main>
-    <script>
-        function showErrorMessage(message) {
-            const modal = document.createElement("div");
-            modal.style.position = "fixed";
-            modal.style.zIndex = "1";
-            modal.style.left = "0";
-            modal.style.top = "0";
-            modal.style.width = "100%";
-            modal.style.height = "100%";
-            modal.style.overflow = "auto";
-            modal.style.backgroundColor = "rgba(0,0,0,0.4)";
-            const modalContent = document.createElement("div");
-            modalContent.style.backgroundColor = "#fefefe";
-            modalContent.style.margin = "15% auto";
-            modalContent.style.padding = "20px";
-            modalContent.style.border = "1px solid #888";
-            modalContent.style.width = "20%";
-            modalContent.textContent = message;
-            modal.appendChild(modalContent);
-            document.body.appendChild(modal);
-            setTimeout(function() {
-                modal.remove();
-            }, 2000);
-        }
-
-        <?php
-        if ($error_message != "") {
-            echo "showErrorMessage('$error_message');";
-        }
-        ?>
-    </script>
 </body>
 
 </html>

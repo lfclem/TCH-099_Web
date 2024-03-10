@@ -1,5 +1,6 @@
 <?php
-$error_message = "";
+
+$_SESSION['error_message'] = "";
 
 require_once "./config.php";
 
@@ -18,22 +19,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $db->prepare('SELECT * FROM Profil WHERE email = ?');
     $stmt->execute([$emailNettoye]);
     if ($stmt->fetch()) {
-        $error_message = "Cet email est déjà utilisé.";
+        $_SESSION['error_message'] = "Cet email est déjà utilisé.";
     } else {
         $stmt = $db->prepare('SELECT * FROM Profil WHERE username = ?');
         $stmt->execute([$username]);
         if ($stmt->fetch()) {
-            $error_message = "Ce nom d'utilisateur est déjà pris.";
+            $_SESSION['error_message'] = "Ce nom d'utilisateur est déjà pris.";
         } else if (!filter_var($emailNettoye, FILTER_SANITIZE_EMAIL)) {
-            $error_message = "Email non valide";
+            $_SESSION['error_message'] = "Email non valide";
         } else {
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
             $stmt = $db->prepare('INSERT INTO Profil (username, email, password, info_paiement, date_naissance, photo_profil, statut, adresse, montant_balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
             if ($stmt->execute([$username, $emailNettoye, $passwordHash, $info_paiement, $date_naissance, $photo_profil, $statut, $adresse, $montant_balance])) {
-                $error_message = "Compte créé avec succès. Vous pouvez maintenant vous connecter.";
+                $_SESSION['error_message'] = "Compte créé avec succès. Vous pouvez maintenant vous connecter.";
+                header("Location: /login");
             } else {
-                $error_message = "Erreur lors de la création du compte.";
+                $_SESSION['error_message'] = "Erreur lors de la création du compte.";
             }
         }
     }
@@ -49,9 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/normalize.css" />
+    <script src="/script.js"></script>
 </head>
 
-<body>
+<body data-error-message="<?php echo $_SESSION['error_message'] ?>" data-reload="false">
     <header class="headerInfos">
         <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
         <h1 class="title">Sell-it!</h1>

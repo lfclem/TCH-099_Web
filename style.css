@@ -181,7 +181,8 @@ article:hover {
 }
 
 .login,
-.newUser {
+.newUser,
+.editUser {
   display: flex;
   background-color: rgb(50, 50, 50);
   position: fixed;
@@ -192,18 +193,21 @@ article:hover {
   justify-content: center;
 }
 .login form,
-.newUser form {
+.newUser form,
+.editUser form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
 }
 .login form input,
-.newUser form input {
+.newUser form input,
+.editUser form input {
   margin: 5%;
 }
 .login form a,
-.newUser form a {
+.newUser form a,
+.editUser form a {
   margin-top: 5%;
 }
 

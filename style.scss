@@ -209,7 +209,8 @@ article:hover {
 
 //* LOGIN & NEWUSER
 .login,
-.newUser {
+.newUser,
+.editUser {
   display: flex;
   background-color: $mainColor;
   position: fixed;
@@ -233,9 +234,6 @@ article:hover {
       margin-top: 5%;
     }
   }
-}
-
-.editUser {
 }
 
 .newPublications {

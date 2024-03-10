@@ -1,5 +1,5 @@
 !Ajouter un signe de dollar apres le montant max/min rentrer par lutilisateur
-!Afficher un message quand les logins infos sont mauvais
-!S'assurer que si le user est connecte, sa pfp est visible en haut a droite, son cart et ses messages
+!SCSS EditUser
+!Arreter que les pop-ups soient visibles quand on refresh/change de page
 
 ?Axios et JQuery
