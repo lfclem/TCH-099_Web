@@ -2,10 +2,13 @@ let publications = [];
 let categories = [];
 let profils = [];
 let type_usager;
+console.log('test')
 window.onload = function () {
+  console.log("test2");
   fetch("/jsonConverter", { methode: "GET" })
     .then((response) => response.json())
     .then((data) => {
+      console.log("test");
       publications = data.publication;
       categories = data.categories;
       profils = data.profil;
@@ -15,9 +18,16 @@ window.onload = function () {
     .catch((error) =>
       console.error("Erreur lors de la récupération des données:", error)
     );
+
+  const errorMessage = document.body.getAttribute("data-error-message");
+  const reload = document.body.getAttribute("data-reload") === "true";
+  if (errorMessage) {
+    showErrorMessage(errorMessage, reload);
+  }
 };
 
 function renderPub() {
+  console.log("test");
   const main = document.querySelector("main.listingsContainer");
 
   for (let i = 0; i < publications.length; i++) {
@@ -67,10 +77,10 @@ function showErrorMessage(message, reload = false) {
     }
   }, 2000);
 }
-window.onload = function () {
-  const errorMessage = document.body.getAttribute("data-error-message");
-  const reload = document.body.getAttribute("data-reload") === "true";
-  if (errorMessage) {
-    showErrorMessage(errorMessage, reload);
-  }
-};
+// window.onload = function () {
+//   const errorMessage = document.body.getAttribute("data-error-message");
+//   const reload = document.body.getAttribute("data-reload") === "true";
+//   if (errorMessage) {
+//     showErrorMessage(errorMessage, reload);
+//   }
+// };

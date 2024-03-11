@@ -48,7 +48,7 @@ require("./config.php");
 
                 <div class="form-group image-upload">
                     <label for="img">Image:</label>
-                    <input type="file" id="img" name="img" class="form-control" accept="image/*" required />
+                    <input type="url" id="img" name="img" class="form-control" accept="image/*" required />
                 </div>
 
                 <div class="form-group">
