@@ -16,7 +16,7 @@ require("./config.php");
 
 <body class="grid">
   <header class="headerInfos">
-    <a href=""><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
+    <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
     <h1 class="title">Sell-it!</h1>
     <div class="icons">
       <?php if (isset($_SESSION['usager'])) : ?>
@@ -97,9 +97,7 @@ require("./config.php");
     }
   </script>
 
-  <main class="listingsContainer">
-
-  </main>
+  <main class="listingsContainer"></main>
 </body>
 
 </html>
