@@ -1,5 +1,5 @@
 CREATE TABLE Profil (
-    id_profil INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_profil INTEGER PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE Panier (
 );
 
 CREATE TABLE Publication (
-    id_publication INTEGER PRIMARY KEY,
+    id_publication INTEGER PRIMARY KEY AUTO_INCREMENT,
     titre VARCHAR(255) NOT NULL,
     prix DECIMAL(10,2) NOT NULL,
     description VARCHAR(255) NULL,

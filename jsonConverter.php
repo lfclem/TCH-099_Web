@@ -22,12 +22,13 @@ $publication = $stmtPub->fetchAll(PDO::FETCH_ASSOC);
 //
 // ajouter des requete si necessaire
 //
+$gUserId = isset($_SESSION["usager"]) ? $_SESSION["usager"] : 0;
 
 $data = array(
     'publication' => $publication,
     'categories' => $categories,
     'profil' => $profil,
-    //'usager' => $_SESSION['user_id'], // Add the user type
+    'usager' => $gUserId // Add the user type
 );
 
 // Conversion des données en format JSON et envoi

@@ -43,8 +43,8 @@ if(!isset($body->id_publication) || $body->id_publication == ""){
 }
 
 try{
-    $stmt = $db->prepare("INSERT INTO `Publication` (`id_publication`, `titre`, `prix`, `description`, `image`, `video`, `id_profil`, `id_categorie`) VALUES (:id_pub, :titre, :prix, :descriptions, :img, :vid, :id_p, :id_cat)");
-    $stmt->bindValue(":id_pub", $body->id_publication);
+    $stmt = $db->prepare("INSERT INTO `Publication` (`titre`, `prix`, `description`, `image`, `video`, `id_profil`, `id_categorie`) VALUES (:titre, :prix, :descriptions, :img, :vid, :id_p, :id_cat)");
+    //$stmt->bindValue(":id_pub", $body->id_publication);
     $stmt->bindValue(":titre", $body->titre);
     $stmt->bindValue(":prix", $body->prix);
     $stmt->bindValue(":descriptions", $body->description);
@@ -54,8 +54,10 @@ try{
     $stmt->bindValue(":id_cat", $body->id_categorie);
     $stmt->execute();
 
+    $id = $db->lastInsertId();
 
-    $insertion = ["id_publication"=>$body->id_publication, "titre"=>$body->titre, "prix"=>$body->prix, "img"=>$body->image];
+
+    $insertion = ["id_publication"=>$id, "titre"=>$body->titre, "prix"=>$body->prix, "img"=>$body->image];
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($insertion);
 

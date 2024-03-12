@@ -15,11 +15,27 @@ require("./config.php");
 </head>
 
 <body>
-  <header class="headerInfos">
-    <a href=""><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
+<header class="headerInfos">
+    <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
     <h1 class="title">Sell-it!</h1>
     <div class="icons">
-      <a href='/index.php'><img class="exit" src="/IMG/exit.png" alt="Profil" /></a>
+      <?php if (isset($_SESSION['usager'])) : ?>
+        <?php
+        $db = Database::getInstance();
+        $stmt = $db->prepare('SELECT photo_profil FROM Profil WHERE id_profil = ?');
+        $stmt->execute([$_SESSION['usager']]);
+        $user = $stmt->fetch();
+        $photo_profil = $user['photo_profil'];
+        if (!$photo_profil) {
+          $photo_profil = "/IMG/profil.png";
+        }
+        ?>
+        <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
+        <a href=""><img src="/IMG/cart.png" alt="Panier" /></a>
+        <a href="/editUser"><img class="pfp" src="<?php echo $photo_profil; ?>" alt="Profil" /></a>
+      <?php else : ?>
+        <a href="/login"><img class="pfp" src="/IMG/profil.png" alt="Profil" /></a>
+      <?php endif; ?>
     </div>
   </header>
   <main class="newPublicationsw">

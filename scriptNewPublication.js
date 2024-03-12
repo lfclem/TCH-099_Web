@@ -12,7 +12,7 @@ window.onload = function(){
             tabPublications = data.publication;
             tabCategories = data.categories;
             tabProfils = data.profil;
-            user = data.usagers;
+            user = data.usager;
         })
         .catch(error => console.error('Erreur lors de la récupération des données:', error));
 }
@@ -35,13 +35,13 @@ function newPub(){
 
     if(!(titre.value === "") && !(prix.value === "") && !(img.value === "")){
         pubTemp.push({
-            id_publication : tabPublications[tabPublications.length-1].id_publication + 1,
+            id_publication : -1,
             titre : titre.value,
             prix : prix.value,
             description : desc.value,
             image : img.value,
             video : vid.value,
-            id_profil : 1,
+            id_profil : user,
             id_categorie : 1
         });
         console.log(pubTemp[0]);
@@ -60,11 +60,12 @@ function newPub(){
             return response.json(); // Convertir la réponse en JSON
         })
         .then(data => {
+            pubTemp[0]['id_publication'] = data.id_publication
             tabPublications.push(pubTemp[0]);
             window.location.href = '/index.php';
         })
         .catch(error => {
-            tabPublications = tabPublications.filter((p)=>p.id_publication != tabPublications[tabPublications.length-1].id_publication + 1);
+            tabPublications = tabPublications.filter((p)=>p.id_publication != -1);
             alert("Erreur lors de l'ajout de la publication: "+error);
             console.error('Erreur lors de la requête:', error);
         });

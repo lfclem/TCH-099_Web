@@ -2,17 +2,15 @@ let publications = [];
 let categories = [];
 let profils = [];
 let type_usager;
-console.log('test')
 window.onload = function () {
-  console.log("test2");
   fetch("/jsonConverter", { methode: "GET" })
     .then((response) => response.json())
     .then((data) => {
-      console.log("test");
       publications = data.publication;
       categories = data.categories;
       profils = data.profil;
-      user = data.usagers;
+      user = data.usager;
+      console.log(user);
       renderPub();
     })
     .catch((error) =>
@@ -27,7 +25,6 @@ window.onload = function () {
 };
 
 function renderPub() {
-  console.log("test");
   const main = document.querySelector("main.listingsContainer");
 
   for (let i = 0; i < publications.length; i++) {
@@ -45,6 +42,14 @@ function renderPub() {
     const prix = document.createElement("p");
     prix.textContent = "Price: $" + publications[i]["prix"];
     article.appendChild(prix);
+
+    article.addEventListener('click', (event) => {
+      if(user != 0 && user == publications[i]["id_profil"]){
+        const publicationId = publications[i]["id_publication"];
+        const url = `/editPublication.php?publicationId=${publicationId}`;
+        window.location.href = url;
+      }
+    });
 
     main.appendChild(article);
   }
