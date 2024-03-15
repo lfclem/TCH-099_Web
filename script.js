@@ -49,7 +49,13 @@ function renderPub() {
         const url = `/editPublication.php?publicationId=${publicationId}`;
         window.location.href = url;
       }
-    });
+      else {
+        const publicationId = publications[i]["id_publication"];
+        const url = `/pageArticle.php?publicationId=${publicationId}`;
+        window.location.href = url;
+      }
+    })
+    ;
 
     main.appendChild(article);
   }
