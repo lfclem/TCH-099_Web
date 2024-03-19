@@ -10,7 +10,7 @@ if (isset($_GET['publicationId'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $db = Database::getInstance();
-    $stmt = $db->prepare('SELECT `titre`, `prix`, `description`, `image`, `video`, `id_categorie` FROM `Publication` WHERE `id_publication`=:id');
+    $stmt = $db->prepare('SELECT `titre`, `prix`, `description`, `image`, `id_categorie` FROM `Publication` WHERE `id_publication`=:id');
     $stmt->bindParam(':id', $_SESSION['publicationId']);
     $stmt->execute();
     $pub = $stmt->fetch();
