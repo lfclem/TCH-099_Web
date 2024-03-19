@@ -206,7 +206,6 @@ input[type="number"] {
 //* LOGIN & NEWUSER
 .login,
 .newUser,
-.editUser,
 .newPublications {
   display: flex;
   background-color: $mainColor;
@@ -232,55 +231,134 @@ input[type="number"] {
     }
   }
 }
-//Page Article 
-.pageArticle {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 750px;
-  background-color: $mainColor;
 
-  .article {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 50px 30px;
-    margin-bottom: 20px;
+.editUser {
+  .editUserGrid {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 50%, 12.5%, 25%, 12.5%;
+    grid-template-columns: 50%, 50%, auto, auto;
+    grid-template-areas: "pfp, details", "adr_montant", "bio", "buttons";
+  }
 
-    h2 {
-      font-size: 24px;
-      color: $mainColor;
-      margin-bottom: 10px;
-      text-align: center;
+  .pfp {
+    grid-area: pfp;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $mainColor;
+    border-radius: 1rem;
+    margin: 1rem;
+    img {
+      border-radius: 1rem;
     }
 
-    .center {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      text-align: center;
-      margin: auto;
-    }
+    .details {
+      grid-area: details;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      background-color: $navColor;
+      border-radius: 1rem;
+      margin: 1rem;
+      input {
+        margin: 1rem;
+      }
 
-    p {
-      font-size: 16px;
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 10px;
-      text-align: center;
+      .adr_montant {
+        grid-area: adr_montant;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-color: $mainColor;
+        border-radius: 1rem;
+        margin: 1rem;
+        input {
+          margin: 1rem;
+        }
+      }
 
-      strong {
-        color: $mainColor;
+      .bio {
+        grid-area: bio;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-color: $navColor;
+        border-radius: 1rem;
+        margin: 1rem;
+        input {
+          margin: 1rem;
+        }
+
+        .buttons {
+          grid-area: buttons;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          background-color: $mainColor;
+          border-radius: 1rem;
+          margin: 1rem;
+          button {
+            margin: 1rem;
+          }
+        }
       }
     }
+  }
 
-    button {
-      background-color: $navColor;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
+  //Page Article
+  .pageArticle {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 750px;
+    background-color: $mainColor;
+
+    .article {
+      background-color: #fff;
       border-radius: 5px;
-      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 50px 30px;
+      margin-bottom: 20px;
+
+      h2 {
+        font-size: 24px;
+        color: $mainColor;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .center {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        text-align: center;
+        margin: auto;
+      }
+
+      p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.5;
+        margin-bottom: 10px;
+        text-align: center;
+
+        strong {
+          color: $mainColor;
+        }
+      }
+
+      button {
+        background-color: $navColor;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
     }
   }
 }

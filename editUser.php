@@ -106,32 +106,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <main class="editUser">
-        <a href="?deconnexion=1">Deconnecter</a>
+
         <form method="POST">
-            <label for="username">Nom d'utilisateur:</label>
-            <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>">
+            <div class="pfp">
+                <label for="photo_profil">Photo de profil:</label>
+                <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png" value="<?php echo $user['photo_profil']; ?>">
+            </div>
+            <div class="details">
+                <label for="username">Nom d'utilisateur:</label>
+                <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>">
 
-            <label for="password">Mot de passe:</label>
-            <input type="password" id="password" name="password">
+                <label for="password">Mot de passe:</label>
+                <input type="password" id="password" name="password">
 
-            <label for="email">Adresse email:</label>
-            <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>">
+                <label for="email">Adresse email:</label>
+                <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>">
+            </div>
 
-            <label for="info_paiement">Numéro de votre carte:</label>
-            <input type="number" id="info_paiement" name="info_paiement" value="<?php echo $user['info_paiement']; ?>">
+            <div class="adr_montant">
+                <label for="info_paiement">Numéro de votre carte:</label>
+                <input type="number" id="info_paiement" name="info_paiement" value="<?php echo $user['info_paiement']; ?>">
 
-            <label for="photo_profil">Photo de profil:</label>
-            <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png" value="<?php echo $user['photo_profil']; ?>">
+                <label for="adresse">Adresse:</label>
+                <input type="text" id="adresse" name="adresse" value="<?php echo $user['adresse']; ?>">
+            </div>
 
-            <label for="adresse">Adresse:</label>
-            <input type="text" id="adresse" name="adresse" value="<?php echo $user['adresse']; ?>">
+            <div class="bio">
+                <label for="bio">Bio:</label>
+                <input type="text" id="bio" name="bio" value="<?php echo $user['bio']; ?>">
+            </div>
 
-            <label for="bio">Bio:</label>
-            <input type="text" id="bio" name="bio" value="<?php echo $user['bio']; ?>">
-
-            <button type="submit">Modifier mes informations</button>
+            <div class="buttons">
+                <button type="submit">Modifier mes informations</button>
+                <a href="?deconnexion=1">Deconnecter</a>
+                <a href="?delete=1" onclick="return confirm('Êtes-vous sûr de vouloir supprimer le compte?');">Supprimer le compte</a>
+            </div>
         </form>
-        <a href="?delete=1" onclick="return confirm('Êtes-vous sûr de vouloir supprimer le compte?');">Supprimer le compte</a>
     </main>
 </body>
 

@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="/script.js"></script>
 </head>
 
-<body data-error-message="<?php echo $_SESSION['error_message'] ?>" data-reload="false">
+<body data-error-message="<?php echo isset($_SESSION['error_message']) ? $_SESSION['error_message'] : '' ?>" data-reload="false">
     <header class="headerInfos">
         <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
         <h1 class="title">Sell-it!</h1>

@@ -1,0 +1,16 @@
+Vos accès au serveur ont été configurés pour votre équipe avec les codes d accès ci-dessous:
+
+Adresse du site: equipe301.tch099.ovh
+Login SSH/BD/sFTP: equipe301
+Mot de passe (SSH/BD/sFTP): ITCU7EC6zHEl1sBp
+
+
+PHPMyAdmin (Administration de la BD): https://pma.tch099.ovh
+Connexion SSH: ssh equipe301@equipe301.tch099.ovh
+
+
+Informations de connexion BD depuis PHP: 
+Host: localhost
+BD: equipe301
+User: equipe301
+Password: ITCU7EC6zHEl1sBp
