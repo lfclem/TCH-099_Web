@@ -54,8 +54,7 @@ function renderPub() {
         const url = `/pageArticle.php?publicationId=${publicationId}`;
         window.location.href = url;
       }
-    })
-    ;
+    });
 
     main.appendChild(article);
   }
