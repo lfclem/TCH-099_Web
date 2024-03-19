@@ -7,6 +7,10 @@ $stmt = $db->prepare('SELECT * FROM Profil WHERE id_profil = ?');
 $stmt->execute([$_SESSION['usager']]);
 $user = $stmt->fetch();
 
+$db = Database::getInstance();
+$stmt = $db->prepare('SELECT * FROM Categorie');
+$stmt->execute();
+$categorie = $stmt->fetchAll();
 
 if (isset($_GET['publicationId'])) {
     $_SESSION['publicationId'] = $_GET['publicationId'];
@@ -20,6 +24,12 @@ $stmt = $db->prepare('SELECT * FROM Publication WHERE id_publication = ?');
 $stmt->execute([$publicationId]);
 $pub = $stmt->fetch();
 
+$editCat;
+foreach ($categorie as $cat){
+    if ($cat['id_categorie'] == $pub['id_categorie']){
+        $editCat = $cat;
+    }
+}
 
 if (isset($_GET['delete'])) {
     $db = Database::getInstance();
@@ -34,16 +44,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prix = htmlspecialchars($_POST['prix'],);
     $description = htmlspecialchars($_POST['description']);
     $image = filter_var($_POST['img'], FILTER_SANITIZE_URL);
-    $video = filter_var($_POST['video'], FILTER_SANITIZE_URL);
+    //$video = filter_var($_POST['video'], FILTER_SANITIZE_URL);
     $id_categorie = htmlspecialchars($_POST['categories']);
     
     try{
-        $stmt = $db->prepare("UPDATE `Publication` SET `titre`=:titre, `prix`=:prix, `description`=:descrip, `image`=:img, `video`=:vid, `id_categorie`=:id_cat  WHERE `id_publication`=:id");
+        $stmt = $db->prepare("UPDATE `Publication` SET `titre`=:titre, `prix`=:prix, `description`=:descrip, `image`=:img, `id_categorie`=:id_cat  WHERE `id_publication`=:id");
         $stmt->bindValue(":titre", $titre);
         $stmt->bindValue(":prix", $prix);
         $stmt->bindValue(":descrip", $description);
         $stmt->bindValue(":img", $image);
-        $stmt->bindValue(":vid", $video);
+        //$stmt->bindValue(":vid", $video);
         $stmt->bindValue(":id_cat", $id_categorie); 
         $stmt->bindValue(":id", $publicationId); 
         $stmt->execute(); 
@@ -103,11 +113,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <input type="text" id="description" name="description" value="<?php echo $pub['description']; ?>" placeholder="Entrez une description de votre publication" class="form-control"/>
                 </div>
 
-                <div class="form-group">
-                    <label for="video">Video:</label>
-                    <input type="url" id="video" name="video" value="<?php echo $pub['video']; ?>" placeholder="Entrez le lien de la vidéo de votre publication" class="form-control" />
-                </div>
-
                 <div class="form-group image-upload">
                     <label for="img">Image:</label>
                     <input type="url" id="img" name="img" class="form-control" accept="image/*" value="<?php echo $pub['image']; ?>" required />
@@ -115,16 +120,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-group">
                   <label for="categories">Categories:</label>
-                  <select name="categories" id="categories" required>
-                    <option value="" disabled selected>Choisissez une catégorie</option>
-                    <option value="1">Vêtements</option>
-                    <option value="2">Chaussures</option>
-                    <option value="3">Accessoires</option>
-                    <option value="4">Électroniques</option>
-                    <option value="5">Livres</option>
-                    <option value="6">Meubles</option>
-                    <option value="7">Jouets</option>
-                    <option value="8">Véhicules</option>
+                  <select name="categories" id="categories">
+                    <?php foreach($categorie as $cat) {
+                        if ($cat['id_categorie'] == $pub['id_categorie']) : ?>
+                            <option value="<?php echo $cat['id_categorie']; ?>" selected><?php echo $cat['nom']; ?></option>
+                        <?php else : ?>
+                            <option value="<?php echo $cat['id_categorie']; ?>"><?php echo $cat['nom']; ?></option>
+                        <?php endif; ?>
+                    <?php } ?>
                   </select>
                 </div>
                 <button type="submit">Modifier mes informations</button>

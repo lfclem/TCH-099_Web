@@ -13,7 +13,7 @@ CREATE TABLE Profil (
 );
 
 CREATE TABLE Categorie (
-    id_categorie INTEGER PRIMARY KEY,
+    id_categorie INTEGER PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255) NOT NULL
 );
 

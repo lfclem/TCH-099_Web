@@ -43,13 +43,13 @@ if(!isset($body->id_publication) || $body->id_publication == ""){
 }
 
 try{
-    $stmt = $db->prepare("INSERT INTO `Publication` (`titre`, `prix`, `description`, `image`, `video`, `id_profil`, `id_categorie`) VALUES (:titre, :prix, :descriptions, :img, :vid, :id_p, :id_cat)");
+    $stmt = $db->prepare("INSERT INTO `Publication` (`titre`, `prix`, `description`, `image`, `id_profil`, `id_categorie`) VALUES (:titre, :prix, :descriptions, :img, :id_p, :id_cat)");
     //$stmt->bindValue(":id_pub", $body->id_publication);
     $stmt->bindValue(":titre", $body->titre);
     $stmt->bindValue(":prix", $body->prix);
     $stmt->bindValue(":descriptions", $body->description);
     $stmt->bindValue(":img", $body->image);
-    $stmt->bindValue(":vid", $body->video);
+    //$stmt->bindValue(":vid", $body->video);
     $stmt->bindValue(":id_p", $body->id_profil);
     $stmt->bindValue(":id_cat", $body->id_categorie);
     $stmt->execute();

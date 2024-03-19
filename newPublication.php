@@ -57,11 +57,6 @@ require("./config.php");
           <input type="text" id="description" name="description" placeholder="Entrez une description de votre publication" class="form-control" />
         </div>
 
-        <div class="form-group">
-          <label for="video">Video:</label>
-          <input type="url" id="video" name="video" placeholder="Entrez le lien de la vidéo de votre publication" class="form-control" />
-        </div>
-
         <div class="form-group image-upload">
           <label for="img">Image:</label>
           <input type="url" id="img" name="img" class="form-control" accept="image/*" required />

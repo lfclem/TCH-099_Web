@@ -88,7 +88,9 @@ require("./config.php");
       </select>
     </div>
 
-    <button onclick="goToNewPub()" class="buttonAddListing">Créer une annonce</button>
+    <?php if (isset($_SESSION['usager'])) : ?>
+      <button onclick="goToNewPub()" class="buttonAddListing">Créer une annonce</button>
+    <?php endif; ?>
   </div>
 
   <script>
