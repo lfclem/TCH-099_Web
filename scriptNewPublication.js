@@ -40,7 +40,6 @@ function newPub(){
             prix : prix.value,
             description : desc.value,
             image : img.value,
-            //video : vid.value,
             id_profil : user,
             id_categorie : 1
         });

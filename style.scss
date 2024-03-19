@@ -26,6 +26,10 @@ button:hover {
   background-color: $darkGreen;
 }
 
+a:hover {
+  color: $darkGreen;
+}
+
 input,
 select {
   border-radius: 0.3rem;
@@ -170,15 +174,18 @@ input[type="number"] {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    height: auto;
+    height: 20rem;
     width: 100%;
     background-color: $navColor;
     border-radius: 2rem;
 
     img {
       height: 15rem;
-      width: 100%;
+      width: 90%;
       border-radius: 2rem;
+      display: block;
+      margin: auto;
+      padding-top: 0.25rem;
     }
 
     h2 {
@@ -232,80 +239,62 @@ input[type="number"] {
   }
 }
 
-.editUser {
-  .editUserGrid {
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 50%, 12.5%, 25%, 12.5%;
-    grid-template-columns: 50%, 50%, auto, auto;
-    grid-template-areas: "pfp, details", "adr_montant", "bio", "buttons";
-  }
+.editUserGrid {
+  position: fixed;
+  background-color: $mainColor;
+  top: 5rem;
+  width: 100%;
+  height: calc(100% - 5rem);
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr);
 
   .pfp {
-    grid-area: pfp;
+    grid-column: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-color: $mainColor;
-    border-radius: 1rem;
-    margin: 1rem;
-    img {
-      border-radius: 1rem;
-    }
 
-    .details {
-      grid-area: details;
+    img {
+      margin-top: 1rem;
+      width: 20rem;
+      height: 20rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .details {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .bio {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
+
+      label {
+        align-self: flex-start;
+      }
+
+      textarea {
+        width: 80%;
+        height: 10rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: none;
+        resize: none;
+        background-color: $backgroundTextColor;
+      }
+    }
+
+    .links {
+      display: flex;
       justify-content: space-around;
-      align-items: center;
-      background-color: $navColor;
-      border-radius: 1rem;
-      margin: 1rem;
-      input {
-        margin: 1rem;
-      }
-
-      .adr_montant {
-        grid-area: adr_montant;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        background-color: $mainColor;
-        border-radius: 1rem;
-        margin: 1rem;
-        input {
-          margin: 1rem;
-        }
-      }
-
-      .bio {
-        grid-area: bio;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        background-color: $navColor;
-        border-radius: 1rem;
-        margin: 1rem;
-        input {
-          margin: 1rem;
-        }
-
-        .buttons {
-          grid-area: buttons;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          background-color: $mainColor;
-          border-radius: 1rem;
-          margin: 1rem;
-          button {
-            margin: 1rem;
-          }
-        }
-      }
+    }
+    .following {
+      grid-column: 3;
     }
   }
 

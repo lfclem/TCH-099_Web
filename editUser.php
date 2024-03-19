@@ -105,44 +105,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </header>
 
-    <main class="editUser">
+    <form method="POST" class="editUserGrid">
+        <div class="pfp">
+            <div>
+                <?php
+                $photo_profil = $user['photo_profil'];
+                ?>
+                <?php if ($photo_profil) : ?>
+                    <img class="pfp" src="<?php echo $photo_profil; ?>" alt="Photo_Profil" />
+                <?php else : ?>
+                    <img class="pfp" src="/IMG/profil.png" alt="Profil" />
+                <?php endif; ?>
+            </div>
 
-        <form method="POST">
-            <div class="pfp">
+            <div>
                 <label for="photo_profil">Photo de profil:</label>
                 <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png" value="<?php echo $user['photo_profil']; ?>">
             </div>
-            <div class="details">
+        </div>
+
+        <div class="details">
+            <div>
                 <label for="username">Nom d'utilisateur:</label>
                 <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>">
-
+            </div>
+            <div>
                 <label for="password">Mot de passe:</label>
                 <input type="password" id="password" name="password">
-
+            </div>
+            <div>
                 <label for="email">Adresse email:</label>
                 <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>">
             </div>
 
-            <div class="adr_montant">
+            <div>
                 <label for="info_paiement">Numéro de votre carte:</label>
                 <input type="number" id="info_paiement" name="info_paiement" value="<?php echo $user['info_paiement']; ?>">
+            </div>
 
+            <div>
                 <label for="adresse">Adresse:</label>
                 <input type="text" id="adresse" name="adresse" value="<?php echo $user['adresse']; ?>">
             </div>
 
             <div class="bio">
                 <label for="bio">Bio:</label>
-                <input type="text" id="bio" name="bio" value="<?php echo $user['bio']; ?>">
+                <textarea id="bio" name="bio"><?php echo $user['bio']; ?></textarea>
             </div>
 
-            <div class="buttons">
-                <button type="submit">Modifier mes informations</button>
+            <button type="submit">Modifier mes informations</button>
+            <div class="links">
                 <a href="?deconnexion=1">Deconnecter</a>
                 <a href="?delete=1" onclick="return confirm('Êtes-vous sûr de vouloir supprimer le compte?');">Supprimer le compte</a>
             </div>
-        </form>
-    </main>
+        </div>
+
+        <div class="following"></div>
+    </form>
 </body>
 
 </html>

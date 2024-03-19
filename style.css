@@ -17,6 +17,10 @@ button:hover {
   background-color: rgb(50, 150, 50);
 }
 
+a:hover {
+  color: rgb(50, 150, 50);
+}
+
 input,
 select {
   border-radius: 0.3rem;
@@ -147,15 +151,18 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  height: auto;
+  height: 20rem;
   width: 100%;
   background-color: rgb(40, 40, 40);
   border-radius: 2rem;
 }
 .listingsContainer article img {
   height: 15rem;
-  width: 100%;
+  width: 90%;
   border-radius: 2rem;
+  display: block;
+  margin: auto;
+  padding-top: 0.25rem;
 }
 .listingsContainer article h2 {
   color: white;
@@ -207,96 +214,78 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   margin-top: 5%;
 }
 
-.editUser .editUserGrid {
-  height: 100vh;
+.editUserGrid {
+  position: fixed;
+  background-color: rgb(50, 50, 50);
+  top: 5rem;
+  width: 100%;
+  height: calc(100% - 5rem);
   display: grid;
-  grid-template-rows: 50%, 12.5%, 25%, 12.5%;
-  grid-template-columns: 50%, 50%, auto, auto;
-  grid-template-areas: "pfp, details", "adr_montant", "bio", "buttons";
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr);
 }
-.editUser .pfp {
-  grid-area: pfp;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(50, 50, 50);
-  border-radius: 1rem;
-  margin: 1rem;
-}
-.editUser .pfp img {
-  border-radius: 1rem;
-}
-.editUser .pfp .details {
-  grid-area: details;
+.editUserGrid .pfp {
+  grid-column: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-  background-color: rgb(40, 40, 40);
-  border-radius: 1rem;
-  margin: 1rem;
 }
-.editUser .pfp .details input {
-  margin: 1rem;
+.editUserGrid .pfp img {
+  margin-top: 1rem;
+  width: 20rem;
+  height: 20rem;
+  margin-bottom: 1rem;
 }
-.editUser .pfp .details .adr_montant {
-  grid-area: adr_montant;
+.editUserGrid .details {
+  grid-column: 2;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  background-color: rgb(50, 50, 50);
-  border-radius: 1rem;
-  margin: 1rem;
+  justify-content: space-evenly;
 }
-.editUser .pfp .details .adr_montant input {
-  margin: 1rem;
-}
-.editUser .pfp .details .bio {
-  grid-area: bio;
+.editUserGrid .details .bio {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  background-color: rgb(40, 40, 40);
+  align-items: flex-start;
+}
+.editUserGrid .details .bio label {
+  align-self: flex-start;
+}
+.editUserGrid .details .bio textarea {
+  width: 80%;
+  height: 10rem;
+  padding: 1rem;
   border-radius: 1rem;
-  margin: 1rem;
+  border: none;
+  resize: none;
+  background-color: rgb(200, 200, 200);
 }
-.editUser .pfp .details .bio input {
-  margin: 1rem;
-}
-.editUser .pfp .details .bio .buttons {
-  grid-area: buttons;
+.editUserGrid .details .links {
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  background-color: rgb(50, 50, 50);
-  border-radius: 1rem;
-  margin: 1rem;
 }
-.editUser .pfp .details .bio .buttons button {
-  margin: 1rem;
+.editUserGrid .details .following {
+  grid-column: 3;
 }
-.editUser .pageArticle {
+.editUserGrid .pageArticle {
   max-width: 1200px;
   margin: 0 auto;
   padding: 100px 750px;
   background-color: rgb(50, 50, 50);
 }
-.editUser .pageArticle .article {
+.editUserGrid .pageArticle .article {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 50px 30px;
   margin-bottom: 20px;
 }
-.editUser .pageArticle .article h2 {
+.editUserGrid .pageArticle .article h2 {
   font-size: 24px;
   color: rgb(50, 50, 50);
   margin-bottom: 10px;
   text-align: center;
 }
-.editUser .pageArticle .article .center {
+.editUserGrid .pageArticle .article .center {
   max-width: 100%;
   height: auto;
   border-radius: 5px;
@@ -304,17 +293,17 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   text-align: center;
   margin: auto;
 }
-.editUser .pageArticle .article p {
+.editUserGrid .pageArticle .article p {
   font-size: 16px;
   color: #555;
   line-height: 1.5;
   margin-bottom: 10px;
   text-align: center;
 }
-.editUser .pageArticle .article p strong {
+.editUserGrid .pageArticle .article p strong {
   color: rgb(50, 50, 50);
 }
-.editUser .pageArticle .article button {
+.editUserGrid .pageArticle .article button {
   background-color: rgb(40, 40, 40);
   color: #fff;
   border: none;
