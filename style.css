@@ -224,68 +224,76 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   grid-template-rows: 1fr;
   grid-template-columns: repeat(3, 1fr);
 }
-.editUserGrid .pfp {
+.editUserGrid .column1 {
   grid-column: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
 }
-.editUserGrid .pfp img {
+.editUserGrid .column1 .pfp {
+  display: flex;
+  flex-direction: column;
+}
+.editUserGrid .column1 .pfp img {
   margin-top: 1rem;
-  width: 20rem;
-  height: 20rem;
+  width: 15rem;
+  height: 15rem;
   margin-bottom: 1rem;
 }
-.editUserGrid .details {
+.editUserGrid .column1 .rating img {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+.editUserGrid .column2 {
   grid-column: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
-.editUserGrid .details .bio {
+.editUserGrid .column2 div {
+  text-align: center;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
-  align-items: flex-start;
 }
-.editUserGrid .details .bio label {
-  align-self: flex-start;
-}
-.editUserGrid .details .bio textarea {
-  width: 80%;
-  height: 10rem;
-  padding: 1rem;
-  border-radius: 1rem;
+.editUserGrid .column2 textarea {
+  height: 5rem;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
   border: none;
   resize: none;
   background-color: rgb(200, 200, 200);
 }
-.editUserGrid .details .links {
+.editUserGrid .column2 .links {
   display: flex;
   justify-content: space-around;
+  flex-direction: row;
 }
-.editUserGrid .details .following {
+.editUserGrid .column3 {
   grid-column: 3;
 }
-.editUserGrid .pageArticle {
+
+.pageArticle {
   max-width: 1200px;
   margin: 0 auto;
   padding: 100px 750px;
   background-color: rgb(50, 50, 50);
 }
-.editUserGrid .pageArticle .article {
+.pageArticle .article {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 50px 30px;
   margin-bottom: 20px;
 }
-.editUserGrid .pageArticle .article h2 {
+.pageArticle .article h2 {
   font-size: 24px;
   color: rgb(50, 50, 50);
   margin-bottom: 10px;
   text-align: center;
 }
-.editUserGrid .pageArticle .article .center {
+.pageArticle .article .center {
   max-width: 100%;
   height: auto;
   border-radius: 5px;
@@ -293,17 +301,17 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   text-align: center;
   margin: auto;
 }
-.editUserGrid .pageArticle .article p {
+.pageArticle .article p {
   font-size: 16px;
   color: #555;
   line-height: 1.5;
   margin-bottom: 10px;
   text-align: center;
 }
-.editUserGrid .pageArticle .article p strong {
+.pageArticle .article p strong {
   color: rgb(50, 50, 50);
 }
-.editUserGrid .pageArticle .article button {
+.pageArticle .article button {
   background-color: rgb(40, 40, 40);
   color: #fff;
   border: none;
