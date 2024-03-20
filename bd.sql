@@ -40,9 +40,12 @@ CREATE TABLE
         prix DECIMAL(10, 2) NOT NULL,
         description VARCHAR(255) NULL,
         image BLOB NOT NULL,
-        etat INTEGER REFERENCES Etat (id_etat) ON DELETE CASCADE NOT NULL,
-        categorie INTEGER REFERENCES Categorie (id_categorie) ON DELETE CASCADE NOT NULL,
-        id_profil INTEGER REFERENCES Profil (id_profil) ON DELETE CASCADE
+        etat INTEGER NOT NULL,
+        categorie INTEGER NOT NULL,
+        id_profil INTEGER NOT NULL,
+        FOREIGN KEY (etat) REFERENCES Etat (id_etat) ON DELETE CASCADE,
+        FOREIGN KEY (categorie) REFERENCES Categorie (id_categorie) ON DELETE CASCADE,
+        FOREIGN KEY (id_profil) REFERENCES Profil (id_profil) ON DELETE CASCADE
     );
 
 CREATE TABLE
