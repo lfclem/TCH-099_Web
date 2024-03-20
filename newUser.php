@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="email">Adresse email:</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="info_paiement">Numéro de votre carte:</label>
+            <label for="info_paiement">Numéro de votre carte bancaire:</label>
             <input type="number" id="info_paiement" name="info_paiement" required>
 
             <label for="date_naissance">Date de naissance:</label>

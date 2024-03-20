@@ -7,7 +7,6 @@ $stmt = $db->prepare('SELECT * FROM Profil WHERE id_profil = ?');
 $stmt->execute([$_SESSION['usager']]);
 $user = $stmt->fetch();
 
-$db = Database::getInstance();
 $stmt = $db->prepare('SELECT * FROM Categorie');
 $stmt->execute();
 $categorie = $stmt->fetchAll();
@@ -19,7 +18,6 @@ if (isset($_GET['publicationId'])) {
 }
 $publicationId = $_SESSION['publicationId'];
 
-$db = Database::getInstance();
 $stmt = $db->prepare('SELECT * FROM Publication WHERE id_publication = ?');
 $stmt->execute([$publicationId]);
 $pub = $stmt->fetch();
@@ -32,7 +30,6 @@ foreach ($categorie as $cat){
 }
 
 if (isset($_GET['delete'])) {
-    $db = Database::getInstance();
     $stmt = $db->prepare('DELETE FROM Publication WHERE id_publication = ?');
     $stmt->execute([$publicationId]);
     header('Location: /');
@@ -83,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1 class="title">Sell-it!</h1>
         <div class="icons">
             <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
-            <a href=""><img src="/IMG/cart.png" alt="Panier" /></a>
             <?php
             $photo_profil = $user['photo_profil'];
             ?>

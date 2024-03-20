@@ -1,5 +1,18 @@
 <?php
 require("./config.php");
+
+$db = Database::getInstance();
+$stmt = $db->prepare('SELECT * FROM Categorie');
+$stmt->execute();
+$categorie = $stmt->fetchAll();
+
+$stmt = $db->prepare('SELECT * FROM Onglet');
+$stmt->execute();
+$onglet = $stmt->fetchAll();
+
+$stmt = $db->prepare('SELECT * FROM Etat');
+$stmt->execute();
+$etat = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +44,6 @@ require("./config.php");
         }
         ?>
         <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
-        <a href=""><img src="/IMG/cart.png" alt="Panier" /></a>
         <a href="/editUser"><img class="pfp" src="<?php echo $photo_profil; ?>" alt="Profil" /></a>
       <?php else : ?>
         <a href="/login"><img class="pfp" src="/IMG/profil.png" alt="Profil" /></a>
@@ -43,24 +55,18 @@ require("./config.php");
     <div>
       <label for="category">Catégorie :</label>
       <select id="category" name="category" class="choiceCategory">
-        <option value="all">Toutes les catégories</option>
-        <option value="clothes">Vêtements</option>
-        <option value="shoes">Chaussures</option>
-        <option value="accessories">Accessoires</option>
-        <option value="electronics">Électronique</option>
-        <option value="books">Livres</option>
-        <option value="furniture">Meubles</option>
-        <option value="toys">Jouets</option>
-        <option value="vehicles">Véhicules</option>
+        <?php foreach ($categorie as $cat) : ?>
+          <option value="<?php echo $cat['id_categorie']; ?>"><?php echo $cat['nom']; ?></option>
+        <?php endforeach; ?>
       </select>
     </div>
 
     <div>
       <label for="condition">État de l'objet :</label>
       <select id="condition" name="condition" class="choiceCondition">
-        <option value="new">Neuf</option>
-        <option value="used">Occasion</option>
-        <option value="refurbished">Reconditionné</option>
+        <?php foreach ($etat as $et) : ?>
+          <option value="<?php echo $et['id_etat']; ?>"><?php echo $et['nom']; ?></option>
+        <?php endforeach; ?>
       </select>
     </div>
 
@@ -82,24 +88,16 @@ require("./config.php");
 
       <label for="tab" class="labelChoiceTab">Onglet :</label>
       <select id="tab" name="tab" class="choiceTab">
-        <option value="public">Publiques</option>
-        <option value="following">Abonnements</option>
-        <option value="self">Vos Publications</option>
+        <?php foreach ($onglet as $ong) : ?>
+          <option value="<?php echo $ong['id_onglet']; ?>"><?php echo $ong['nom']; ?></option>
+        <?php endforeach; ?>
       </select>
     </div>
 
     <?php if (isset($_SESSION['usager'])) : ?>
-      <button onclick="goToNewPub()" class="buttonAddListing">Créer une annonce</button>
+      <a href="/newPublication" class="buttonAddListing">Créer une annonce</a>
     <?php endif; ?>
   </div>
-
-  <script>
-    function goToNewPub() {
-      window.location.href = '/newPublication.php';
-    }
-  </script>
-
   <main class="listingsContainer"></main>
 </body>
-
 </html>

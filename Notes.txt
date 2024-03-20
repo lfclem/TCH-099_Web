@@ -2,6 +2,10 @@
 !Arreter que les pop-ups soient visibles quand on refresh/change de page
 !Faire que quand tu n'es pas connecter et essaye d'envoyer un message au vendeur , l'utilisateur est rediriger vers la page de connexion.
 !Ameliorer page quand tu crees articles et quand tu modifies article
-!Si nom article trop long rajouter ...
+!Si nom article a laffichage dans le main trop long rajouter ...
+!Ajouter/Retirer Argent
+!Categorie doivent etre ceux de BD (Quand tu crees une pub la categorie "Toutes" n'est pas un choix)
+!Quand tu crees une publication tu dois mettre son etat
+!Fonctionnalite de recherche manquante -> Etat, Onglet
 
-*EditUser -> 1: Statut, Rating, Montant balance (ajouter, retirer)  3: Abonnements
+*EditUser ->  3: Abonnements (LF)

@@ -36,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <h1 class="title">Sell-it!</h1>
         <div class="icons">
             <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
-            <a href=""><img src="/IMG/cart.png" alt="Panier" /></a>
             <?php
             $photo_profil = $user['photo_profil'];
             ?>

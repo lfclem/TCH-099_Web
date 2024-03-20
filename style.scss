@@ -159,6 +159,23 @@ input[type="number"] {
   .labelChoiceTab {
     margin-left: 1.5rem;
   }
+
+  .buttonAddListing {
+    background-color: $limeGreen;
+    color: black;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 9rem;
+  }
+
+  .buttonAddListing:hover {
+    background-color: $darkGreen;
+  }
 }
 
 //* MAIN
@@ -261,21 +278,11 @@ input[type="number"] {
     flex-direction: column;
     align-items: flex-start;
     padding-left: 1rem;
-    justify-content: space-between;
-
-    .pfp {
-      display: flex;
-      flex-direction: column;
-
-      img {
-        margin-top: 1rem;
-        width: 10rem;
-        height: 10rem;
-        margin-bottom: 1rem;
-      }
-    }
+    justify-content: space-around;
 
     .rating {
+      display: flex;
+      flex-direction: column;
       img {
         height: 2.5rem;
         width: 2.5rem;
@@ -294,7 +301,7 @@ input[type="number"] {
     justify-content: space-evenly;
 
     div {
-      text-align: center;
+      text-align: left;
       display: flex;
       justify-content: space-between;
       flex-direction: column;
@@ -322,7 +329,6 @@ input[type="number"] {
     padding-right: 1rem;
   }
 }
-
 //Page Article
 .pageArticle {
   max-width: 1200px;

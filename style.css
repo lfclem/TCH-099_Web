@@ -138,6 +138,21 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 .mainOptions .labelChoiceTab {
   margin-left: 1.5rem;
 }
+.mainOptions .buttonAddListing {
+  background-color: rgb(144, 238, 144);
+  color: black;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 9rem;
+}
+.mainOptions .buttonAddListing:hover {
+  background-color: rgb(50, 150, 50);
+}
 
 .listingsContainer {
   display: grid;
@@ -236,17 +251,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   flex-direction: column;
   align-items: flex-start;
   padding-left: 1rem;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-.editUserGrid .column1 .pfp {
+.editUserGrid .column1 .rating {
   display: flex;
   flex-direction: column;
-}
-.editUserGrid .column1 .pfp img {
-  margin-top: 1rem;
-  width: 10rem;
-  height: 10rem;
-  margin-bottom: 1rem;
 }
 .editUserGrid .column1 .rating img {
   height: 2.5rem;
@@ -262,7 +271,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   justify-content: space-evenly;
 }
 .editUserGrid .column2 div {
-  text-align: center;
+  text-align: left;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

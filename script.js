@@ -24,39 +24,10 @@ window.onload = function () {
   }
 };
 
+//*Fonction pour afficher les articles
 function renderPub() {
-  const main = document.querySelector("main.listingsContainer");
-
   for (let i = 0; i < publications.length; i++) {
-    const article = document.createElement("article");
-
-    const image = document.createElement("img");
-    image.src = publications[i]["image"];
-    image.alt = "Placeholder";
-    article.appendChild(image);
-
-    const titre = document.createElement("h2");
-    titre.textContent = publications[i]["titre"];
-    article.appendChild(titre);
-
-    const prix = document.createElement("p");
-    prix.textContent = "Price: $" + publications[i]["prix"];
-    article.appendChild(prix);
-
-    article.addEventListener('click', (event) => {
-      if(user != 0 && user == publications[i]["id_profil"]){
-        const publicationId = publications[i]["id_publication"];
-        const url = `/editPublication.php?publicationId=${publicationId}`;
-        window.location.href = url;
-      }
-      else {
-        const publicationId = publications[i]["id_publication"];
-        const url = `/pageArticle.php?publicationId=${publicationId}`;
-        window.location.href = url;
-      }
-    });
-
-    main.appendChild(article);
+    creerArticle(i);
   }
 }
 
@@ -85,12 +56,70 @@ function showErrorMessage(message, reload = false) {
     if (reload) {
       location.reload();
     }
-  }, 2000);
+  }, 1000);
 }
-// window.onload = function () {
-//   const errorMessage = document.body.getAttribute("data-error-message");
-//   const reload = document.body.getAttribute("data-reload") === "true";
-//   if (errorMessage) {
-//     showErrorMessage(errorMessage, reload);
-//   }
-// };
+
+//*Fonction pour qui filtre la recherche (searchbar, onglets, filtres, prix)
+document.addEventListener("DOMContentLoaded", (event) => {
+  document
+    .querySelector(".buttonSearchbar")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      const searchbar = document.querySelector(".textSearchbar").value;
+      const onglet = document.querySelector(".choiceTab").value;
+      const etat = document.querySelector(".choiceCondition").value;
+      const categorie = document.querySelector(".choiceCategory").value;
+      const prixMinInput = document.querySelector(".textMinPrice");
+      const prixMaxInput = document.querySelector(".textMaxPrice");
+      const main = document.querySelector("main.listingsContainer");
+      main.innerHTML = "";
+
+      let prixMin = prixMinInput.value ? parseInt(prixMinInput.value) : 0;
+      let prixMax = prixMaxInput.value
+        ? parseInt(prixMaxInput.value)
+        : Infinity;
+
+      for (let i = 0; i < publications.length; i++) {
+        if (
+          publications[i]["titre"]
+            .toLowerCase()
+            .includes(searchbar.toLowerCase()) &&
+          prixMin <= publications[i]["prix"] &&
+          prixMax >= publications[i]["prix"] &&
+          (categorie == publications[i]["categorie"] || categorie == 1) //&& etat == publications[i]["etat"]
+        ) {
+          creerArticle(i);
+        }
+      }
+    });
+});
+
+function creerArticle(i) {
+  const article = document.createElement("article");
+  const main = document.querySelector("main.listingsContainer");
+  const image = document.createElement("img");
+  image.src = publications[i]["image"];
+  image.alt = "Placeholder";
+  article.appendChild(image);
+
+  const titre = document.createElement("h2");
+  titre.textContent = publications[i]["titre"];
+  article.appendChild(titre);
+
+  const prix = document.createElement("p");
+  prix.textContent = "Price: $" + publications[i]["prix"];
+  article.appendChild(prix);
+
+  article.addEventListener("click", (event) => {
+    if (user != 0 && user == publications[i]["id_profil"]) {
+      const publicationId = publications[i]["id_publication"];
+      const url = `/editPublication.php?publicationId=${publicationId}`;
+      window.location.href = url;
+    } else {
+      const publicationId = publications[i]["id_publication"];
+      const url = `/pageArticle.php?publicationId=${publicationId}`;
+      window.location.href = url;
+    }
+  });
+  main.appendChild(article);
+}
