@@ -9,7 +9,7 @@ CREATE TABLE Profil (
     bio VARCHAR(255) NULL,
     statut INTEGER NOT NULL,
     adresse VARCHAR(255) NOT NULL,
-    montant_balance DECIMAL(10,2) NOT NULL
+    montant_balance DECIMAL(10,2) NOT NULL,
     nb_rating INTEGER NULL,
     rating_total DECIMAL(10,2) NULL
 );
