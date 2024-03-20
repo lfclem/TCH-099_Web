@@ -129,6 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="rating">
+                <label>Vos Évaluations (<?php echo $nbRatings; ?>):</label>
                 <?php for ($i = 0; $i < 5; $i++) : ?>
                     <?php if ($averageRating - $i >= 1) : ?>
                         <img src="/IMG/filled_star.png" alt="Star" />
@@ -138,12 +139,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <img src="/IMG/empty_star.png" alt="Star" />
                     <?php endif; ?>
                 <?php endfor; ?>
-                <?php echo $nbRatings; ?> évaluations
             </div>
 
             <div class="balance">
-                <h2>Solde:</h2>
-                <h3><?php echo $balance; ?>$</h3>
+                <label>Votre solde: <?php echo $balance; ?>$</label>
+                <div class="btn_balance">
+                    <a href="">Ajouter</a>
+                    <a href="">Retirer</a>
+                </div>
             </div>
         </div>
 

@@ -51,6 +51,7 @@ label {
 
 body {
   font-family: $font;
+  overflow-y: hidden;
 }
 
 input[type="number"] {
@@ -62,6 +63,7 @@ input[type="number"] {
 
 ::-webkit-scrollbar {
   width: 0.5rem;
+  height: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -162,8 +164,8 @@ input[type="number"] {
 //* MAIN
 .listingsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
-  grid-gap: 1.5%;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-gap: 0.5%;
   justify-items: center;
   overflow-y: auto;
   background-color: $mainColor;
@@ -171,41 +173,45 @@ input[type="number"] {
   grid-area: main;
 
   article {
+    position: relative;
     display: flex;
     flex-direction: column;
     cursor: pointer;
     height: 20rem;
-    width: 100%;
+    width: 15rem;
+    min-width: 15rem;
     background-color: $navColor;
     border-radius: 2rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
 
     img {
-      height: 15rem;
-      width: 90%;
-      border-radius: 2rem;
-      display: block;
-      margin: auto;
-      padding-top: 0.25rem;
+      height: 13rem;
+      width: 13rem;
+      align-self: center;
+      margin-top: 0.25rem;
     }
 
     h2 {
       color: white;
-      margin: 0.5rem 1rem;
-      font-size: 1.5rem;
-      line-height: 1.5rem;
+      align-self: flex-start;
+      margin-left: 1rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      width: 90%;
     }
 
     p {
       color: $limeGreen;
-      margin-top: auto;
-      margin-left: 1rem;
       font-weight: bolder;
       font-size: 1rem;
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      margin-bottom: 0.25rem;
     }
   }
 }
@@ -253,8 +259,9 @@ input[type="number"] {
     grid-column: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-left: 1rem;
+    justify-content: space-between;
 
     .pfp {
       display: flex;
@@ -262,8 +269,8 @@ input[type="number"] {
 
       img {
         margin-top: 1rem;
-        width: 15rem;
-        height: 15rem;
+        width: 10rem;
+        height: 10rem;
         margin-bottom: 1rem;
       }
     }
@@ -276,6 +283,7 @@ input[type="number"] {
     }
 
     .balance {
+      margin-bottom: 1rem;
     }
   }
 
@@ -310,6 +318,8 @@ input[type="number"] {
 
   .column3 {
     grid-column: 3;
+    align-items: flex-end;
+    padding-right: 1rem;
   }
 }
 

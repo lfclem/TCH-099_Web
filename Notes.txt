@@ -1,5 +1,7 @@
 !Ajouter un signe de dollar apres le montant max/min rentrer par lutilisateur
 !Arreter que les pop-ups soient visibles quand on refresh/change de page
 !Faire que quand tu n'es pas connecter et essaye d'envoyer un message au vendeur , l'utilisateur est rediriger vers la page de connexion.
+!Ameliorer page quand tu crees articles et quand tu modifies article
+!Si nom article trop long rajouter ...
 
 *EditUser -> 1: Statut, Rating, Montant balance (ajouter, retirer)  3: Abonnements
