@@ -45,15 +45,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main class="login">
         <form method="POST">
-            <label for="username">Nom d'utilisateur:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Mot de passe:</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit">Se connecter</button>
-
-            <a href="/newUser">Se créer un compte</a>
+            <div>
+                <label for="username">Nom d'utilisateur:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Mot de passe:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <button type="submit">Se connecter</button>
+            </div>
+            <div>
+                <a href="/newUser">Se créer un compte</a>
+            </div>
         </form>
     </main>
 </body>

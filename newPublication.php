@@ -1,5 +1,28 @@
 <?php
 require("./config.php");
+
+$db = Database::getInstance();
+$stmt = $db->prepare('SELECT * FROM Categorie WHERE id_categorie > 1');
+$stmt->execute();
+$categorie = $stmt->fetchAll();
+
+$stmt = $db->prepare('SELECT * FROM Etat WHERE id_etat > 1');
+$stmt->execute();
+$etat = $stmt->fetchAll();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $titre = htmlspecialchars($_POST['titre']);
+  $prix = htmlspecialchars($_POST['prix']);
+  $description = htmlspecialchars($_POST['description']);
+  $image = htmlspecialchars($_POST['image']);
+  $etat = htmlspecialchars($_POST['etat']);
+  $categorie = htmlspecialchars($_POST['categorie']);
+
+  $db = Database::getInstance();
+  $stmt = $db->prepare('INSERT INTO Publication (titre, prix, description, image, id_etat, id_categorie, id_profil) VALUES (?, ?, ?, ?, ?, ?, ?)');
+  $stmt->execute([$titre, $prix, $description, $image, $etat, $categorie, $_SESSION['usager']]);
+  header('Location: /');
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,49 +60,46 @@ require("./config.php");
       <?php endif; ?>
     </div>
   </header>
-  <main class="newPublicationsw">
-    <section id="nouvellePublications" class="newPublications">
-      <h2>Créer une Publication</h2>
-      <form method="post">
-        <div class="form-group">
-          <label for="titre">Title:</label>
-          <input type="text" id="titre" name="titre" class="form-control" required placeholder="Entrez le titre de votre publication" />
-        </div>
 
-        <div class="form-group">
-          <label for="prix">Price:</label>
-          <input type="number" id="prix" name="prix" class="form-control" required placeholder="Entrez le prix de votre publication" />
-        </div>
-
-        <div class="form-group">
-          <label for="description">Description:</label>
-          <input type="text" id="description" name="description" placeholder="Entrez une description de votre publication" class="form-control" />
-        </div>
-
-        <div class="form-group image-upload">
-          <label for="img">Image:</label>
-          <input type="url" id="img" name="img" class="form-control" accept="image/*" required />
-        </div>
-
-        <div class="form-group">
-          <label for="categories">Categories:</label>
-          <select name="categories" id="categories" required>
-            <option value="" disabled selected>Choisissez une catégorie</option>
-            <option value="vetement">Vêtements</option>
-            <option value="chaussures">Chaussures</option>
-            <option value="accessoires">Accessoires</option>
-            <option value="electroniques">Électroniques</option>
-            <option value="livres">Livres</option>
-            <option value="meubles">Meubles</option>
-            <option value="jouets">Jouets</option>
-            <option value="vehicules">Véhicules</option>
-          </select>
-        </div>
-
-        <button type="button" onclick="newPub()" id="creerPub">Créer</button>
-
-
-      </form>
-    </section>
+  <main class="newPublication">
+    <form method="POST">
+      <div>
+        <label for="titre">Titre:</label>
+        <input type="text" id="titre" name="titre" required>
+      </div>
+      <div>
+        <label for="prix">Prix:</label>
+        <input type="number" id="prix" name="prix" required>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+      </div>
+      <div>
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="image" accept=".jpg, .png" required>
+      </div>
+      <div>
+        <label for="etat">État:</label>
+        <select id="etat" name="etat" required onfocus="this.options[0].hidden = true;">
+          <option value="" selected disabled></option>
+          <?php foreach ($etat as $et) : ?>
+            <option value="<?php echo $et['id_etat']; ?>"><?php echo $et['nom']; ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+      <div>
+        <label for="categorie">Catégorie:</label>
+        <select id="categorie" name="categorie" required onfocus="this.options[0].hidden = true;">
+          <option value="" selected disabled></option>
+          <?php foreach ($categorie as $cat) : ?>
+            <option value="<?php echo $cat['id_categorie']; ?>"><?php echo $cat['nom']; ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+      <div>
+        <button type="submit">Créer la publication</button>
+      </div>
+    </form>
   </main>
 </body>

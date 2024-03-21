@@ -65,30 +65,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main class="newUser">
         <form method="POST">
-            <label for="username">Nom d'utilisateur:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Mot de passe:</label>
-            <input type="password" id="password" name="password" required>
-
-            <label for="email">Adresse email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="info_paiement">Numéro de votre carte bancaire:</label>
-            <input type="number" id="info_paiement" name="info_paiement" required>
-
-            <label for="date_naissance">Date de naissance:</label>
-            <input type="date" id="date_naissance" name="date_naissance" required>
-
-            <label for="photo_profil">Photo de profil:</label>
-            <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png">
-
-            <label for="adresse">Adresse:</label>
-            <input type="text" id="adresse" name="adresse" required>
-
-            <button type="submit">Créer le compte</button>
-
-            <a href="/login">Se connecter à un compte</a>
+            <div>
+                <label for="username">Nom d'utilisateur:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Mot de passe:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <label for="email">Adresse email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="info_paiement">Numéro de votre carte bancaire:</label>
+                <input type="number" id="info_paiement" name="info_paiement" required>
+            </div>
+            <div>
+                <label for="date_naissance">Date de naissance:</label>
+                <input type="date" id="date_naissance" name="date_naissance" required>
+            </div>
+            <div>
+                <label for="photo_profil">Photo de profil:</label>
+                <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png">
+            </div>
+            <div>
+                <label for="adresse">Adresse:</label>
+                <input type="text" id="adresse" name="adresse" required>
+            </div>
+            <div>
+                <button type="submit">Créer le compte</button>
+            </div>
+            <div>
+                <a href="/login">Se connecter à un compte</a>
+            </div>
         </form>
     </main>
 </body>

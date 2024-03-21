@@ -86,7 +86,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
             .includes(searchbar.toLowerCase()) &&
           prixMin <= publications[i]["prix"] &&
           prixMax >= publications[i]["prix"] &&
-          (categorie == publications[i]["categorie"] || categorie == 1) //&& etat == publications[i]["etat"]
+          (categorie == publications[i]["id_categorie"] || categorie == 1) &&
+          (etat == publications[i]["id_etat"] || etat == 1)
         ) {
           creerArticle(i);
         }

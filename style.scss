@@ -17,6 +17,16 @@ button {
   height: 2rem;
 }
 
+textarea {
+  height: 5rem;
+  width: 12rem;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  resize: none;
+  background-color: $backgroundTextColor;
+}
+
 a {
   text-decoration: none;
   color: $limeGreen;
@@ -36,6 +46,7 @@ select {
   border: none;
   height: 2rem;
   background-color: $backgroundTextColor;
+  width: 12.5rem;
 }
 
 ::placeholder {
@@ -199,7 +210,6 @@ input[type="number"] {
     min-width: 15rem;
     background-color: $navColor;
     border-radius: 2rem;
-    align-items: center;
     margin-bottom: 0.75rem;
 
     img {
@@ -212,23 +222,24 @@ input[type="number"] {
     h2 {
       color: white;
       align-self: flex-start;
-      margin-left: 1rem;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
-      width: 90%;
+      width: 13rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
 
     p {
       color: $limeGreen;
       font-weight: bolder;
+      align-self: flex-start;
+      margin-left: 1rem;
       font-size: 1rem;
-      position: absolute;
-      bottom: 0;
-      left: 1rem;
-      margin-bottom: 0.25rem;
+      line-height: 1rem;
+      height: 1rem;
     }
   }
 }
@@ -236,7 +247,7 @@ input[type="number"] {
 //* LOGIN & NEWUSER
 .login,
 .newUser,
-.newPublications {
+.newPublication {
   display: flex;
   background-color: $mainColor;
   position: fixed;
@@ -246,19 +257,11 @@ input[type="number"] {
   align-items: center;
   justify-content: center;
 
-  form {
+  div {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-
-    input {
-      margin: 5%;
-    }
-
-    a {
-      margin-top: 5%;
-    }
+    align-items: center;
+    margin-bottom: 1rem;
   }
 }
 
@@ -291,6 +294,11 @@ input[type="number"] {
 
     .balance {
       margin-bottom: 1rem;
+
+      .btn_balance {
+        display: flex;
+        justify-content: space-between;
+      }
     }
   }
 
@@ -301,19 +309,11 @@ input[type="number"] {
     justify-content: space-evenly;
 
     div {
-      text-align: left;
+      text-align: center;
       display: flex;
+      align-items: center;
       justify-content: space-between;
       flex-direction: column;
-    }
-
-    textarea {
-      height: 5rem;
-      padding: 0.5rem;
-      border-radius: 0.3rem;
-      border: none;
-      resize: none;
-      background-color: $backgroundTextColor;
     }
 
     .links {

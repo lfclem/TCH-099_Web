@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php endif; ?>
         </div>
     </header>
-  <main class="newPublicationsw">
+  <main class="newPublications">
         <section id="nouvellePublications" class="newPublications">
             <h2>Modifier la Publication</h2>
             <form method="post">
