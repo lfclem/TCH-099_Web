@@ -27,7 +27,7 @@ window.onload = function () {
 //*Fonction pour afficher les articles
 function renderPub() {
   for (let i = 0; i < publications.length; i++) {
-    creerArticle(i);
+    if (user !== publications[i]["id_profil"]) creerArticle(i);
   }
 }
 
@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   document
     .querySelector(".buttonSearchbar")
     .addEventListener("click", function (event) {
+      console.log("click");
       event.preventDefault();
       const searchbar = document.querySelector(".textSearchbar").value;
       const onglet = document.querySelector(".choiceTab").value;
@@ -72,6 +73,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const prixMinInput = document.querySelector(".textMinPrice");
       const prixMaxInput = document.querySelector(".textMaxPrice");
       const main = document.querySelector("main.listingsContainer");
+
       main.innerHTML = "";
 
       let prixMin = prixMinInput.value ? parseInt(prixMinInput.value) : 0;
@@ -79,18 +81,50 @@ document.addEventListener("DOMContentLoaded", (event) => {
         ? parseInt(prixMaxInput.value)
         : Infinity;
 
-      for (let i = 0; i < publications.length; i++) {
-        if (
-          publications[i]["titre"]
-            .toLowerCase()
-            .includes(searchbar.toLowerCase()) &&
-          prixMin <= publications[i]["prix"] &&
-          prixMax >= publications[i]["prix"] &&
-          (categorie == publications[i]["id_categorie"] || categorie == 1) &&
-          (etat == publications[i]["id_etat"] || etat == 1)
-        ) {
-          creerArticle(i);
-        }
+      switch (onglet) {
+        case "1":
+          for (let i = 0; i < publications.length; i++) {
+            if (
+              publications[i]["titre"]
+                .toLowerCase()
+                .includes(searchbar.toLowerCase()) &&
+              prixMin <= publications[i]["prix"] &&
+              prixMax >= publications[i]["prix"] &&
+              (categorie == publications[i]["id_categorie"] ||
+                categorie == "1") &&
+              (etat == publications[i]["id_etat"] || etat == "1") &&
+              user != publications[i]["id_profil"]
+            ) {
+              creerArticle(i);
+            }
+          }
+          break;
+
+        case "2":
+          // Abonnements
+          break;
+
+        case "3":
+          // Favoris
+          break;
+
+        case "4":
+          for (let i = 0; i < publications.length; i++) {
+            if (
+              publications[i]["titre"]
+                .toLowerCase()
+                .includes(searchbar.toLowerCase()) &&
+              prixMin <= publications[i]["prix"] &&
+              prixMax >= publications[i]["prix"] &&
+              (categorie == publications[i]["id_categorie"] ||
+                categorie == "1") &&
+              (etat == publications[i]["id_etat"] || etat == "1") &&
+              user == publications[i]["id_profil"]
+            ) {
+              creerArticle(i);
+            }
+          }
+          break;
       }
     });
 });
@@ -108,7 +142,7 @@ function creerArticle(i) {
   article.appendChild(titre);
 
   const prix = document.createElement("p");
-  prix.textContent = "Price: $" + publications[i]["prix"];
+  prix.textContent = "Prix: " + publications[i]["prix"] + "$";
   article.appendChild(prix);
 
   article.addEventListener("click", (event) => {

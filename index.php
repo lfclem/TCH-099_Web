@@ -72,12 +72,12 @@ $etat = $stmt->fetchAll();
 
     <div>
       <label for="minPrice">Prix minimal :</label>
-      <input type="number" id="minPrice" name="minPrice" class="textMinPrice" placeholder="Entrez le prix minimal" />
+      <input type="number" id="minPrice" name="minPrice" class="textMinPrice" />
     </div>
 
     <div>
       <label for="maxPrice">Prix maximal :</label>
-      <input type="number" id="maxPrice" name="maxPrice" class="textMaxPrice" placeholder="Entrez le prix maximal" />
+      <input type="number" id="maxPrice" name="maxPrice" class="textMaxPrice" />
     </div>
   </form>
 
@@ -100,4 +100,5 @@ $etat = $stmt->fetchAll();
   </div>
   <main class="listingsContainer"></main>
 </body>
+
 </html>

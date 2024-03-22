@@ -1,17 +1,16 @@
 <?php
 require './config.php';
 
-$_SESSION['error_message'] = "";
 
 if (isset($_GET['publicationId'])) {
     $_SESSION['publicationId'] = $_GET['publicationId'];
-} else{
+} else {
     //echo "pas de id_publication";
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $db = Database::getInstance();
-    $stmt = $db->prepare('SELECT `titre`, `prix`, `description`, `image`, `id_categorie` FROM `Publication` WHERE `id_publication`=:id');
+    $stmt = $db->prepare('SELECT `username`, `email`, `date_naissance`, `photo_profil, `bio`, `	statut` , `adresse`, `nb_rating`, `rating_total`  FROM `Profil` WHERE `id_profil`=:id');
     $stmt->bindParam(':id', $_SESSION['publicationId']);
     $stmt->execute();
     $pub = $stmt->fetch();
