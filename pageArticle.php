@@ -57,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <h2><?php echo $pub['titre']; ?></h2>
             <img src="<?php echo $pub['image']; ?>" alt="Article Image" class="center">
             <p><?php echo $pub['description']; ?></p>
+            <p><?php echo $pub['id_etat']; ?></p>
             <p>Prix: <strong><?php echo $pub['prix']; ?></strong></p>
             <button>Contactez le vendeur</button>
         </article>

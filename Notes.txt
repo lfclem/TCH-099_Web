@@ -2,7 +2,6 @@
 !Arreter que les pop-ups soient visibles quand on refresh/change de page
 !Faire que quand tu n'es pas connecter et essaye d'envoyer un message au vendeur , l'utilisateur est rediriger vers la page de connexion.
 !Faire page EditPublication
-!Si nom article a laffichage dans le main trop long rajouter ...
 !Ajouter/Retirer Argent
 !Fonctionnalite de recherche manquante -> Onglet
 !Mettre un preview de lannonce dans newPublication

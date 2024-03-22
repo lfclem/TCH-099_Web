@@ -250,7 +250,8 @@ input[type="number"] {
 //* LOGIN & NEWUSER
 .login,
 .newUser,
-.newPublication {
+.newPublication,
+.editP{
   display: flex;
   background-color: $mainColor;
   position: fixed;
