@@ -192,7 +192,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   height: 13rem;
   width: 13rem;
   align-self: center;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 }
 .listingsContainer article h2 {
   color: white;
@@ -202,9 +202,10 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   width: 13rem;
-  margin: 0 1rem;
+  margin: 0.75rem 1rem;
   line-height: 1.2;
   word-wrap: break-word;
+  position: relative;
 }
 .listingsContainer article p {
   color: rgb(144, 238, 144);
@@ -215,6 +216,8 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   height: 1rem;
   align-self: flex-start;
   word-wrap: break-word;
+  position: absolute;
+  bottom: 0;
 }
 
 .login,
