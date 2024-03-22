@@ -1,6 +1,7 @@
 let publications = [];
 let categories = [];
 let profils = [];
+let favoris = [];
 let type_usager;
 window.onload = function () {
   fetch("/jsonConverter", { methode: "GET" })
@@ -10,8 +11,12 @@ window.onload = function () {
       categories = data.categories;
       profils = data.profil;
       user = data.usager;
+      favoris = data.favoris;
+      console.log(favoris);
       console.log(user);
-      renderPub();
+      if(window.location.href == 'http://localhost:8000/'){
+        renderPub();
+      }
     })
     .catch((error) =>
       console.error("Erreur lors de la récupération des données:", error)
@@ -60,74 +65,96 @@ function showErrorMessage(message, reload = false) {
 }
 
 //*Fonction pour qui filtre la recherche (searchbar, onglets, filtres, prix)
-document.addEventListener("DOMContentLoaded", (event) => {
-  document
-    .querySelector(".buttonSearchbar")
-    .addEventListener("click", function (event) {
-      console.log("click");
-      event.preventDefault();
-      const searchbar = document.querySelector(".textSearchbar").value;
-      const onglet = document.querySelector(".choiceTab").value;
-      const etat = document.querySelector(".choiceCondition").value;
-      const categorie = document.querySelector(".choiceCategory").value;
-      const prixMinInput = document.querySelector(".textMinPrice");
-      const prixMaxInput = document.querySelector(".textMaxPrice");
-      const main = document.querySelector("main.listingsContainer");
+if(window.location.href == 'http://localhost:8000/'){
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document
+      .querySelector(".buttonSearchbar")
+      .addEventListener("click", function (event) {
+        console.log("click");
+        event.preventDefault();
+        const searchbar = document.querySelector(".textSearchbar").value;
+        const onglet = document.querySelector(".choiceTab").value;
+        const etat = document.querySelector(".choiceCondition").value;
+        const categorie = document.querySelector(".choiceCategory").value;
+        const prixMinInput = document.querySelector(".textMinPrice");
+        const prixMaxInput = document.querySelector(".textMaxPrice");
+        const main = document.querySelector("main.listingsContainer");
 
-      main.innerHTML = "";
+        main.innerHTML = "";
 
-      let prixMin = prixMinInput.value ? parseInt(prixMinInput.value) : 0;
-      let prixMax = prixMaxInput.value
-        ? parseInt(prixMaxInput.value)
-        : Infinity;
+        let prixMin = prixMinInput.value ? parseInt(prixMinInput.value) : 0;
+        let prixMax = prixMaxInput.value
+          ? parseInt(prixMaxInput.value)
+          : Infinity;
 
-      switch (onglet) {
-        case "1":
-          for (let i = 0; i < publications.length; i++) {
-            if (
-              publications[i]["titre"]
-                .toLowerCase()
-                .includes(searchbar.toLowerCase()) &&
-              prixMin <= publications[i]["prix"] &&
-              prixMax >= publications[i]["prix"] &&
-              (categorie == publications[i]["id_categorie"] ||
-                categorie == "1") &&
-              (etat == publications[i]["id_etat"] || etat == "1") &&
-              user != publications[i]["id_profil"]
-            ) {
-              creerArticle(i);
+        switch (onglet) {
+          case "1":
+            for (let i = 0; i < publications.length; i++) {
+              if (
+                publications[i]["titre"]
+                  .toLowerCase()
+                  .includes(searchbar.toLowerCase()) &&
+                prixMin <= publications[i]["prix"] &&
+                prixMax >= publications[i]["prix"] &&
+                (categorie == publications[i]["id_categorie"] ||
+                  categorie == "1") &&
+                (etat == publications[i]["id_etat"] || etat == "1") &&
+                user != publications[i]["id_profil"]
+              ) {
+                creerArticle(i);
+              }
             }
-          }
-          break;
+            break;
 
-        case "2":
-          // Abonnements
-          break;
+          case "2":
+            // Abonnements
+            break;
 
-        case "3":
-          // Favoris
-          break;
-
-        case "4":
-          for (let i = 0; i < publications.length; i++) {
-            if (
-              publications[i]["titre"]
-                .toLowerCase()
-                .includes(searchbar.toLowerCase()) &&
-              prixMin <= publications[i]["prix"] &&
-              prixMax >= publications[i]["prix"] &&
-              (categorie == publications[i]["id_categorie"] ||
-                categorie == "1") &&
-              (etat == publications[i]["id_etat"] || etat == "1") &&
-              user == publications[i]["id_profil"]
-            ) {
-              creerArticle(i);
+          case "3":
+            // Favoris
+            for (let i = 0; i < publications.length; i++) {
+              if (
+                publications[i]["titre"]
+                  .toLowerCase()
+                  .includes(searchbar.toLowerCase()) &&
+                prixMin <= publications[i]["prix"] &&
+                prixMax >= publications[i]["prix"] &&
+                (categorie == publications[i]["id_categorie"] ||
+                  categorie == "1") &&
+                (etat == publications[i]["id_etat"] || etat == "1") 
+              ) {
+                for (let j = 0; j < favoris.length; j++){
+                  if (favoris[j]['id_profil'] == user && favoris[j]['id_publication'] == publications[i]['id_publication']){
+                    creerArticle(i);
+                    break;
+                  }
+                }
+                
+              }
             }
-          }
-          break;
-      }
-    });
-});
+            break;
+
+          case "4":
+            for (let i = 0; i < publications.length; i++) {
+              if (
+                publications[i]["titre"]
+                  .toLowerCase()
+                  .includes(searchbar.toLowerCase()) &&
+                prixMin <= publications[i]["prix"] &&
+                prixMax >= publications[i]["prix"] &&
+                (categorie == publications[i]["id_categorie"] ||
+                 categorie == "1") &&
+                (etat == publications[i]["id_etat"] || etat == "1") &&
+                user == publications[i]["id_profil"]
+              ) {
+                creerArticle(i);
+              }
+            }
+            break;
+        }
+      });
+  });
+}
 
 function creerArticle(i) {
   const article = document.createElement("article");

@@ -11,10 +11,60 @@ if (isset($_GET['publicationId'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $db = Database::getInstance();
-    $stmt = $db->prepare('SELECT `titre`, `prix`, `description`, `image`, `id_categorie` FROM `Publication` WHERE `id_publication`=:id');
+    $stmt = $db->prepare('SELECT `titre`, `prix`, `description`, `image`, `id_etat`, `id_categorie` FROM `Publication` WHERE `id_publication`=:id');
     $stmt->bindParam(':id', $_SESSION['publicationId']);
     $stmt->execute();
     $pub = $stmt->fetch();
+
+    $msg_fav = "Ajouter en favoris";
+    $name_fav = "add_favorite";
+    $stmt = $db->prepare('SELECT `id_profil`, `id_publication` FROM `Publication_Favoris` WHERE `id_profil`=:id_profil AND `id_publication`=:id');
+    $stmt->bindParam(':id_profil', $_SESSION['usager']);
+    $stmt->bindParam(':id', $_SESSION['publicationId']);
+    $stmt->execute();
+    $fav = $stmt->fetch();
+    if(!empty($fav)){
+        $msg_fav = "Enlever des favoris";
+        $name_fav = "delete_favorite";
+    }
+}
+
+
+
+if(isset($_POST['contact_seller'])) {
+    if (isset($_SESSION['usager'])){
+        echo "chat";
+    } else {
+        header("Location: login.php");
+        exit(); 
+    }
+}
+
+//ajouter en favoris
+if(isset($_POST['add_favorite'])) {
+    if (isset($_SESSION['usager'])){
+        $db = Database::getInstance();
+        $stmt = $db->prepare('INSERT INTO Publication_Favoris (id_profil, id_publication) VALUES (?, ?)');
+        $stmt->execute([$_SESSION['usager'], $_SESSION['publicationId']]);
+        header('Location: /');
+    } else {
+        header("Location: login.php");
+        exit(); 
+    }
+}
+//enlever des favoris
+if(isset($_POST['delete_favorite'])) {
+    if (isset($_SESSION['usager'])){
+        $db = Database::getInstance();
+        $stmt = $db->prepare('DELETE FROM Publication_Favoris WHERE `id_profil`=:id_profil AND `id_publication`=:id');
+        $stmt->bindParam(':id_profil', $_SESSION['usager']);
+        $stmt->bindParam(':id', $_SESSION['publicationId']);
+        $stmt->execute();
+        header('Location: /');
+    } else {
+        header("Location: login.php");
+        exit(); 
+    }
 }
 ?>
 
@@ -62,7 +112,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <p><?php echo $pub['description']; ?></p>
             <p><?php echo $pub['id_etat']; ?></p>
             <p>Prix: <strong><?php echo $pub['prix']; ?></strong></p>
-            <button>Contactez le vendeur</button>
+            <form method="post">
+                <button type="submit" name="contact_seller">Contactez le vendeur</button>
+            </form>
+            <form method="post">
+                <button type="submit" name="<?php echo $name_fav; ?>"><?php echo $msg_fav; ?></button>
+            </form>
         </article>
     </main>
 </body>

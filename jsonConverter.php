@@ -4,7 +4,7 @@ require_once 'config.php';
 
 $db = Database::getInstance();
 
-// Requête pour récupérer les jeux
+// Requête pour récupérer les profils
 $stmtProfil = $db->prepare('SELECT * FROM Profil');
 $stmtProfil->execute();
 $profil = $stmtProfil->fetchAll(PDO::FETCH_ASSOC);
@@ -14,10 +14,15 @@ $stmtCategories = $db->prepare('SELECT * FROM Categorie');
 $stmtCategories->execute();
 $categories = $stmtCategories->fetchAll(PDO::FETCH_ASSOC);
 
-// Requête pour récupérer les plateformes
+// Requête pour récupérer les publications
 $stmtPub = $db->prepare('SELECT * FROM Publication');
 $stmtPub->execute();
 $publication = $stmtPub->fetchAll(PDO::FETCH_ASSOC);
+
+// Requête pour récupérer les favoris
+$stmtFav = $db->prepare('SELECT * FROM Publication_Favoris');
+$stmtFav->execute();
+$favoris = $stmtFav->fetchAll(PDO::FETCH_ASSOC);
 
 //
 // ajouter des requete si necessaire
@@ -28,6 +33,7 @@ $data = array(
     'publication' => $publication,
     'categories' => $categories,
     'profil' => $profil,
+    'favoris' => $favoris,
     'usager' => $gUserId // Add the user type
 );
 
