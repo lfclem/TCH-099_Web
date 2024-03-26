@@ -1,6 +1,5 @@
 !Arreter que les pop-ups soient visibles quand on refresh/change de page
 !Ajouter/Retirer Argent
-!Onglet abonnements et favoris
+!Onglet abonnements
 !Mettre un preview de lannonce dans newPublication et editpublication
-
-*EditUser ->  3: Abonnements (LF)
+!Liste de nos abonnemets dans longelt profil

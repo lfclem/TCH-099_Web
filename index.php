@@ -1,18 +1,5 @@
 <?php
-require("./config.php");
-
-$db = Database::getInstance();
-$stmt = $db->prepare('SELECT * FROM Categorie');
-$stmt->execute();
-$categorie = $stmt->fetchAll();
-
-$stmt = $db->prepare('SELECT * FROM Onglet');
-$stmt->execute();
-$onglet = $stmt->fetchAll();
-
-$stmt = $db->prepare('SELECT * FROM Etat');
-$stmt->execute();
-$etat = $stmt->fetchAll();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -32,22 +19,10 @@ $etat = $stmt->fetchAll();
     <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
     <h1 class="title">Sell-it!</h1>
     <div class="icons">
-      <?php if (isset($_SESSION['usager'])) : ?>
-        <?php
-        $db = Database::getInstance();
-        $stmt = $db->prepare('SELECT photo_profil FROM Profil WHERE id_profil = ?');
-        $stmt->execute([$_SESSION['usager']]);
-        $user = $stmt->fetch();
-        $photo_profil = $user['photo_profil'];
-        if (!$photo_profil) {
-          $photo_profil = "/IMG/profil.png";
-        }
-        ?>
-        <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
-        <a href="/editUser"><img class="pfp" src="<?php echo $photo_profil; ?>" alt="Profil" /></a>
-      <?php else : ?>
-        <a href="/login"><img class="pfp" src="/IMG/profil.png" alt="Profil" /></a>
-      <?php endif; ?>
+      <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
+      <a href="<?php echo isset($_SESSION['usager']) ? './profil' : './login'; ?>">
+        <img class="pfp" src="/IMG/profil.png" alt="Profil" id="photoProfil" />
+      </a>
     </div>
   </header>
 
@@ -55,18 +30,12 @@ $etat = $stmt->fetchAll();
     <div>
       <label for="category">Catégorie :</label>
       <select id="category" name="category" class="choiceCategory">
-        <?php foreach ($categorie as $cat) : ?>
-          <option value="<?php echo $cat['id_categorie']; ?>"><?php echo $cat['nom']; ?></option>
-        <?php endforeach; ?>
       </select>
     </div>
 
     <div>
       <label for="condition">État de l'objet :</label>
       <select id="condition" name="condition" class="choiceCondition">
-        <?php foreach ($etat as $et) : ?>
-          <option value="<?php echo $et['id_etat']; ?>"><?php echo $et['nom']; ?></option>
-        <?php endforeach; ?>
       </select>
     </div>
 
@@ -88,9 +57,6 @@ $etat = $stmt->fetchAll();
 
       <label for="tab" class="labelChoiceTab">Onglet :</label>
       <select id="tab" name="tab" class="choiceTab">
-        <?php foreach ($onglet as $ong) : ?>
-          <option value="<?php echo $ong['id_onglet']; ?>"><?php echo $ong['nom']; ?></option>
-        <?php endforeach; ?>
       </select>
     </div>
 

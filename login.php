@@ -1,25 +1,7 @@
 <?php
-
-$_SESSION['error_message'] = "";
-
 require_once './config.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $db = Database::getInstance();
-    $stmt = $db->prepare('SELECT * FROM Profil WHERE username = ?');
-    $stmt->execute([$username]);
-    $user = $stmt->fetch();
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['usager'] = $user['id_profil'];
-        header('Location: /');
-    } else {
-        $_SESSION['error_message'] = "Nom d'utilisateur ou mot de passe incorrect.";
-    }
-}
+$error_message = $_SESSION['error_message'] ?? '';
+$_SESSION['error_message'] = "";
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="/script.js"></script>
 </head>
 
-<body data-error-message="<?php echo isset($_SESSION['error_message']) ? $_SESSION['error_message'] : '' ?>" data-reload="false">
+<body data-error-message="<?php echo htmlspecialchars($error_message); ?>" data-reload="false">
     <header class="headerInfos">
         <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
         <h1 class="title">Sell-it!</h1>
@@ -44,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <main class="login">
-        <form method="POST">
+        <form method="POST" action="./api/User/loginUser.php">
             <div>
                 <label for="username">Nom d'utilisateur:</label>
                 <input type="text" id="username" name="username" required>

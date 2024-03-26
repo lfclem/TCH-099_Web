@@ -1,8 +1,6 @@
 <?php
 require './config.php';
 
-$_SESSION['error_message'] = "";
-
 $db = Database::getInstance();
 $stmt = $db->prepare('SELECT * FROM Profil WHERE id_profil = ?');
 $stmt->execute([$_SESSION['usager']]);
@@ -12,75 +10,7 @@ $statut = $user['statut'];
 $balance = $user['montant_balance'];
 $nbRatings = $user['nb_rating'];
 $ratingTotal = $user['rating_total'];
-
 $averageRating = ($nbRatings > 0) ? round($ratingTotal / $nbRatings * 2) / 2 : 0.0;
-
-
-if (isset($_GET['deconnexion'])) {
-    unset($_SESSION['usager']);
-    header('Location: /');
-    exit();
-}
-
-if (isset($_GET['delete'])) {
-    $db = Database::getInstance();
-    $stmt = $db->prepare('DELETE FROM Profil WHERE id_profil = ?');
-    $stmt->execute([$_SESSION['usager']]);
-    unset($_SESSION['usager']);
-    header('Location: /');
-    exit();
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = htmlspecialchars($_POST['username']);
-    $emailNettoye = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $password = htmlspecialchars($_POST['password']);
-    $info_paiement = htmlspecialchars($_POST['info_paiement']);
-    $photo_profil = filter_var($_POST['photo_profil'], FILTER_SANITIZE_URL);
-    $adresse = htmlspecialchars($_POST['adresse']);
-    $bio = htmlspecialchars($_POST['bio']);
-
-    $db = Database::getInstance();
-    $stmt = $db->prepare('SELECT * FROM Profil WHERE email = ?');
-    $stmt->execute([$emailNettoye]);
-    if ($stmt->fetch() && $emailNettoye != $user['email']) {
-        $_SESSION['error_message'] = "Cet email est déjà utilisé.";
-    }
-
-    $stmt = $db->prepare('SELECT * FROM Profil WHERE username = ?');
-    $stmt->execute([$username]);
-    if ($stmt->fetch() && $username != $user['username']) {
-        $_SESSION['error_message'] = "Ce nom d'utilisateur est déjà utilisé.";
-    }
-
-    if (!filter_var($emailNettoye, FILTER_SANITIZE_EMAIL)) {
-        $_SESSION['error_message'] = "Email non valide";
-    }
-
-    if ($_POST['password'] != "") {
-        $password = htmlspecialchars($_POST['password']);
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $db->prepare('UPDATE Profil SET username = ?, email = ?, password = ?, info_paiement = ?, photo_profil = ?, adresse = ?, bio = ? WHERE id_profil = ?');
-        if ($stmt->execute([$username, $emailNettoye, $passwordHash, $info_paiement, $photo_profil, $adresse, $bio, $_SESSION['usager']])) {
-            $_SESSION['error_message'] = "Informations modifiées avec succès.";
-            $stmt = $db->prepare('SELECT * FROM Profil WHERE id_profil = ?');
-            $stmt->execute([$_SESSION['usager']]);
-            $user = $stmt->fetch();
-        } else {
-            $_SESSION['error_message'] = "Erreur lors de la modification des informations.";
-        }
-    } else {
-        $stmt = $db->prepare('UPDATE Profil SET username = ?, email = ?, info_paiement = ?, photo_profil = ?, adresse = ?, bio = ? WHERE id_profil = ?');
-        if ($stmt->execute([$username, $emailNettoye, $info_paiement, $photo_profil, $adresse, $bio, $_SESSION['usager']])) {
-            $_SESSION['error_message'] = "Informations modifiées avec succès.";
-            $stmt = $db->prepare('SELECT * FROM Profil WHERE id_profil = ?');
-            $stmt->execute([$_SESSION['usager']]);
-            $user = $stmt->fetch();
-        } else {
-            $_SESSION['error_message'] = "Erreur lors de la modification des informations.";
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -112,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </header>
 
-    <form method="POST" class="editUserGrid">
+    <form method="POST" action="./api/User/editUser.php" class="editUserGrid">
         <div class="column1">
             <div class="balance">
                 <label>Votre solde: <?php echo $balance; ?>$</label>
@@ -136,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
             <div class="level">
-                <label>Votre statut: <?php echo $statut?></label>
+                <label>Votre statut: <?php echo $statut ?></label>
             </div>
         </div>
 
@@ -171,8 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <button type="submit">Modifier mes informations</button>
             <div class="links">
-                <a href="?deconnexion=1">Deconnecter</a>
-                <a href="?delete=1" onclick="return confirm('Êtes-vous sûr de vouloir supprimer le compte?');">Supprimer le compte</a>
+                <a href="./api/User/logoutUser.php">Deconnecter</a>
+                <a href="./api/User/deleteUser.php" onclick="return confirm('Êtes-vous sûr de vouloir supprimer le compte?');">Supprimer le compte</a>
             </div>
         </div>
 

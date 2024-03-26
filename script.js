@@ -1,3 +1,5 @@
+const URL = "http://localhost:8000/";
+
 let publications = [];
 let categories = [];
 let profils = [];
@@ -14,8 +16,72 @@ window.onload = function () {
       favoris = data.favoris;
       console.log(favoris);
       console.log(user);
-      if(window.location.href == 'http://localhost:8000/'){
+      if (window.location.href == URL) {
         renderPub();
+
+        //* Fetch categorie
+        fetch("./api/Categories/getCategories.php")
+          .then((response) => response.json())
+          .then((data) => {
+            const select = document.getElementById("category");
+            data.forEach((item) => {
+              const option = document.createElement("option");
+              option.value = item.id_categorie;
+              option.textContent = item.nom;
+              select.appendChild(option);
+            });
+          });
+
+        //* Fetch onglet
+        fetch("./api/Onglets/getOnglets.php")
+          .then((response) => response.json())
+          .then((data) => {
+            const select = document.getElementById("tab");
+            data.forEach((item) => {
+              const option = document.createElement("option");
+              option.value = item.id_onglet;
+              option.textContent = item.nom;
+              select.appendChild(option);
+            });
+          });
+
+        //* Fetch etat
+        fetch("./api/Etats/getEtats.php")
+          .then((response) => response.json())
+          .then((data) => {
+            const select = document.getElementById("condition");
+            data.forEach((item) => {
+              const option = document.createElement("option");
+              option.value = item.id_etat;
+              option.textContent = item.nom;
+              select.appendChild(option);
+            });
+          });
+      }
+
+      if (user) {
+        fetch("./api/User/getPhotoProfil.php?id=" + user)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch user photo");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const photo = document.getElementById("photoProfil");
+            photo.src = data.photo;
+            photo.href = "./pageProfil.php?id=" + user;
+          })
+          .catch((error) => {
+            console.error("Error fetching user photo:", error);
+            const defaultPhotoUrl = "./IMG/profil.png";
+            const photo = document.getElementById("photoProfil");
+            photo.src = defaultPhotoUrl;
+          });
+      } else {
+        const defaultPhotoUrl = "./IMG/profil.png";
+        const photo = document.getElementById("photoProfil");
+        photo.src = defaultPhotoUrl;
       }
     })
     .catch((error) =>
@@ -65,7 +131,7 @@ function showErrorMessage(message, reload = false) {
 }
 
 //*Fonction pour qui filtre la recherche (searchbar, onglets, filtres, prix)
-if(window.location.href == 'http://localhost:8000/'){
+if (window.location.href == "http://localhost:8000/") {
   document.addEventListener("DOMContentLoaded", (event) => {
     document
       .querySelector(".buttonSearchbar")
@@ -121,15 +187,18 @@ if(window.location.href == 'http://localhost:8000/'){
                 prixMax >= publications[i]["prix"] &&
                 (categorie == publications[i]["id_categorie"] ||
                   categorie == "1") &&
-                (etat == publications[i]["id_etat"] || etat == "1") 
+                (etat == publications[i]["id_etat"] || etat == "1")
               ) {
-                for (let j = 0; j < favoris.length; j++){
-                  if (favoris[j]['id_profil'] == user && favoris[j]['id_publication'] == publications[i]['id_publication']){
+                for (let j = 0; j < favoris.length; j++) {
+                  if (
+                    favoris[j]["id_profil"] == user &&
+                    favoris[j]["id_publication"] ==
+                      publications[i]["id_publication"]
+                  ) {
                     creerArticle(i);
                     break;
                   }
                 }
-                
               }
             }
             break;
@@ -143,7 +212,7 @@ if(window.location.href == 'http://localhost:8000/'){
                 prixMin <= publications[i]["prix"] &&
                 prixMax >= publications[i]["prix"] &&
                 (categorie == publications[i]["id_categorie"] ||
-                 categorie == "1") &&
+                  categorie == "1") &&
                 (etat == publications[i]["id_etat"] || etat == "1") &&
                 user == publications[i]["id_profil"]
               ) {
@@ -156,6 +225,7 @@ if(window.location.href == 'http://localhost:8000/'){
   });
 }
 
+//* Fonction pour creer un article
 function creerArticle(i) {
   const article = document.createElement("article");
   const main = document.querySelector("main.listingsContainer");
