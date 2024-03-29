@@ -16,6 +16,8 @@ get('/api/getPublications/$id', '/api/getPublications/getPublications.php');
 get('/api/getAllPublications', '/api/getAllPublications/getAllPublications.php');
 get('/api/getPanier/$id', '/api/getPanier/getPanier.php');
 get('/api/getPaiement/$id', '/api/getPaiement/getPaiement.php');
-post('/api/postPublication', '/api/postPublication/postPublication.php');
+post('/api/postPublication/', '/api/postPublication/postPublication.php');
+put('/api/putPublication/$id', '/api/putPublication/putPublication.php');
+delete('/api/deletePublication/$id', '/api/deletePublication/deletePublication.php');
 
 any('/404', '404.php');

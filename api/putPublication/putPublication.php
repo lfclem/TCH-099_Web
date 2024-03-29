@@ -12,8 +12,15 @@ if(!isset($_SERVER["CONTENT_TYPE"]) || $_SERVER["CONTENT_TYPE"]!='application/js
 //Obtenir le corps de la requête
 $body = json_decode(file_get_contents("php://input"));
 
+if(!isset($id) || $id == ""){
+    http_response_code(400);
+    echo "L'id de la publication est obligatoire";
+    exit;
+}
+
 if(!isset($body->titre) || $body->titre == ""){
     http_response_code(400);
+    echo $body->titre;
     echo "Le titre est obligatoire";
     exit;
 }
@@ -43,20 +50,11 @@ if(!isset($body->id_etat) || $body->id_etat == ""){
 }
 
 try{
-    $stmt = $db->prepare("INSERT INTO `Publication` (`titre`, `prix`, `description`, `image`, `id_etat`, `id_categorie`, `id_profil`) VALUES (:titre, :prix, :descriptions, :img, :id_etat, :id_cat, :id_p)");
-    $stmt->bindValue(":titre", $body->titre);
-    $stmt->bindValue(":prix", $body->prix);
-    $stmt->bindValue(":descriptions", $body->description);
-    $stmt->bindValue(":img", $body->image);
-    $stmt->bindValue(":id_etat", $body->id_etat);
-    $stmt->bindValue(":id_p", $body->id_profil);
-    $stmt->bindValue(":id_cat", $body->id_categorie);
-    $stmt->execute();
-
-    $id = $db->lastInsertId();
+    $stmt = $db->prepare('UPDATE Publication SET titre = ?, prix = ?, description = ?, image = ?, id_etat = ?, id_categorie = ? WHERE id_publication = ?');
+    $stmt->execute([$body->titre, $body->prix, $body->description, $body->image, $body->id_etat, $body->id_categorie, $id]);
 
 
-    $insertion = ["id_publication"=>$id, "titre"=>$body->titre, "prix"=>$body->prix, "img"=>$body->image];
+    $insertion = ["reponse"=>"OK"];
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($insertion);
 

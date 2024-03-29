@@ -26,21 +26,21 @@ $stmt = $db->prepare('SELECT * FROM Publication WHERE id_publication = ?');
 $stmt->execute([$publicationId]);
 $pub = $stmt->fetch();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $titre = $_POST['titre'];
-  $prix = $_POST['prix'];
-  $description = $_POST['description'];
-  $image = $_POST['img'];
-  $etat = $_POST['etat'];
-  $categorie = $_POST['categorie'];
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//   $titre = $_POST['titre'];
+//   $prix = $_POST['prix'];
+//   $description = $_POST['description'];
+//   $image = $_POST['img'];
+//   $etat = $_POST['etat'];
+//   $categorie = $_POST['categorie'];
 
-  $stmt = $db->prepare('UPDATE Publication SET titre = ?, prix = ?, description = ?, image = ?, id_etat = ?, id_categorie = ? WHERE id_publication = ?');
-  $stmt->execute([$titre, $prix, $description, $image, $etat, $categorie, $publicationId]);
+//   $stmt = $db->prepare('UPDATE Publication SET titre = ?, prix = ?, description = ?, image = ?, id_etat = ?, id_categorie = ? WHERE id_publication = ?');
+//   $stmt->execute([$titre, $prix, $description, $image, $etat, $categorie, $publicationId]);
 
-  $_SESSION['message'] = "Publication modifiée avec succès!";
-  header("Location: /");
-  exit();
-}
+//   $_SESSION['message'] = "Publication modifiée avec succès!";
+//   header("Location: /");
+//   exit();
+// }
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/normalize.css" />
-  <script src="/scriptNewPublication.js"></script>
+  <script src="/scriptNewPub.js"></script>
 </head>
 
 <body>
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
       <div>
         <label for="image">Image:</label>
-        <input type="url" id="img" name="img" class="form-control" accept="image/*" value="<?php echo $pub['image']; ?>" required />
+        <input type="url" id="image" name="img" class="form-control" accept="image/*" value="<?php echo $pub['image']; ?>" required />
       </div>
       <div>
         <label for="etat">État:</label>
@@ -114,10 +114,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </select>
       </div>
       <div>
-        <button type="submit">Modifier la publication</button>
+        <button type="button" onclick="editPub(<?php echo $publicationId?>)">Modifier la publication</button>
       </div>
       <div>
-        <a href="?delete=1" onclick="return confirm('Êtes-vous sûr de vouloir supprimer la publication?');">Supprimer la publication</a>
+        <button type="button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer la publication?') && deletePub(<?php echo $publicationId?>);">Supprimer la publication</button>
       </div>
     </form>
   </main>

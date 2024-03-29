@@ -10,19 +10,20 @@ $stmt = $db->prepare('SELECT * FROM Etat WHERE id_etat > 1');
 $stmt->execute();
 $etat = $stmt->fetchAll();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $titre = htmlspecialchars($_POST['titre']);
-  $prix = htmlspecialchars($_POST['prix']);
-  $description = htmlspecialchars($_POST['description']);
-  $image = htmlspecialchars($_POST['image']);
-  $etat = htmlspecialchars($_POST['etat']);
-  $categorie = htmlspecialchars($_POST['categorie']);
 
-  $db = Database::getInstance();
-  $stmt = $db->prepare('INSERT INTO Publication (titre, prix, description, image, id_etat, id_categorie, id_profil) VALUES (?, ?, ?, ?, ?, ?, ?)');
-  $stmt->execute([$titre, $prix, $description, $image, $etat, $categorie, $_SESSION['usager']]);
-  header('Location: /');
-}
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//   $titre = htmlspecialchars($_POST['titre']);
+//   $prix = htmlspecialchars($_POST['prix']);
+//   $description = htmlspecialchars($_POST['description']);
+//   $image = htmlspecialchars($_POST['image']);
+//   $etat = htmlspecialchars($_POST['etat']);
+//   $categorie = htmlspecialchars($_POST['categorie']);
+
+//   $db = Database::getInstance();
+//   $stmt = $db->prepare('INSERT INTO Publication (titre, prix, description, image, id_etat, id_categorie, id_profil) VALUES (?, ?, ?, ?, ?, ?, ?)');
+//   $stmt->execute([$titre, $prix, $description, $image, $etat, $categorie, $_SESSION['usager']]);
+//   header('Location: /');
+// }
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/normalize.css" />
-  <script src="/scriptNewPublication.js"></script>
+  <script src="/scriptNewPub.js"></script>
 </head>
 
 <body>
@@ -98,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
       </div>
       <div>
-        <button type="submit">Créer la publication</button>
+        <button type="button" onclick="newPub()" id="creerPub">Créer la publication</button>
       </div>
     </form>
   </main>

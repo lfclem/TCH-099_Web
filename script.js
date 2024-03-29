@@ -2,7 +2,7 @@ const URL = "http://localhost:8000/";
 
 let publications = [];
 let categories = [];
-let profils = [];
+let   = [];
 let favoris = [];
 let type_usager;
 window.onload = function () {
@@ -14,8 +14,6 @@ window.onload = function () {
       profils = data.profil;
       user = data.usager;
       favoris = data.favoris;
-      console.log(favoris);
-      console.log(user);
       if (window.location.href == URL) {
         renderPub();
 
