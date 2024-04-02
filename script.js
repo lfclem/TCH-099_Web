@@ -13,6 +13,7 @@ window.onload = function () {
       categories = data.categories;
       profils = data.profil;
       user = data.usager;
+      console.log(user);
       favoris = data.favoris;
       if (window.location.href == URL) {
         renderPub();

@@ -41,7 +41,7 @@ function newPub(){
             if (!response.ok) {
                 throw new Error('La requête a échoué avec le statut ' + response.status);
             }
-            return response.json(); // Convertir la réponse en JSON
+            return response.json(); 
         })
         .then(data => {
             window.location.href = 'http://localhost:8000/'; // a changer
@@ -88,7 +88,7 @@ function editPub(id_pub){
             return response.json(); // Convertir la réponse en JSON
         })
         .then(data => {
-            window.location.href = 'http://localhost:8000/'; // a changer
+            //window.location.href = 'http://localhost:8000/'; // a changer
         })
         .catch(error => {
     
