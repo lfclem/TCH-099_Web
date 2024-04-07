@@ -9,8 +9,6 @@ if (isset($_GET['publicationId'])) {
     //echo "pas de id_publication";
 }
 
-
-
 if(isset($_POST['contact_seller'])) {
     if (isset($_SESSION['usager'])){
         echo "chat";
@@ -36,26 +34,14 @@ if(isset($_POST['contact_seller'])) {
 
 <body>
     <header class="headerInfos">
-        <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
-        <h1 class="title">Sell-it!</h1>
-        <div class="icons">
-            <?php if (isset($_SESSION['usager'])) : ?>
-                <?php
-                $db = Database::getInstance();
-                $stmt = $db->prepare('SELECT photo_profil FROM Profil WHERE id_profil = ?');
-                $stmt->execute([$_SESSION['usager']]);
-                $user = $stmt->fetch();
-                $photo_profil = $user['photo_profil'];
-                if (!$photo_profil) {
-                    $photo_profil = "/IMG/profil.png";
-                }
-                ?>
-                <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
-                <a href="/editUser"><img class="pfp" src="<?php echo $photo_profil; ?>" alt="Profil" /></a>
-            <?php else : ?>
-                <a href="/login"><img class="pfp" src="/IMG/profil.png" alt="Profil" /></a>
-            <?php endif; ?>
-        </div>
+    <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
+    <h1 class="title">Sell-it!</h1>
+    <div class="icons">
+      <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
+      <a href="<?php echo isset($_SESSION['usager']) ? './profil' : './login'; ?>">
+        <img class="pfp" src="/IMG/profil.png" alt="Profil" id="photoProfil" />
+      </a>
+    </div>
     </header>
 
     <main class="pageArticle">
@@ -66,10 +52,18 @@ if(isset($_POST['contact_seller'])) {
             <p id="etat"></p>
             <p id="prix"></strong></p>
             <form method="post">
-                <button type="submit" name="contact_seller">Contactez le vendeur</button>
+                <button type="submit"  name="contact_seller">Contactez le vendeur</button>
             </form>
-            <form method="post">
-                <button type="button" onclick="favoris()" id="fav" name=""></button>
+            <form method="post" action="/pageUser.php">
+                <?php
+                $db = Database::getInstance();
+                $stmt = $db->prepare('SELECT id_profil FROM Publication WHERE id_publication = ?');
+                $stmt->execute([$_SESSION['publicationId']]);
+                $publication = $stmt->fetch();
+                $id_profil = $publication['id_profil'];
+                ?>
+                <input type="hidden" name="user_id" value="<?php echo $id_profil; ?>">
+                <button type="submit">Voir le profil du vendeur</button>
             </form>
         </article>
     </main>
