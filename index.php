@@ -55,9 +55,11 @@ session_start();
       <input type="text" class="textSearchbar" name="searchbar" placeholder="Rechercher..." />
       <button type="submit" class="buttonSearchbar">Rechercher</button>
 
-      <label for="tab" class="labelChoiceTab">Onglet :</label>
-      <select id="tab" name="tab" class="choiceTab">
-      </select>
+      <?php if (isset($_SESSION['usager'])) : ?>
+        <label for="tab" class="labelChoiceTab">Onglet :</label>
+        <select id="tab" name="tab" class="choiceTab">
+        </select>
+      <?php endif; ?>
     </div>
 
     <?php if (isset($_SESSION['usager'])) : ?>
