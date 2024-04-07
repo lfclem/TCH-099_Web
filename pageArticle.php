@@ -54,6 +54,9 @@ if(isset($_POST['contact_seller'])) {
             <form method="post">
                 <button type="submit"  name="contact_seller">Contactez le vendeur</button>
             </form>
+            <form method="post">
+                <button type="button" onclick="favoris()" id="fav" name=""></button>
+            </form>
             <form method="post" action="/pageUser.php">
                 <?php
                 $db = Database::getInstance();

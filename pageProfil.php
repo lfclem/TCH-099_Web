@@ -22,7 +22,7 @@ $averageRating = ($nbRatings > 0) ? round($ratingTotal / $nbRatings * 2) / 2 : 0
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/normalize.css" />
-    <script src="/script.js"></script>
+    <script src="/scriptAbonnement.js"></script>
 </head>
 
 <body data-error-message="<?php echo $_SESSION['error_message'] ?>" data-reload="false">

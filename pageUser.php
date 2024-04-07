@@ -1,5 +1,16 @@
 <?php
 require './config.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if the user_id is set in the POST data
+    if(isset($_POST['user_id'])) {
+        // Retrieve the value of user_id
+        $id_profil = $_POST['user_id'];
+        echo "<script>";
+        echo "var id_profil = " . json_encode($id_profil) . ";";
+        echo "</script>";
+    }
+}
 $db = Database::getInstance();
 
 // Prepare the SQL statement
@@ -23,7 +34,7 @@ $user2 = $stmt->fetch(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/normalize.css" />
-    <script src="/script.js"></script>
+    <script src="/scriptAbonnement.js"></script>
 </head>
 <body>
     <header class="headerInfos">
@@ -58,6 +69,7 @@ $user2 = $stmt->fetch(PDO::FETCH_ASSOC);
         <p id="bio" name="bio"><?php echo $user2['bio']; ?></p>
     </div>
     <button type="submit">Contacter</button>
+    <button type="button" onclick="Abonner()" id="abn" name=""></button>
   
 </body>
 </html>
