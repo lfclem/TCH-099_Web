@@ -1,5 +1,6 @@
 !Arreter que les pop-ups soient visibles quand on refresh/change de page
 !Ajouter/Retirer Argent
-!Onglet abonnements
+!Onglet abonnements et favoris pour voir les publications correspondantes
 !Mettre un preview de lannonce dans newPublication et editpublication
-!Liste de nos abonnemets dans longelt profil
+!Liste de nos abonnemets dans longlet profil
+!Utiliser les tokens et non $_SESSION pour savoir si quelqu'un est connecte

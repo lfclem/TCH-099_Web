@@ -7,5 +7,5 @@ $stmt->execute([$_SESSION['usager']]);
 $user = $stmt->fetch();
 
 unset($_SESSION['usager']);
-header('Location: ../../index');
+header('Location: ../../');
 exit();
