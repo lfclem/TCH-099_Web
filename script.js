@@ -13,10 +13,40 @@ window.onload = function () {
       categories = data.categories;
       profils = data.profil;
       user = data.usager;
-      console.log(user);
       favoris = data.favoris;
+      console.log(user);
       if (window.location.href == URL) {
-        renderPub();
+        if (user == 0) {
+          fetch("/api/getAllPublications", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(
+                  "La requête a échoué avec le statut " + response.status
+                );
+              }
+              return response.json();
+            })
+            .then((data) => {
+              data.forEach((item) => {
+                creerArticle(item);
+              });
+            });
+        } else {
+          fetchData(
+            "getPublicationsFiltresPubliques",
+            "",
+            0,
+            Infinity,
+            1,
+            1,
+            user
+          );
+        }
 
         //* Fetch categorie
         fetch("/api/getCategories")
@@ -100,7 +130,6 @@ if (window.location.href == URL) {
     document
       .querySelector(".buttonSearchbar")
       .addEventListener("click", function (event) {
-        console.log("click");
         event.preventDefault();
         const searchbar = document.querySelector(".textSearchbar").value;
         const onglet = document.querySelector(".choiceTab").value;
@@ -120,49 +149,54 @@ if (window.location.href == URL) {
         switch (onglet) {
           case "1":
             //Publiques
-            fetchPublications(
+            fetchData(
+              "getPublicationsFiltresPubliques",
               searchbar,
               prixMin,
               prixMax,
               etat,
-              categorie
-            ).then((data) => {
-              console.log(data);
-              data.forEach((item) => {
-                if (!(user == item["id_profil"])) {
-                  // On n'affiche pas nos propres publications
-                  creerArticle(item);
-                }
-              });
-            });
+              categorie,
+              user
+            );
             break;
 
           case "2":
             // Abonnements
-            break;
-
-          case "3":
-            // Favoris
-            break;
-
-          case "4":
-            // Mes publications
-            fetchPublications(
+            fetchData(
+              "getPublicationsFiltresFavoris",
               searchbar,
               prixMin,
               prixMax,
               etat,
-              categorie
-            ).then((data) => {
-              console.log(data);
-              data.forEach((item) => {
-                if (user == item["id_profil"]) {
-                  // On affiche nos propres publications
-                  creerArticle(item);
-                }
-              });
-            });
+              categorie,
+              user
+            );
             break;
+
+          case "3":
+            // Favoris
+            fetchData(
+              "getPublicationsFiltresFavoris",
+              searchbar,
+              prixMin,
+              prixMax,
+              etat,
+              categorie,
+              user
+            );
+            break;
+
+          case "4":
+            // Mes publications
+            fetchData(
+              "getPublicationsFiltresPrivees",
+              searchbar,
+              prixMin,
+              prixMax,
+              etat,
+              categorie,
+              user
+            );
         }
       });
   });
@@ -199,17 +233,6 @@ function creerArticle(item) {
   main.appendChild(article);
 }
 
-//*Fonction pour afficher les articles au lancement de l'application
-function renderPub() {
-  const main = document.querySelector("main.listingsContainer");
-  main.innerHTML = "";
-  publications.forEach((item) => {
-    if (!(user == item["id_profil"])) {
-      creerArticle(item);
-    }
-  });
-}
-
 //*Fenetre pour confirmer des changements/creations de compte etc
 function showErrorMessage(message, reload = false) {
   const modal = document.createElement("div");
@@ -238,10 +261,17 @@ function showErrorMessage(message, reload = false) {
   }, 1000);
 }
 
-//*Fonction pour fetch les publications
-function fetchPublications(searchbar, prixMin, prixMax, etat, categorie) {
+function fetchData(
+  endpoint,
+  searchbar,
+  prixMin,
+  prixMax,
+  etat,
+  categorie,
+  user
+) {
   return fetch(
-    "./api/getPublicationsFiltres/" +
+    `./api/${endpoint}/` +
       searchbar +
       "/" +
       prixMin +
@@ -250,17 +280,27 @@ function fetchPublications(searchbar, prixMin, prixMax, etat, categorie) {
       "/" +
       etat +
       "/" +
-      categorie,
+      categorie +
+      "/" +
+      user,
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     }
-  ).then((response) => {
-    if (!response.ok) {
-      throw new Error("La requête a échoué avec le statut " + response.status);
-    }
-    return response.json();
-  });
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          "La requête a échoué avec le statut " + response.status
+        );
+      }
+      return response.json();
+    })
+    .then((data) => {
+      data.forEach((item) => {
+        creerArticle(item);
+      });
+    });
 }
