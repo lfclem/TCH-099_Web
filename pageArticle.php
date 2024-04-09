@@ -33,7 +33,7 @@ if(isset($_POST['contact_seller'])) {
 </head>
 
 <body>
-    <header class="headerInfos">
+<header class="headerInfos">
     <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
     <h1 class="title">Sell-it!</h1>
     <div class="icons">
@@ -42,7 +42,7 @@ if(isset($_POST['contact_seller'])) {
         <img class="pfp" src="/IMG/profil.png" alt="Profil" id="photoProfil" />
       </a>
     </div>
-    </header>
+  </header>
 
     <main class="pageArticle">
         <article class="article">

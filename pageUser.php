@@ -64,12 +64,28 @@ $user2 = $stmt->fetch(PDO::FETCH_ASSOC);
         <label for="adresse">Adresse:</label>
         <input type="text" id="adresse" name="adresse" value="<?php echo $user2['adresse']; ?>" readonly>
     </div>
-    <div class="bio">
-        <label for="bio">Bio:</label>
-        <p id="bio" name="bio"><?php echo $user2['bio']; ?></p>
+
+    <div>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        <input type="hidden" name="user_id" value="<?php echo $user2['id_profil']; ?>">
+        <label for="rating">Évaluation (0-5):</label>
+        <input type="number" id="rating" name="rating" step="0.5" min="0" max="5" required>
+        <button type="submit" name="submit">Effectuer l'évaluation</button>
+    </form>
     </div>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['rating'])) {
+        $rating = $_POST['rating'];
+        $user_id = $_POST['user_id'];
+
+        $db = Database::getInstance();
+        $stmt = $db->prepare('UPDATE `Profil` SET `nb_rating` = `nb_rating` + 1, `rating_total` = `rating_total` + :rating WHERE `id_profil`=:id');
+        $stmt->bindParam(':id', $user_id);
+        $stmt->bindParam(':rating', $rating);
+        $stmt->execute();
+    }
+    ?>
     <button type="submit">Contacter</button>
     <button type="button" onclick="Abonner()" id="abn" name=""></button>
-  
 </body>
 </html>

@@ -223,6 +223,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 .login,
 .newUser,
 .newPublication,
+.pageUser,
 .editP {
   display: flex;
   background-color: rgb(50, 50, 50);
@@ -236,6 +237,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 .login div,
 .newUser div,
 .newPublication div,
+.pageUser div,
 .editP div {
   display: flex;
   flex-direction: column;
