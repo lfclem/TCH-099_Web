@@ -18,11 +18,16 @@ get('/api/getOnglets', '/api/Onglets/getOnglets.php');
 get('/api/getPublication/$id', '/api/getPublication/getPublication.php');
 get('/api/getFavoris/$id_profil/$id_pub', '/api/Favoris/getFavoris.php');
 
+post('/api/loginUser', '/api/User/loginUser.php');
+post('/api/newUser', '/api/User/newUser.php');
 
+get('/api/getPublicationsFiltresPubliques/$titre/$prixMin/$prixMax/$id_etat/$id_categorie/$id_profil', '/api/getPublicationsFiltres/getPublicationsFiltresPubliques.php');
+get('/api/getPublicationsFiltresPrivees/$titre/$prixMin/$prixMax/$id_etat/$id_categorie/$id_profil', '/api/getPublicationsFiltres/getPublicationsFiltresPrivees.php');
+get('/api/getPublicationsFiltresAbonnes/$titre/$prixMin/$prixMax/$id_etat/$id_categorie/$id_profil', '/api/getPublicationsFiltres/getPublicationsFiltresAbonnes.php');
+get('/api/getPublicationsFiltresFavoris/$titre/$prixMin/$prixMax/$id_etat/$id_categorie/$id_profil', '/api/getPublicationsFiltres/getPublicationsFiltresFavoris.php');
 
 get('/api/getPublications/$id', '/api/getPublications/getPublications.php');
 get('/api/getAllPublications', '/api/getAllPublications/getAllPublications.php');
-get('/api/getPublicationsFiltres/$titre/$prixMin/$prixMax/$id_etat/$id_categorie', '/api/getPublicationsFiltres/getPublicationsFiltres.php');
 get('/api/getPanier/$id', '/api/getPanier/getPanier.php');
 get('/api/getPaiement/$id', '/api/getPaiement/getPaiement.php');
 

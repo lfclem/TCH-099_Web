@@ -23,6 +23,8 @@ if ($id_categorie && $id_categorie != 1) {
     $conditions[] = '`id_categorie` = :id_categorie';
 }
 
+$conditions[] = '`id_profil` != :id_profil';
+
 if (!empty($conditions)) {
     $sql .= ' WHERE ' . implode(' AND ', $conditions);
 }
@@ -45,6 +47,7 @@ if ($id_etat && $id_etat != 1) {
 if ($id_categorie && $id_categorie != 1) {
     $stmt->bindParam(':id_categorie', $id_categorie);
 }
+$stmt->bindParam(':id_profil', $id_profil);
 
 $stmt->execute();
 

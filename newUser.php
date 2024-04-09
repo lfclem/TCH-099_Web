@@ -26,7 +26,7 @@ $_SESSION['error_message'] = "";
     </header>
 
     <main class="newUser">
-        <form method="POST" action="./api/User/newUser.php">
+        <form method="POST" action="/api/newUser">
             <div>
                 <label for="username">Nom d'utilisateur:</label>
                 <input type="text" id="username" name="username" required>
