@@ -333,7 +333,50 @@ input[type="number"] {
   .column3 {
     grid-column: 3;
     align-items: flex-end;
-    padding-right: 1rem;
+    margin: 5rem 1rem 5rem 5rem;
+
+    h1 {
+      color: white;
+      text-align: center;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      height: 40rem;
+      overflow-y: auto;
+
+      li {
+        display: flex;
+        margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+        height: 5rem;
+
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: 100%;
+          text-align: left;
+          height: 100%;
+          background-color: $navColor;
+
+          img {
+            height: 4rem;
+            width: 4rem;
+            margin-right: 1rem;
+            border-radius: 0.5rem;
+          }
+
+          h2 {
+            color: $limeGreen;
+          }
+        }
+      }
+    }
   }
 }
 //Page Article

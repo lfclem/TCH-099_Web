@@ -15,6 +15,7 @@ window.onload = function () {
       user = data.usager;
       favoris = data.favoris;
       console.log(user);
+
       if (window.location.href == URL) {
         if (user == 0) {
           fetch("/api/getAllPublications", {

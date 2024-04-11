@@ -299,7 +299,44 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 .editUserGrid .column3 {
   grid-column: 3;
   align-items: flex-end;
-  padding-right: 1rem;
+  margin: 5rem 1rem 5rem 5rem;
+}
+.editUserGrid .column3 h1 {
+  color: white;
+  text-align: center;
+}
+.editUserGrid .column3 ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 40rem;
+  overflow-y: auto;
+}
+.editUserGrid .column3 ul li {
+  display: flex;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  height: 5rem;
+}
+.editUserGrid .column3 ul li button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  text-align: left;
+  height: 100%;
+  background-color: rgb(40, 40, 40);
+}
+.editUserGrid .column3 ul li button img {
+  height: 4rem;
+  width: 4rem;
+  margin-right: 1rem;
+  border-radius: 0.5rem;
+}
+.editUserGrid .column3 ul li button h2 {
+  color: rgb(144, 238, 144);
 }
 
 .pageArticle {

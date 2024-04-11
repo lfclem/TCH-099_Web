@@ -20,7 +20,7 @@ session_start();
     <h1 class="title">Sell-it!</h1>
     <div class="icons">
       <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
-      <a href="<?php echo isset($_SESSION['usager']) ? './profil' : './login'; ?>">
+      <a href="<?php echo isset($_SESSION['usager']) ? 'profil' : 'login'; ?>">
         <img class="pfp" src="/IMG/profil.png" alt="Profil" id="photoProfil" />
       </a>
     </div>
