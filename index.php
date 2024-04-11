@@ -11,7 +11,11 @@ require_once './config.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/normalize.css" />
+  <script>
+    var user = "<?php echo isset($_SESSION['usager']) ? $_SESSION['usager'] : 0; ?>";
+  </script>
   <script src="/script.js"></script>
+  <script src="/userPhoto.js"></script>
 </head>
 
 <body class="grid">
@@ -19,9 +23,8 @@ require_once './config.php';
     <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
     <h1 class="title">Sell-it!</h1>
     <div class="icons">
-      <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
-      <a href="<?php echo isset($_SESSION['usager']) ? 'profil' : 'login'; ?>">
-        <img class="pfp" src="/IMG/profil.png" alt="Profil" id="photoProfil" />
+      <a id="linkPfp" href="">
+        <img class="pfp" src="" alt="Profil" id="photoProfil" />
       </a>
     </div>
   </header>

@@ -1,5 +1,5 @@
 <?php
-require './config.php';
+require_once __DIR__ . "/../../config.php";
 
 $db = Database::getInstance();
 $stmt = $db->prepare("SELECT * FROM Profil WHERE id_profil = :id_profil");

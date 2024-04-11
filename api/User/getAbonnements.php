@@ -1,6 +1,6 @@
 <?php
 
-require_once "./config.php";
+require_once __DIR__ . "/../../config.php";
 
 $db = Database::getInstance();
 $stmt = $db->prepare("SELECT P.username, P.photo_profil

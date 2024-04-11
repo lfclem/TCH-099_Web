@@ -14,7 +14,7 @@ require_once './config.php';
     <script>
         var user = "<?php echo $_SESSION['usager']; ?>";
     </script>
-    <script src="/scriptAbonnement.js"></script>
+    <script src="/userPhoto.js"></script>
     <script src="/scriptFetchUserData.js"></script>
 </head>
 
@@ -23,15 +23,7 @@ require_once './config.php';
         <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
         <h1 class="title">Sell-it!</h1>
         <div class="icons">
-            <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
-            <?php
-            $photo_profil = $user['photo_profil'];
-            ?>
-            <?php if ($photo_profil) : ?>
-                <a href=""><img class="pfp" src="<?php echo $photo_profil; ?>" alt="Photo_Profil" /></a>
-            <?php else : ?>
-                <a href=""><img class="pfp" src="/IMG/profil.png" alt="Profil" /></a>
-            <?php endif; ?>
+            <a href=""><img class="pfp" src="" alt="Photo_Profil" id="photoProfil" /></a>
         </div>
     </header>
 

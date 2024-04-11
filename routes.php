@@ -14,6 +14,7 @@ get('/api/getProfils', '/api/getProfils/getProfils.php');
 get('/api/getCategories', '/api/Categories/getCategories.php');
 get('/api/getEtats', '/api/Etats/getEtats.php');
 get('/api/getOnglets', '/api/Onglets/getOnglets.php');
+get('/api/getPhotoProfil/$id_profil', '/api/User/getPhotoProfil.php');
 
 get('/api/getPublication/$id', '/api/getPublication/getPublication.php');
 get('/api/getFavoris/$id_profil/$id_pub', '/api/Favoris/getFavoris.php');

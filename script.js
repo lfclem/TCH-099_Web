@@ -6,7 +6,7 @@ let = [];
 let favoris = [];
 let type_usager;
 window.onload = function () {
-  fetch("/jsonConverter", { methode: "GET" })
+  fetch("/jsonConverter", { method: "GET" })
     .then((response) => response.json())
     .then((data) => {
       publications = data.publication;
@@ -62,19 +62,20 @@ window.onload = function () {
             });
           });
 
-        //* Fetch onglet
-        fetch("./api/getOnglets")
-          .then((response) => response.json())
-          .then((data) => {
-            const select = document.getElementById("tab");
-            data.forEach((item) => {
-              const option = document.createElement("option");
-              option.value = item.id_onglet;
-              option.textContent = item.nom;
-              select.appendChild(option);
+        if (user != 0) {
+          //* Fetch onglet
+          fetch("./api/getOnglets")
+            .then((response) => response.json())
+            .then((data) => {
+              const select = document.getElementById("tab");
+              data.forEach((item) => {
+                const option = document.createElement("option");
+                option.value = item.id_onglet;
+                option.textContent = item.nom;
+                select.appendChild(option);
+              });
             });
-          });
-
+        }
         //* Fetch etat
         fetch("./api/getEtats")
           .then((response) => response.json())
@@ -87,31 +88,6 @@ window.onload = function () {
               select.appendChild(option);
             });
           });
-      }
-
-      if (user) {
-        fetch("./api/User/getPhotoProfil.php?id=" + user)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Failed to fetch user photo");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            const photo = document.getElementById("photoProfil");
-            photo.src = data.photo;
-            photo.href = "./pageProfil.php?id=" + user;
-          })
-          .catch((error) => {
-            console.error("Error fetching user photo:", error);
-            const defaultPhotoUrl = "./IMG/profil.png";
-            const photo = document.getElementById("photoProfil");
-            photo.src = defaultPhotoUrl;
-          });
-      } else {
-        const defaultPhotoUrl = "./IMG/profil.png";
-        const photo = document.getElementById("photoProfil");
-        photo.src = defaultPhotoUrl;
       }
     })
     .catch((error) =>
@@ -292,10 +268,8 @@ function fetchData(
     }
   )
     .then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          "La requête a échoué avec le statut " + response.status
-        );
+      if (!response.ok || response.status === 204) {
+        return [];
       }
       return response.json();
     })
