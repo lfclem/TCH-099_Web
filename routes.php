@@ -21,6 +21,7 @@ get('/api/getFavoris/$id_profil/$id_pub', '/api/Favoris/getFavoris.php');
 post('/api/loginUser', '/api/User/loginUser.php');
 post('/api/newUser', '/api/User/newUser.php');
 
+get('/api/getUser/$id_profil', '/api/User/getUser.php');
 get('/api/getAbonnements/$id_profil', '/api/User/getAbonnements.php');
 
 get('/api/getPublicationsFiltresPubliques/$titre/$prixMin/$prixMax/$id_etat/$id_categorie/$id_profil', '/api/getPublicationsFiltres/getPublicationsFiltresPubliques.php');
