@@ -32,8 +32,8 @@ require_once './config.php';
             <div class="balance">
                 <label id="balance">Votre solde: </label>
                 <div class="btn_balance">
-                    <a href="">Ajouter</a>
-                    <a href="">Retirer</a>
+                    <a onclick="openDialog(1)">Ajouter</a>
+                    <a onclick="openDialog(2)">Retirer</a>
                 </div>
             </div>
             <div class="rating">
@@ -86,6 +86,22 @@ require_once './config.php';
             </ul>
         </div>
     </form>
+    <dialog id="dialog">
+            <form id="form">
+                <label id="solde">Votre solde: </label> 
+    
+                <label for="montant" id="label"></label>
+                <div>
+                    <input type="text" name="montant" id="montant"> 
+                    <label> $</label> 
+                </div>
+
+                <div>
+                    <button type="button" onclick="changeSolde()" id="valide">Valider</button>
+                    <button type="button" onclick="dialog.close();" id="annule">Annuler</button>
+                </div>
+            </form>
+    </dialog>
 </body>
 
 </html>

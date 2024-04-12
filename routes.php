@@ -40,6 +40,7 @@ post('/api/postFavoris', '/api/Favoris/postFavoris.php');
 
 
 put('/api/putPublication/$id', '/api/putPublication/putPublication.php');
+put('/api/editUserMontant/$id', '/api/editUserMontant/editUserMontant.php');
 
 delete('/api/deletePublication/$id', '/api/deletePublication/deletePublication.php');
 delete('/api/deleteFavoris/$id_profil/$id_pub', '/api/Favoris/deleteFavoris.php');

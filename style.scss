@@ -431,3 +431,33 @@ input[type="number"] {
     }
   }
 }
+
+#dialog{
+  background-color: $headerColor;
+  border: 5px solid rgb(51, 49, 77);
+	border-radius: 10px;
+}
+
+#form {
+  display: flex;
+	flex-direction: column;
+  text-align: center;
+  align-items: center;
+  background-color: $navColor;
+  border: 5px solid rgb(51, 49, 77);
+	border-radius: 10px;
+  label {
+    margin-top: 20%;
+  }
+  input{
+    margin-top: 5%;
+    width: 75%;
+  }
+  button{
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+}
+#dialog::backdrop{
+	backdrop-filter: blur(2.5px);
+}

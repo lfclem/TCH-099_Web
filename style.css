@@ -383,4 +383,36 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+#dialog {
+  background-color: rgb(30, 30, 30);
+  border: 5px solid rgb(51, 49, 77);
+  border-radius: 10px;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  background-color: rgb(40, 40, 40);
+  border: 5px solid rgb(51, 49, 77);
+  border-radius: 10px;
+}
+#form label {
+  margin-top: 20%;
+}
+#form input {
+  margin-top: 5%;
+  width: 75%;
+}
+#form button {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+#dialog::backdrop {
+  -webkit-backdrop-filter: blur(2.5px);
+          backdrop-filter: blur(2.5px);
 }/*# sourceMappingURL=style.css.map */
