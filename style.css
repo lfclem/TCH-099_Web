@@ -263,6 +263,9 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   padding-left: 1rem;
   justify-content: space-around;
 }
+.editUserGrid .column1 a {
+  cursor: pointer;
+}
 .editUserGrid .column1 .rating {
   display: flex;
   flex-direction: column;

@@ -290,6 +290,10 @@ input[type="number"] {
     padding-left: 1rem;
     justify-content: space-around;
 
+    a {
+      cursor: pointer;
+    }
+
     .rating {
       display: flex;
       flex-direction: column;
@@ -432,32 +436,32 @@ input[type="number"] {
   }
 }
 
-#dialog{
+#dialog {
   background-color: $headerColor;
   border: 5px solid rgb(51, 49, 77);
-	border-radius: 10px;
+  border-radius: 10px;
 }
 
 #form {
   display: flex;
-	flex-direction: column;
+  flex-direction: column;
   text-align: center;
   align-items: center;
   background-color: $navColor;
   border: 5px solid rgb(51, 49, 77);
-	border-radius: 10px;
+  border-radius: 10px;
   label {
     margin-top: 20%;
   }
-  input{
+  input {
     margin-top: 5%;
     width: 75%;
   }
-  button{
+  button {
     margin-top: 10%;
     margin-bottom: 10%;
   }
 }
-#dialog::backdrop{
-	backdrop-filter: blur(2.5px);
+#dialog::backdrop {
+  backdrop-filter: blur(2.5px);
 }
