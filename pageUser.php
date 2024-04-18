@@ -9,15 +9,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>";
         echo "var id_profil = " . json_encode($id_profil) . ";";
         echo "</script>";
+
+        echo "Visiting profile with id: " . $id_profil;
+        echo "<br>";
+        echo $_SESSION['usager'];
     }
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    // Check if the user_id is set in the GET data
+    if(isset($_GET['user_id'])) {
+        // Retrieve the value of user_id
+        $id_profil = $_GET['user_id'];
+        echo "<script>";
+        echo "var id_profil = " . json_encode($id_profil) . ";";
+        echo "</script>";
+
+        echo "Visiting profile with id: " . $id_profil;
+        echo "<br>";
+        echo $_SESSION['usager'];
+    }
+}
+
 $db = Database::getInstance();
 
 // Prepare the SQL statement
 $stmt = $db->prepare('SELECT `username`, `email`, `date_naissance`, `photo_profil`, `bio`, `statut`, `adresse`, `nb_rating`, `rating_total` FROM `Profil` WHERE `id_profil`=:id');
 
 // Bind the id parameter to the user_id from the form
-$stmt->bindParam(':id', $_POST['user_id']);
+$stmt->bindParam(':id', $id_profil);
 
 // Execute the statement
 $stmt->execute();

@@ -23,7 +23,9 @@ require_once './config.php';
         <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
         <h1 class="title">Sell-it!</h1>
         <div class="icons">
-            <a href=""><img class="pfp" src="" alt="Photo_Profil" id="photoProfil" /></a>
+            <a id="linkPfp"  href="">
+                <img class="pfp" src="" alt="Photo_Profil" id="photoProfil" />
+            </a>
         </div>
     </header>
 
@@ -87,20 +89,20 @@ require_once './config.php';
         </div>
     </form>
     <dialog id="dialog">
-            <form id="form">
-                <label id="solde">Votre solde: </label> 
-    
-                <label for="montant" id="label"></label>
-                <div>
-                    <input type="text" name="montant" id="montant"> 
-                    <label> $</label> 
-                </div>
+        <form id="form">
+            <label id="solde">Votre solde: </label>
 
-                <div>
-                    <button type="button" onclick="changeSolde()" id="valide">Valider</button>
-                    <button type="button" onclick="dialog.close();" id="annule">Annuler</button>
-                </div>
-            </form>
+            <label for="montant" id="label"></label>
+            <div>
+                <input type="text" name="montant" id="montant">
+                <label> $</label>
+            </div>
+
+            <div>
+                <button type="button" onclick="changeSolde()" id="valide">Valider</button>
+                <button type="button" onclick="dialog.close();" id="annule">Annuler</button>
+            </div>
+        </form>
     </dialog>
 </body>
 

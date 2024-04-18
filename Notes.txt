@@ -1,4 +1,3 @@
 !Arreter que les pop-ups soient visibles quand on refresh/change de page
-!Ajouter/Retirer Argent
 !Mettre un preview de lannonce dans newPublication et editpublication
-!Faire un script.js pour afficher la photo de profil (Deja dans le JS, juste le deplacer)
+!Finir pageUser et pageArticle

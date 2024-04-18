@@ -87,8 +87,10 @@ function creerAbonnement(item) {
   h2.textContent = item["username"];
   button.appendChild(h2);
 
-  button.onclick = function () {
-    console.log("clicked");
+  button.onclick = function (event) {
+    event.preventDefault();
+    console.log("click");
+    window.location.href = "/pageUser.php?user_id=" + item["id_profil"];
   };
 
   li.appendChild(button);

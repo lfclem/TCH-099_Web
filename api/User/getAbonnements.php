@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../../config.php";
 
 $db = Database::getInstance();
-$stmt = $db->prepare("SELECT P.username, P.photo_profil
+$stmt = $db->prepare("SELECT P.username, P.photo_profil, P.id_profil
 FROM Profil P
 INNER JOIN Profil_Abonnements PA ON P.id_profil = PA.id_abonne
 WHERE PA.id_profil = $id_profil");
