@@ -289,6 +289,10 @@ input[type="number"] {
     padding-left: 1rem;
     justify-content: space-around;
 
+    a {
+      cursor: pointer;
+    }
+
     .rating {
       display: flex;
       flex-direction: column;
@@ -346,7 +350,7 @@ input[type="number"] {
       list-style-type: none;
       padding: 0;
       margin: 0;
-      height: 40rem;
+      height: 80%;
       overflow-y: auto;
 
       li {
@@ -378,3 +382,88 @@ input[type="number"] {
     }
   }
 }
+<<<<<<< HEAD
+=======
+//Page Article
+.pageArticle {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 750px;
+  background-color: $mainColor;
+
+  .article {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 50px 30px;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 24px;
+      color: $mainColor;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .center {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      text-align: center;
+      margin: auto;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      text-align: center;
+
+      strong {
+        color: $mainColor;
+      }
+    }
+
+    button {
+      background-color: $navColor;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+#dialog {
+  background-color: $headerColor;
+  border: 5px solid rgb(51, 49, 77);
+  border-radius: 10px;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  background-color: $navColor;
+  border: 5px solid rgb(51, 49, 77);
+  border-radius: 10px;
+  label {
+    margin-top: 20%;
+  }
+  input {
+    margin-top: 5%;
+    width: 75%;
+  }
+  button {
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+}
+#dialog::backdrop {
+  backdrop-filter: blur(2.5px);
+}
+>>>>>>> c2b687e2e53e83a408588549da2915d8c9cf113e

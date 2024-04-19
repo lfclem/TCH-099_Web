@@ -1,16 +1,5 @@
 <?php
-require './config.php';
-
-$db = Database::getInstance();
-$stmt = $db->prepare('SELECT * FROM Profil WHERE id_profil = ?');
-$stmt->execute([$_SESSION['usager']]);
-$user = $stmt->fetch();
-
-$statut = $user['statut'];
-$balance = $user['montant_balance'];
-$nbRatings = $user['nb_rating'];
-$ratingTotal = $user['rating_total'];
-$averageRating = ($nbRatings > 0) ? round($ratingTotal / $nbRatings * 2) / 2 : 0.0;
+require_once './config.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +14,8 @@ $averageRating = ($nbRatings > 0) ? round($ratingTotal / $nbRatings * 2) / 2 : 0
     <script>
         var user = "<?php echo $_SESSION['usager']; ?>";
     </script>
-    <script src="/scriptAbonnement.js"></script>
-    <script src="/scriptAbonnementProfil.js"></script>
+    <script src="/userPhoto.js"></script>
+    <script src="/scriptFetchUserData.js"></script>
 </head>
 
 <body data-error-message="<?php echo $_SESSION['error_message'] ?>" data-reload="false">
@@ -34,39 +23,24 @@ $averageRating = ($nbRatings > 0) ? round($ratingTotal / $nbRatings * 2) / 2 : 0
         <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
         <h1 class="title">Sell-it!</h1>
         <div class="icons">
-            <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
-            <?php
-            $photo_profil = $user['photo_profil'];
-            ?>
-            <?php if ($photo_profil) : ?>
-                <a href=""><img class="pfp" src="<?php echo $photo_profil; ?>" alt="Photo_Profil" /></a>
-            <?php else : ?>
-                <a href=""><img class="pfp" src="/IMG/profil.png" alt="Profil" /></a>
-            <?php endif; ?>
+            <a id="linkPfp"  href="">
+                <img class="pfp" src="" alt="Photo_Profil" id="photoProfil" />
+            </a>
         </div>
     </header>
 
     <form method="POST" action="./api/User/editUser.php" class="editUserGrid">
         <div class="column1">
             <div class="balance">
-                <label>Votre solde: <?php echo $balance; ?>$</label>
+                <label id="balance">Votre solde: </label>
                 <div class="btn_balance">
-                    <a href="">Ajouter</a>
-                    <a href="">Retirer</a>
+                    <a onclick="openDialog(1)">Ajouter</a>
+                    <a onclick="openDialog(2)">Retirer</a>
                 </div>
             </div>
             <div class="rating">
-                <label>Vos Évaluations (<?php echo $nbRatings; ?>):</label>
-                <div>
-                    <?php for ($i = 0; $i < 5; $i++) : ?>
-                        <?php if ($averageRating - $i >= 1) : ?>
-                            <img src="/IMG/filled_star.png" alt="Star" />
-                        <?php elseif ($averageRating - $i > 0) : ?>
-                            <img src="/IMG/half_filled_star.png" alt="Star" />
-                        <?php else : ?>
-                            <img src="/IMG/empty_star.png" alt="Star" />
-                        <?php endif; ?>
-                    <?php endfor; ?>
+                <label id="rating">Vos Évaluations:</label>
+                <div id="stars">
                 </div>
             </div>
         </div>
@@ -74,7 +48,7 @@ $averageRating = ($nbRatings > 0) ? round($ratingTotal / $nbRatings * 2) / 2 : 0
         <div class="column2">
             <div>
                 <label for="username">Nom d'utilisateur:</label>
-                <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>">
+                <input type="text" id="username" name="username">
             </div>
             <div>
                 <label for="password">Mot de passe:</label>
@@ -82,23 +56,23 @@ $averageRating = ($nbRatings > 0) ? round($ratingTotal / $nbRatings * 2) / 2 : 0
             </div>
             <div>
                 <label for="email">Adresse email:</label>
-                <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>">
+                <input type="email" id="email" name="email">
             </div>
             <div>
                 <label for="photo_profil">Photo de profil:</label>
-                <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png" value="<?php echo $user['photo_profil']; ?>">
+                <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png">
             </div>
             <div>
                 <label for="info_paiement">Numéro de votre carte bancaire:</label>
-                <input type="number" id="info_paiement" name="info_paiement" value="<?php echo $user['info_paiement']; ?>">
+                <input type="number" id="info_paiement" name="info_paiement">
             </div>
             <div>
                 <label for="adresse">Adresse:</label>
-                <input type="text" id="adresse" name="adresse" value="<?php echo $user['adresse']; ?>">
+                <input type="text" id="adresse" name="adresse">
             </div>
             <div class="bio">
                 <label for="bio">Bio:</label>
-                <textarea id="bio" name="bio"><?php echo $user['bio']; ?></textarea>
+                <textarea id="bio" name="bio"></textarea>
             </div>
             <button type="submit">Modifier mes informations</button>
             <div class="links">
@@ -114,6 +88,22 @@ $averageRating = ($nbRatings > 0) ? round($ratingTotal / $nbRatings * 2) / 2 : 0
             </ul>
         </div>
     </form>
+    <dialog id="dialog">
+        <form id="form">
+            <label id="solde">Votre solde: </label>
+
+            <label for="montant" id="label"></label>
+            <div>
+                <input type="text" name="montant" id="montant">
+                <label> $</label>
+            </div>
+
+            <div>
+                <button type="button" onclick="changeSolde()" id="valide">Valider</button>
+                <button type="button" onclick="dialog.close();" id="annule">Annuler</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 
 </html>

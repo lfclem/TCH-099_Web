@@ -9,12 +9,12 @@ if (isset($_GET['publicationId'])) {
     //echo "pas de id_publication";
 }
 
-if(isset($_POST['contact_seller'])) {
-    if (isset($_SESSION['usager'])){
+if (isset($_POST['contact_seller'])) {
+    if (isset($_SESSION['usager'])) {
         echo "chat";
     } else {
         header("Location: login.php");
-        exit(); 
+        exit();
     }
 }
 ?>
@@ -33,16 +33,16 @@ if(isset($_POST['contact_seller'])) {
 </head>
 
 <body>
-<header class="headerInfos">
-    <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
-    <h1 class="title">Sell-it!</h1>
-    <div class="icons">
-      <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
-      <a href="<?php echo isset($_SESSION['usager']) ? './profil' : './login'; ?>">
-        <img class="pfp" src="/IMG/profil.png" alt="Profil" id="photoProfil" />
-      </a>
-    </div>
-  </header>
+    <header class="headerInfos">
+        <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
+        <h1 class="title">Sell-it!</h1>
+        <div class="icons">
+            <a href=""><img src="/IMG/messages.png" alt="Messages" /></a>
+            <a href="<?php echo isset($_SESSION['usager']) ? './profil' : './login'; ?>">
+                <img class="pfp" src="/IMG/profil.png" alt="Profil" id="photoProfil" />
+            </a>
+        </div>
+    </header>
 
     <main class="pageArticle">
         <article class="article">
@@ -52,7 +52,7 @@ if(isset($_POST['contact_seller'])) {
             <p id="etat"></p>
             <p id="prix"></strong></p>
             <form method="post">
-                <button type="submit"  name="contact_seller">Contactez le vendeur</button>
+                <button type="submit" name="contact_seller">Contactez le vendeur</button>
             </form>
             <form method="post">
                 <button type="button" onclick="favoris()" id="fav" name=""></button>

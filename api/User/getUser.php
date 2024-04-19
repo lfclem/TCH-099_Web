@@ -1,13 +1,17 @@
 <?php
-require './config.php';
+require_once __DIR__ . "/../../config.php";
 
 $db = Database::getInstance();
-$stmt = $db->prepare('SELECT * FROM Profil WHERE id_profil = ?');
-$stmt->execute([$_SESSION['usager']]);
+$stmt = $db->prepare("SELECT * FROM Profil WHERE id_profil = :id_profil");
+$stmt->bindParam(':id_profil', $id_profil);
+$stmt->execute();
 $user = $stmt->fetch();
 
-$statut = $user['statut'];
-$balance = $user['montant_balance'];
-$nbRatings = $user['nb_rating'];
-$ratingTotal = $user['rating_total'];
-$averageRating = ($nbRatings > 0) ? round($ratingTotal / $nbRatings * 2) / 2 : 0.0;
+if ($user) {
+    header('Content-Type: application/json');
+    echo json_encode($user);
+    exit;
+} else {
+    header("HTTP/1.0 404 Not Found");
+    exit;
+}
