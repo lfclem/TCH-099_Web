@@ -382,21 +382,30 @@ input[type="number"] {
     }
   }
 }
-<<<<<<< HEAD
-=======
 //Page Article
 .pageArticle {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 750px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  overflow-y: auto;
   background-color: $mainColor;
+  //padding: 0 1rem;
+  //grid-area: main;
+
+
 
   .article {
+    align-items: center;
+    text-align: center;
+    width: 20%;
+    height: 50%;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 50px 30px;
     margin-bottom: 20px;
+    justify-items: center;
 
     h2 {
       font-size: 24px;
@@ -432,6 +441,7 @@ input[type="number"] {
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
+      margin-bottom: 10px;
       cursor: pointer;
     }
   }
@@ -466,4 +476,3 @@ input[type="number"] {
 #dialog::backdrop {
   backdrop-filter: blur(2.5px);
 }
->>>>>>> c2b687e2e53e83a408588549da2915d8c9cf113e
