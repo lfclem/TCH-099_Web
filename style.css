@@ -223,7 +223,6 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 .login,
 .newUser,
 .newPublication,
-.pageUser,
 .editP {
   display: flex;
   background-color: rgb(50, 50, 50);
@@ -237,7 +236,6 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 .login div,
 .newUser div,
 .newPublication div,
-.pageUser div,
 .editP div {
   display: flex;
   flex-direction: column;
@@ -343,14 +341,17 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 }
 
 .pageArticle {
-  max-width: 1200px;
+  max-width: 80%;
   margin: 0 auto;
-  padding: 100px 750px;
+  padding: 7% 30%;
   background-color: rgb(50, 50, 50);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .pageArticle .article {
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 50px 30px;
   margin-bottom: 20px;
@@ -384,10 +385,58 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   color: #fff;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 5%;
   cursor: pointer;
 }
 
+<<<<<<< HEAD
+.pageUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(50, 50, 50);
+  position: fixed;
+  top: 5rem;
+  width: 100%;
+  height: calc(100% - 5rem);
+}
+.pageUser .user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(40, 40, 40);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+  width: 20rem;
+}
+.pageUser .user img {
+  border-radius: 50%;
+  width: 10rem;
+  height: 10rem;
+}
+.pageUser .user h2 {
+  color: white;
+  margin: 0.5rem;
+}
+.pageUser .user p {
+  color: rgb(144, 238, 144);
+  margin: 0.5rem;
+}
+.pageUser .user button {
+  background-color: rgb(144, 238, 144);
+  color: black;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 2rem;
+  width: 10rem;
+}
+.pageUser .user button:hover {
+  background-color: rgb(50, 150, 50);
+=======
 #dialog {
   background-color: rgb(30, 30, 30);
   border: 5px solid rgb(51, 49, 77);
@@ -418,4 +467,5 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 #dialog::backdrop {
   -webkit-backdrop-filter: blur(2.5px);
           backdrop-filter: blur(2.5px);
+>>>>>>> c2b687e2e53e83a408588549da2915d8c9cf113e
 }/*# sourceMappingURL=style.css.map */

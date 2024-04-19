@@ -253,7 +253,6 @@ input[type="number"] {
 .login,
 .newUser,
 .newPublication,
-.pageUser,
 .editP {
   display: flex;
   background-color: $mainColor;
@@ -383,6 +382,8 @@ input[type="number"] {
     }
   }
 }
+<<<<<<< HEAD
+=======
 //Page Article
 .pageArticle {
   max-width: 1200px;
@@ -465,3 +466,4 @@ input[type="number"] {
 #dialog::backdrop {
   backdrop-filter: blur(2.5px);
 }
+>>>>>>> c2b687e2e53e83a408588549da2915d8c9cf113e
