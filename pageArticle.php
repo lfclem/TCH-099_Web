@@ -68,8 +68,24 @@ if (isset($_POST['contact_seller'])) {
                 <input type="hidden" name="user_id" value="<?php echo $id_profil; ?>">
                 <button type="submit">Voir le profil du vendeur</button>
             </form>
+            <form method="post">
+                <button type="button" onclick="payer()" id="buy" name="buy">Payer</button>
+            </form>
         </article>
     </main>
+
+    <dialog id="dialog">
+            <form id="form">
+                <label id="solde">Êtes-vous sur de vouloir acheter ce produit?</label> 
+    
+                <label for="montant" id="label"></label>
+
+                <div>
+                    <button type="button" onclick="confirm()" id="valide">Valider</button>
+                    <button type="button" onclick="dialog.close();" id="annule">Annuler</button>
+                </div>
+            </form>
+    </dialog>
 </body>
 
 </html>

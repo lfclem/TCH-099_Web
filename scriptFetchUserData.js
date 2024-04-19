@@ -157,5 +157,4 @@ function changeSolde(){
     //pop up
     window.alert("Assurez vous que la valeur soit un nombre sans text ni symbole (ex: -, $, ...).");
   }
-  
 }

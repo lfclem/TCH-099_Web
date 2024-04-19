@@ -1,6 +1,7 @@
 let publication;
 let etat;
 let user;
+let infoUser;
 let btnName;
 let publicationId
 window.onload = async function(){
@@ -52,6 +53,10 @@ window.onload = async function(){
 
                 const prix = document.getElementById('prix');
                 prix.textContent = "Prix: " + publication[0]['prix'];
+
+                if (publication[0].id_etat == 5) {
+                    document.getElementById("buy").hidden = true;
+                } 
             })
             .catch(error => {
 
@@ -81,6 +86,22 @@ window.onload = async function(){
 
                 alert("Erreur lors de la recherche de favoris: "+error);
                 console.error('Erreur lors de la requête:', error);
+            });
+
+            fetch("/api/getUser/" + user, {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("La requête a échoué avec le statut " + response.status);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                infoUser = data;
             });
         })
         .catch(error => console.error('Erreur lors de la récupération des données:', error));
@@ -146,4 +167,80 @@ function favoris(){
             });
         }
     }
+}
+
+let newSolde
+function payer(){
+    if (publication[0].id_etat != 5) {
+        newSolde = parseFloat(infoUser.montant_balance) - parseFloat(publication[0].prix);
+        console.log(parseFloat(newSolde));
+
+        if (newSolde >= 0) {
+            document.getElementById(
+            "label"
+            ).textContent = `Votre solde après l'achat : ${newSolde}$`;
+            dialog.showModal();
+        } else {
+            window.alert("Vous n'avez pas assez d'argent dans votre compte");
+        }
+    } else {
+
+    }
+    
+}
+function confirm(){
+    fetch("/api/editUserMontant/" + user, {
+        method: 'PUT', // Méthode HTTP
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newSolde) // Convertir l'objet de données en chaîne JSON
+    })
+    .then(response => {
+        if (!response.ok) {
+          throw new Error('La requête a échoué avec le statut ' + response.status);
+        }
+        return response.json(); // Convertir la réponse en JSON
+    })
+    .then(data => {
+        window.alert("item achete");
+        dialog.close();
+
+    })
+    .catch(error => {
+      alert("Erreur lors de l'edit du montant: "+error);
+      console.error('Erreur lors de la requête:', error);
+    });
+
+    let pubTemp = {
+        id_publication : publicationId,
+        titre : publication[0].titre,
+        prix : publication[0].prix,
+        description : publication[0].description,
+        image : publication[0].image,
+        id_profil : user,
+        id_etat : 5,
+        id_categorie : publication[0].id_categorie
+    };
+    fetch("/api/putPublication/" + publicationId, {
+        method: 'PUT', // Méthode HTTP
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(pubTemp) // Convertir l'objet de données en chaîne JSON
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('La requête a échoué avec le statut ' + response.status);
+        }
+        return response.json(); // Convertir la réponse en JSON
+    })
+    .then(data => {
+        window.location.href = 'http://localhost:8000/'; // a changer
+    })
+    .catch(error => {
+
+        alert("Erreur lors de l'edit de la publication: "+error);
+        console.error('Erreur lors de la requête:', error);
+    });
 }

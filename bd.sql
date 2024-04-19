@@ -99,7 +99,8 @@ VALUES
     (1, 'Tous'),
     (2, 'Neuf'),
     (3, 'Usagé'),
-    (4, 'Reconditionné');
+    (4, 'Reconditionné'),
+    (5, 'Vendu');
 
 INSERT INTO
     `Onglet` (`id_onglet`, `nom`)
