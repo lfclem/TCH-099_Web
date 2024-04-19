@@ -18,6 +18,7 @@ get('/api/getOnglets', '/api/Onglets/getOnglets.php');
 get('/api/getPublication/$id', '/api/getPublication/getPublication.php');
 get('/api/getFavoris/$id_profil/$id_pub', '/api/Favoris/getFavoris.php');
 
+post('/api/directUser', '/api/User/directUser.php');
 post('/api/loginUser', '/api/User/loginUser.php');
 post('/api/newUser', '/api/User/newUser.php');
 

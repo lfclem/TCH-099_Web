@@ -253,7 +253,6 @@ input[type="number"] {
 .login,
 .newUser,
 .newPublication,
-.pageUser,
 .editP {
   display: flex;
   background-color: $mainColor;
@@ -376,58 +375,6 @@ input[type="number"] {
           }
         }
       }
-    }
-  }
-}
-//Page Article
-.pageArticle {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 750px;
-  background-color: $mainColor;
-
-  .article {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 50px 30px;
-    margin-bottom: 20px;
-
-    h2 {
-      font-size: 24px;
-      color: $mainColor;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .center {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      text-align: center;
-      margin: auto;
-    }
-
-    p {
-      font-size: 16px;
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 10px;
-      text-align: center;
-
-      strong {
-        color: $mainColor;
-      }
-    }
-
-    button {
-      background-color: $navColor;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
     }
   }
 }
