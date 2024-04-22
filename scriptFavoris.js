@@ -4,6 +4,8 @@ let user;
 let infoUser;
 let btnName;
 let publicationId
+
+
 window.onload = async function(){
     fetch('/jsonConverter', { methode: "GET"})
         .then(response => response.json())

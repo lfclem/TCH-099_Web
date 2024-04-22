@@ -53,8 +53,8 @@ $user2 = $stmt->fetch(PDO::FETCH_ASSOC);
     <title>Sell-it!</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/normalize.css" />
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/normalize.css" />
     <script src="/scriptAbonnement.js"></script>
 </head>
 

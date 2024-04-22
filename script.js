@@ -5,6 +5,7 @@ let categories = [];
 let = [];
 let favoris = [];
 let type_usager;
+
 window.onload = function () {
   fetch("/jsonConverter", { method: "GET" })
     .then((response) => response.json())
@@ -33,9 +34,20 @@ window.onload = function () {
               return response.json();
             })
             .then((data) => {
+              let itemVendus = [];
               data.forEach((item) => {
+                console.log(item);
+                if (item['id_etat'] == 5){
+                  console.log(item);
+                  itemVendus.push(item);
+                } else{
+                  creerArticle(item);
+                }
+              });
+              itemVendus.forEach((item) => {
                 creerArticle(item);
               });
+
             });
         } else {
           fetchData(
@@ -189,7 +201,12 @@ function creerArticle(item) {
   article.appendChild(image);
 
   const titre = document.createElement("h2");
-  titre.textContent = item["titre"];
+  if(item['id_etat'] == 5){
+    titre.textContent = " VENDU : " + item["titre"];
+    titre.style.color = "red";
+  } else {
+    titre.textContent = item["titre"];
+  }
   article.appendChild(titre);
 
   const prix = document.createElement("p");
@@ -274,7 +291,16 @@ function fetchData(
       return response.json();
     })
     .then((data) => {
+      let itemVendus = [];
       data.forEach((item) => {
+        if (item['id_etat'] == 5){
+          console.log(item);
+          itemVendus.push(item);
+        } else{
+          creerArticle(item);
+        }
+      });
+      itemVendus.forEach((item) => {
         creerArticle(item);
       });
     });
