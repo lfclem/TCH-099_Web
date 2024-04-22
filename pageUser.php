@@ -9,16 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>";
         echo "var id_profil = " . json_encode($id_profil) . ";";
         echo "</script>";
-
-        echo "Visiting profile with id: " . $id_profil;
-        echo "<br>";
-        echo $_SESSION['usager'];
     }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Check if the user_id is set in the GET data
-    if(isset($_GET['user_id'])) {
+    if (isset($_GET['user_id'])) {
         // Retrieve the value of user_id
         $id_profil = $_GET['user_id'];
         echo "<script>";
@@ -70,32 +66,28 @@ $user2 = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
     </header>
 
-    <div class="profile-info">
-        <label for="username">Nom d'utilisateur:</label>
-        <input type="text" id="username" name="username" value="<?php echo $user2['username']; ?>" readonly>
-    </div>
-    <div class="email-info">
-        <label for="email">Adresse email:</label>
-        <input type="email" id="email" name="email" value="<?php echo $user2['email']; ?>" readonly>
-    </div>
-    <div class="photo-info">
-        <label for="photo_profil">Photo de profil:</label>
-        <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png" value="<?php echo $user2['photo_profil']; ?>" readonly>
-    </div>
-    <div class="adresse-info">
-        <label for="adresse">Adresse:</label>
-        <input type="text" id="adresse" name="adresse" value="<?php echo $user2['adresse']; ?>" readonly>
-    </div>
+    <main class="viewUserGrid">
+        <img src="<?php echo $user2['photo_profil'] ?>" alt="">
 
-    <div class="rating-form">
-        <form method="POST" action="/api/directUser">
-            <label for="rating">Évaluation (0-5):</label>
-            <input type="number" id="rating" name="rating" step="0.5" min="0" max="5" required>
-            <button type="submit" name="submit">Effectuer l'évaluation</button>
-        </form>
-    </div>
-    <button type="submit">Contacter</button>
-    <button type="button" onclick="Abonner()" id="abn" name=""></button>
+        <div class="profile-info">
+            <h2><?php echo $user2['username']; ?></h2>
+        </div>
+        <div class="email-info">
+            <h2 for="email">email : <?php echo $user2['email']; ?></h2>
+        </div>
+        <div class="adresse-info">
+            <h3 for="adresse">Adresse : <?php echo $user2['adresse']; ?></h3>
+        </div>
+
+        <div class="rating-form">
+            <form method="POST" action="/api/directUser">
+                <label for="rating">Évaluation (1 - 5) : </label>
+                <input type="number" id="rating" name="rating" step="0.5" min="1" max="5" required>
+                <button type="submit" name="submit">Effectuer l'évaluation</button>
+            </form>
+        </div>
+        <button type="button" onclick="Abonner()" id="abn" name=""></button>
+    </main>
 </body>
 
 </html>

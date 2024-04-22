@@ -152,7 +152,7 @@ if (window.location.href == URL) {
           case "2":
             // Abonnements
             fetchData(
-              "getPublicationsFiltresFavoris",
+              "getPublicationsFiltresAbonnes",
               searchbar,
               prixMin,
               prixMax,

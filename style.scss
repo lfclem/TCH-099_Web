@@ -220,8 +220,6 @@ input[type="number"] {
       margin-top: 0.5rem;
     }
 
-    
-
     h2 {
       color: white;
       overflow: hidden;
@@ -384,6 +382,38 @@ input[type="number"] {
     }
   }
 }
+
+//page User
+.viewUserGrid {
+  position: fixed;
+  background-color: $mainColor;
+  top: 5rem;
+  width: 100%;
+  height: calc(100% - 5rem);
+  display: flex;
+  //justify-content: space-evenly;
+  
+  flex-direction: column;
+  align-items: center;
+
+  div {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    //justify-content: space-between;
+    flex-direction: column;
+    margin: 1rem;
+    color: white;
+  }
+  img {
+    margin-top: 1rem;
+    height: 20%;
+  }
+  button{
+    margin: 1rem;
+  }
+}
+
 //Page Article
 .pageArticle {
   display: flex;
@@ -394,8 +424,6 @@ input[type="number"] {
   background-color: $mainColor;
   //padding: 0 1rem;
   //grid-area: main;
-
-
 
   .article {
     align-items: center;

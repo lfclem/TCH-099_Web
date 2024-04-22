@@ -26,7 +26,7 @@ if(!isset($body) || $body == ""){
 }
 
 try{
-    $stmt = $db->prepare('UPDATE Profil SET montant_balance = ?WHERE id_profil = ?');
+    $stmt = $db->prepare('UPDATE Profil SET montant_balance = ? WHERE id_profil = ?');
     $stmt->execute([$body,$id]);
 
 

@@ -5,7 +5,7 @@ require_once "./config.php";
 $db = Database::getInstance();
 
 $sql = 'SELECT Publication.* FROM `Publication`';
-$sql .= ' JOIN `Publication_Favoris` ON Publication.id_publication = Publication_Favoris.id_publication';
+$sql .= ' JOIN `Profil_Abonnements` ON Publication.id_profil = Profil_Abonnements.id_abonne';
 $conditions = [];
 
 if ($titre) {
