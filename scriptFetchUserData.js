@@ -100,9 +100,9 @@ function creerAbonnement(item) {
 // add/retirer de l'argent
 let dialog;
 let valider = 0;
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", (event) => {
   dialog = document.getElementById("dialog");
-};
+});
 
 function openDialog(type) {
   valider = type;
