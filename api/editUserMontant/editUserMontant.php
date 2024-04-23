@@ -14,14 +14,13 @@ $body = json_decode(file_get_contents("php://input"));
 
 if(!isset($id) || $id == ""){
     http_response_code(400);
-    echo "L'id de la publication est obligatoire";
+    echo "L'id du profil est obligatoire";
     exit;
 }
 
 if(!isset($body) || $body == ""){
     http_response_code(400);
-    echo $body->titre;
-    echo "Le titre est obligatoire";
+    echo "Le montant est obligatoire";
     exit;
 }
 
