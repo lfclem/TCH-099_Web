@@ -1,7 +1,6 @@
 let etat;
 let btnName;
 window.onload = async function(){
-    console.log(id_profil);
 
     fetch('/jsonConverter', { methode: "GET"})
         .then(response => response.json())

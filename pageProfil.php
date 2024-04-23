@@ -12,18 +12,20 @@ require_once './config.php';
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/normalize.css" />
     <script>
-        var user = "<?php echo $_SESSION['usager']; ?>";
+        var userID = "<?php echo $_SESSION['usager']; ?>";
     </script>
     <script src="/userPhoto.js"></script>
     <script src="/scriptFetchUserData.js"></script>
+    <script src="/script.js"></script>
 </head>
 
-<body data-error-message="<?php echo $_SESSION['error_message'] ?>" data-reload="false">
+<body data-error-message="<?php echo isset($_SESSION['error_message']) ? $_SESSION['error_message'] : '' ?>">
+    <?php unset($_SESSION['error_message']); ?>
     <header class="headerInfos">
         <a href="/"><img class="logo" src="/IMG/logo.png" alt="Logo" /></a>
         <h1 class="title">Sell-it!</h1>
         <div class="icons">
-            <a id="linkPfp"  href="">
+            <a id="linkPfp" href="">
                 <img class="pfp" src="" alt="Photo_Profil" id="photoProfil" />
             </a>
         </div>

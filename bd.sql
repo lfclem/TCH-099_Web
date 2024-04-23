@@ -78,6 +78,16 @@ CREATE TABLE
         FOREIGN KEY (id_abonne) REFERENCES Profil (id_profil) ON DELETE CASCADE
     );
 
+CREATE TABLE
+    Profil_Evaluation(
+        id_evaluateur INTEGER NOT NULL,
+        id_evaluer INTEGER NOT NULL,
+        rating DECIMAL(10, 2) NOT NULL,
+        PRIMARY KEY (id_evaluateur, id_evaluer),
+        FOREIGN KEY (id_evaluateur) REFERENCES Profil (id_profil) ON DELETE CASCADE,
+        FOREIGN KEY (id_evaluer) REFERENCES Profil (id_profil) ON DELETE CASCADE
+    );
+
 INSERT INTO
     `Categorie` (`id_categorie`, `nom`)
 VALUES

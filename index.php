@@ -12,7 +12,7 @@ require_once './config.php';
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/normalize.css" />
   <script>
-    var user = "<?php echo isset($_SESSION['usager']) ? $_SESSION['usager'] : 0; ?>";
+    var userID = "<?php echo isset($_SESSION['usager']) ? $_SESSION['usager'] : 0; ?>";
   </script>
   <script src="/script.js"></script>
   <script src="/userPhoto.js"></script>
@@ -65,8 +65,11 @@ require_once './config.php';
       <?php endif; ?>
     </div>
 
-    <?php if (isset($_SESSION['usager'])) : ?>
+    <?php
+    if (isset($_SESSION['usager'])) : ?>
       <a href="/newPublication" class="buttonAddListing">Créer une annonce</a>
+    <?php else : ?>
+      <a href="/login" class="buttonAddListing">Créer une annonce</a>
     <?php endif; ?>
   </div>
   <main class="listingsContainer"></main>

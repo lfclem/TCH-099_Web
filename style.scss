@@ -391,25 +391,100 @@ input[type="number"] {
   width: 100%;
   height: calc(100% - 5rem);
   display: flex;
-  //justify-content: space-evenly;
-  
-  flex-direction: column;
-  align-items: center;
 
-  div {
+  .userInfo,
+  .userPublications {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    div {
     text-align: center;
     display: flex;
     align-items: center;
-    //justify-content: space-between;
     flex-direction: column;
-    margin: 1rem;
+    margin: 0.25rem;
     color: white;
+    font-size: 1rem;
   }
+
+  .rating {
+    display: flex;
+    flex-direction: row;
+
+    img {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
+  }
+
+  .userPublications {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1rem;
+    padding: 1rem;
+    justify-content: flex-start;
+    overflow-y: auto;
+
+    article {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      height: 20rem;
+      width: 15rem;
+      min-width: 15rem;
+      background-color: $navColor;
+      border-radius: 2rem;
+      margin-bottom: 0.75rem;
+      align-items: flex-start;
+
+      img {
+        height: 13rem;
+        width: 13rem;
+        align-self: center;
+        margin-top: 0.5rem;
+      }
+
+      h2 {
+        color: white;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        width: 13rem;
+        margin: 0.75rem 1rem;
+        line-height: 1.2;
+        word-wrap: break-word;
+        position: relative;
+      }
+
+      p {
+        color: $limeGreen;
+        font-weight: bolder;
+        margin-left: 1rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        height: 1rem;
+        align-self: flex-start;
+        word-wrap: break-word;
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
+
+  
+
   img {
     margin-top: 1rem;
     height: 20%;
   }
-  button{
+
+  button {
     margin: 1rem;
   }
 }

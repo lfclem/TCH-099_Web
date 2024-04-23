@@ -41,7 +41,7 @@ $_SESSION['error_message'] = "";
             </div>
             <div>
                 <label for="info_paiement">Numéro de votre carte bancaire:</label>
-                <input type="number" id="info_paiement" name="info_paiement" required>
+                <input type="text" id="info_paiement" name="info_paiement" pattern="\d{16}" title="Please enter exactly 16 digits" required>
             </div>
             <div>
                 <label for="date_naissance">Date de naissance:</label>
@@ -63,6 +63,12 @@ $_SESSION['error_message'] = "";
             </div>
         </form>
     </main>
+
+    <script>
+        document.getElementById('info_paiement').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^\d]/g, '');
+        });
+    </script>
 </body>
 
 </html>

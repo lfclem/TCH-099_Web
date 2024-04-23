@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    if (user != 0) {
-        fetch("/api/getPhotoProfil/" + user, {
+    if (userID != 0) {
+        fetch("/api/getPhotoProfil/" + userID, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

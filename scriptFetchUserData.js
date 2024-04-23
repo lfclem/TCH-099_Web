@@ -1,8 +1,8 @@
-console.log("USER ID : " + user);
+console.log("USER ID : " + userID);
 let infoUser;
 
 //* FETCH LES DONNEES DU USER
-fetch("/api/getUser/" + user, {
+fetch("/api/getUser/" + userID, {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -30,7 +30,7 @@ function displayUser(user) {
 
   const stars = document.querySelector(".rating div");
   stars.innerHTML = "";
-  let averageRating = user.rating_total / user.nb_rating;
+  let averageRating = Math.round((user.rating_total / user.nb_rating) * 2) / 2;
   for (let i = 0; i < 5; i++) {
     const star = document.createElement("img");
     star.alt = "Star";
@@ -53,7 +53,7 @@ function displayUser(user) {
 }
 
 //* FETCH LES ABONNEMENTS DU USER
-fetch("/api/getAbonnements/" + user, {
+fetch("/api/getAbonnements/" + userID, {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -100,63 +100,69 @@ function creerAbonnement(item) {
 // add/retirer de l'argent
 let dialog;
 let valider = 0;
-window.onload = function(){
-  dialog = document.getElementById('dialog');
-}
+window.onload = function () {
+  dialog = document.getElementById("dialog");
+};
 
-function openDialog(type){
+function openDialog(type) {
   valider = type;
   document.getElementById(
     "solde"
   ).textContent = `Votre solde: ${infoUser.montant_balance}$`;
-  const montant = document.getElementById('label');
-  if (type == 1){
-    montant.textContent = "Montant à ajouter:"
-  } else if (type == 2){
-    montant.textContent = "Montant à retirer:"
+  const montant = document.getElementById("label");
+  if (type == 1) {
+    montant.textContent = "Montant à ajouter:";
+  } else if (type == 2) {
+    montant.textContent = "Montant à retirer:";
   }
   dialog.showModal();
 }
 
-function changeSolde(){
-  let montant = document.getElementById('montant').value;
+function changeSolde() {
+  let montant = document.getElementById("montant").value;
   let newSolde;
-  if (!isNaN(montant)){
-    if (valider == 1){
+  if (!isNaN(montant)) {
+    if (valider == 1) {
       newSolde = parseFloat(infoUser.montant_balance) + parseFloat(montant);
     } else if (valider == 2) {
       newSolde = parseFloat(infoUser.montant_balance) - parseFloat(montant);
     }
-    if (newSolde >= 0){
+    if (newSolde >= 0) {
       fetch("/api/editUserMontant/" + user, {
-        method: 'PUT', // Méthode HTTP
+        method: "PUT", // Méthode HTTP
         headers: {
-            'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newSolde) // Convertir l'objet de données en chaîne JSON
+        body: JSON.stringify(newSolde), // Convertir l'objet de données en chaîne JSON
       })
-      .then(response => {
+        .then((response) => {
           if (!response.ok) {
-              throw new Error('La requête a échoué avec le statut ' + response.status);
+            throw new Error(
+              "La requête a échoué avec le statut " + response.status
+            );
           }
           return response.json(); // Convertir la réponse en JSON
-      })
-      .then(data => {
-        infoUser.montant_balance = newSolde.toFixed(2);
-        displayUser(infoUser);
-        dialog.close();
-      })
-      .catch(error => {
-          alert("Erreur lors de l'edit du montant: "+error);
-          console.error('Erreur lors de la requête:', error);
-      });
+        })
+        .then((data) => {
+          infoUser.montant_balance = newSolde.toFixed(2);
+          displayUser(infoUser);
+          dialog.close();
+        })
+        .catch((error) => {
+          alert("Erreur lors de l'edit du montant: " + error);
+          console.error("Erreur lors de la requête:", error);
+        });
     } else {
       //pop up
-      window.alert("Le montant que vous voulez retirer est plus grand que votre solde.");
+      window.alert(
+        "Le montant que vous voulez retirer est plus grand que votre solde."
+      );
     }
     valider == 0;
   } else {
     //pop up
-    window.alert("Assurez vous que la valeur soit un nombre sans text ni symbole (ex: -, $, ...).");
+    window.alert(
+      "Assurez vous que la valeur soit un nombre sans text ni symbole (ex: -, $, ...)."
+    );
   }
 }

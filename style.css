@@ -347,16 +347,85 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   width: 100%;
   height: calc(100% - 5rem);
   display: flex;
+}
+.viewUserGrid .userInfo,
+.viewUserGrid .userPublications {
+  width: 50%;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
-.viewUserGrid div {
+.viewUserGrid .userInfo div,
+.viewUserGrid .userPublications div {
   text-align: center;
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 1rem;
+  margin: 0.25rem;
   color: white;
+  font-size: 1rem;
+}
+.viewUserGrid .userInfo .rating,
+.viewUserGrid .userPublications .rating {
+  display: flex;
+  flex-direction: row;
+}
+.viewUserGrid .userInfo .rating img,
+.viewUserGrid .userPublications .rating img {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+.viewUserGrid .userPublications {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  padding: 1rem;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+.viewUserGrid .userPublications article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  height: 20rem;
+  width: 15rem;
+  min-width: 15rem;
+  background-color: rgb(40, 40, 40);
+  border-radius: 2rem;
+  margin-bottom: 0.75rem;
+  align-items: flex-start;
+}
+.viewUserGrid .userPublications article img {
+  height: 13rem;
+  width: 13rem;
+  align-self: center;
+  margin-top: 0.5rem;
+}
+.viewUserGrid .userPublications article h2 {
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  width: 13rem;
+  margin: 0.75rem 1rem;
+  line-height: 1.2;
+  word-wrap: break-word;
+  position: relative;
+}
+.viewUserGrid .userPublications article p {
+  color: rgb(144, 238, 144);
+  font-weight: bolder;
+  margin-left: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  height: 1rem;
+  align-self: flex-start;
+  word-wrap: break-word;
+  position: absolute;
+  bottom: 0;
 }
 .viewUserGrid img {
   margin-top: 1rem;
