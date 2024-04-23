@@ -41,15 +41,23 @@ if (isset($_GET['publicationId'])) {
         <article class="article">
             <h1 id="titre"></h1>
             <p id="description"></p>
-            <h2 id="etat"></h3>
-            <h2 id="prix"></strong></h2>
-            <form method="post">
-                <button type="button" onclick="favoris()" id="fav" name=""></button>
-            </form>
-            <button type="button" id="viewProfileButton">Voir le profil du vendeur</button>
-            <form method="post">
-                <button type="button" onclick="payer()" id="buy" name="buy">Acheter</button>
-            </form>
+            <h2 id="etat">
+                </h3>
+                <h2 id="prix"></strong></h2>
+                <form method="post">
+                    <button type="button" onclick="favoris()" id="fav" name=""></button>
+                </form>
+                <button type="button" id="viewProfileButton">Voir le profil du vendeur</button>
+                <?php
+                if (isset($_SESSION['usager'])) : ?>
+                    <form method="post">
+                        <button type="button" onclick="payer()" id="buy" name="buy">Acheter</button>
+                    </form>
+                <?php else : ?>
+                    <form method="post">
+                        <a href="/login" class="buttonAddListing">Acheter</a>
+                    </form>
+                <?php endif; ?>
         </article>
     </main>
 

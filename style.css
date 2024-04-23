@@ -483,6 +483,21 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   width: 80%;
 }
 .pageArticle button {
+  height: 2.5rem;
+  width: 10rem;
+  margin: 1rem;
+}
+.pageArticle .buttonAddListing {
+  background-color: rgb(144, 238, 144);
+  color: black;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
   margin: 1rem;
 }
 
