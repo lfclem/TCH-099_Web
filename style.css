@@ -436,57 +436,33 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 }
 
 .pageArticle {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  overflow-y: auto;
+  position: fixed;
   background-color: rgb(50, 50, 50);
+  top: 5rem;
+  width: 100%;
+  height: calc(100% - 5rem);
+  display: flex;
+  justify-content: space-around;
+}
+.pageArticle img {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  height: 80%;
 }
 .pageArticle .article {
   align-items: center;
   text-align: center;
-  width: 20%;
-  height: 50%;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 50px 30px;
-  margin-bottom: 20px;
-  justify-items: center;
-}
-.pageArticle .article h2 {
-  font-size: 24px;
-  color: rgb(50, 50, 50);
-  margin-bottom: 10px;
-  text-align: center;
-}
-.pageArticle .article .center {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  text-align: center;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  margin-right: 2rem;
 }
 .pageArticle .article p {
-  font-size: 16px;
-  color: #555;
-  line-height: 1.5;
-  margin-bottom: 10px;
-  text-align: center;
+  width: 35%;
 }
-.pageArticle .article p strong {
-  color: rgb(50, 50, 50);
-}
-.pageArticle .article button {
-  background-color: rgb(40, 40, 40);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  cursor: pointer;
+.pageArticle button {
+  margin: 1rem;
 }
 
 #dialog {

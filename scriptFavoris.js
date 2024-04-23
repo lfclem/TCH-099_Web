@@ -42,16 +42,23 @@ window.onload = async function(){
                 image.setAttribute('src', publication[0]['image']);
 
                 const desc = document.getElementById('description');
-                desc.textContent = publication[0]['description'];
+                if (publication[0]['description'] == ""){
+                    desc.textContent = "Acune description";
+                } else {
+                    desc.textContent = publication[0]['description'];
+                }
 
-                const etat = document.getElementById('etat');
+                const textEtat = document.getElementById('etat');
                 let nomEtat;
                 for (let i = 0; i < etat.length; i++){
                     if (etat[i]['id_etat'] == publication[0]['id_etat']){
                         nomEtat = etat[i]['nom'];
+                        if (etat[i]['id_etat'] == 5){
+                            textEtat.style.color = "red";
+                        }
                     }
                 }
-                etat.textContent = nomEtat;
+                textEtat.textContent = nomEtat;
 
                 const prix = document.getElementById('prix');
                 prix.textContent = "Prix: " + publication[0]['prix'];
@@ -134,7 +141,10 @@ function favoris(){
                 return response.json(); 
             })
             .then(data => {
-                window.location.href = 'http://localhost:8000/'; // a changer
+                const fav = document.getElementById('fav');
+                fav.setAttribute('name', "delete_favorite");
+                fav.textContent = "Enlever des favoris";
+                btnName = "delete_favorite";
             })
             .catch(error => {
     
@@ -160,7 +170,10 @@ function favoris(){
                 if(data.error){
                     throw new Error('Erreur lors de la suppression: '+data.error);
                 }
-                window.location.href = 'http://localhost:8000/'; // a changer
+                const fav = document.getElementById('fav');
+                fav.setAttribute('name', "add_favorite");
+                fav.textContent = "Ajouter en favoris";
+                btnName = "add_favorite";
             })
             .catch(error => {
         

@@ -37,12 +37,12 @@ if (isset($_GET['publicationId'])) {
     </header>
 
     <main class="pageArticle">
+        <img src="" alt="Article Image" class="center" id="image">
         <article class="article">
-            <h2 id="titre"></h2>
-            <img src="" alt="Article Image" class="center" id="image">
+            <h1 id="titre"></h1>
             <p id="description"></p>
-            <p id="etat"></p>
-            <p id="prix"></strong></p>
+            <h2 id="etat"></h3>
+            <h2 id="prix"></strong></h2>
             <form method="post">
                 <button type="button" onclick="favoris()" id="fav" name=""></button>
             </form>

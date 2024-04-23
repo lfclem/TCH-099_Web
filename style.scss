@@ -491,64 +491,36 @@ input[type="number"] {
 
 //Page Article
 .pageArticle {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  overflow-y: auto;
+  position: fixed;
   background-color: $mainColor;
-  //padding: 0 1rem;
-  //grid-area: main;
+  top: 5rem;
+  width: 100%;
+  height: calc(100% - 5rem);
+  display: flex;
+  justify-content: space-around;
+
+  img {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    height: 80%;
+  }
 
   .article {
     align-items: center;
     text-align: center;
-    width: 20%;
-    height: 50%;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 50px 30px;
-    margin-bottom: 20px;
-    justify-items: center;
-
-    h2 {
-      font-size: 24px;
-      color: $mainColor;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .center {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      text-align: center;
-      margin: auto;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    margin-right: 2rem;
 
     p {
-      font-size: 16px;
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 10px;
-      text-align: center;
-
-      strong {
-        color: $mainColor;
-      }
+      width: 35%;
     }
+  }
 
-    button {
-      background-color: $navColor;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      cursor: pointer;
-    }
+  button {
+    margin: 1rem;
   }
 }
 
