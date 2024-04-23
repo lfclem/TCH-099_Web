@@ -381,11 +381,20 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 .viewUserGrid .userPublications .rating {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
-.viewUserGrid .userInfo .rating img,
-.viewUserGrid .userPublications .rating img {
+.viewUserGrid .userInfo .rating .stars,
+.viewUserGrid .userPublications .rating .stars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.viewUserGrid .userInfo .rating .stars img,
+.viewUserGrid .userPublications .rating .stars img {
   height: 2.5rem;
   width: 2.5rem;
+  padding-bottom: 8px;
 }
 .viewUserGrid .userPublications {
   display: grid;
@@ -471,7 +480,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   margin-right: 2rem;
 }
 .pageArticle .article p {
-  width: 35%;
+  width: 80%;
 }
 .pageArticle button {
   margin: 1rem;

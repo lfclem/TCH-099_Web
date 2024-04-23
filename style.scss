@@ -427,10 +427,19 @@ input[type="number"] {
     .rating {
       display: flex;
       flex-direction: row;
+      align-items: center;
 
-      img {
-        height: 2.5rem;
-        width: 2.5rem;
+      .stars {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          height: 2.5rem;
+          width: 2.5rem;
+          padding-bottom: 8px;
+        }
       }
     }
   }
@@ -528,7 +537,7 @@ input[type="number"] {
     margin-right: 2rem;
 
     p {
-      width: 35%;
+      width: 80%;
     }
   }
 
