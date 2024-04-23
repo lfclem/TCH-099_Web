@@ -88,7 +88,9 @@ function editPub(id_pub){
             return response.json(); // Convertir la réponse en JSON
         })
         .then(data => {
-            //window.location.href = 'http://localhost:8000/'; // a changer
+            window.alert(
+                "Publication modifié avec succès!"
+              );
         })
         .catch(error => {
     
