@@ -33,6 +33,9 @@ require_once './config.php';
 
     <form method="POST" action="./api/User/editUser.php" class="editUserGrid">
         <div class="column1">
+            <div class="photoProfil">
+            <img src="" alt="ProfilePicture" id="photoProfil2">
+            </div>
             <div class="balance">
                 <label id="balance">Votre solde: </label>
                 <div class="btn_balance">
@@ -62,7 +65,7 @@ require_once './config.php';
             </div>
             <div>
                 <label for="photo_profil">Photo de profil:</label>
-                <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png">
+                <input type="url" id="photo_profil" name="photo_profil">
             </div>
             <div>
                 <label for="info_paiement">Numéro de votre carte bancaire:</label>

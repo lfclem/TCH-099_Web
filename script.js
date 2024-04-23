@@ -121,7 +121,12 @@ if (window.location.href == URL) {
       .addEventListener("click", function (event) {
         event.preventDefault();
         const searchbar = document.querySelector(".textSearchbar").value;
-        const onglet = document.querySelector(".choiceTab").value;
+        let onglet;
+        if (user == 0) {
+          onglet = "1";
+        } else {
+          onglet = document.querySelector(".choiceTab").value;
+        }
         const etat = document.querySelector(".choiceCondition").value;
         const categorie = document.querySelector(".choiceCategory").value;
         const prixMinInput = document.querySelector(".textMinPrice");
@@ -134,6 +139,14 @@ if (window.location.href == URL) {
         let prixMax = prixMaxInput.value
           ? parseInt(prixMaxInput.value)
           : Infinity;
+        
+        console.log("onglet", onglet);
+        console.log("searchbar", searchbar);
+        console.log("prixMin", prixMin);
+        console.log("prixMax", prixMax);
+        console.log("etat", etat);
+        console.log("categorie", categorie);
+        console.log("user", user);
 
         switch (onglet) {
           case "1":

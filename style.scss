@@ -218,6 +218,7 @@ input[type="number"] {
       width: 13rem;
       align-self: center;
       margin-top: 0.5rem;
+      border-radius: 1rem;
     }
 
     h2 {
@@ -310,6 +311,14 @@ input[type="number"] {
         justify-content: space-between;
       }
     }
+
+    .photoProfil {
+      img {
+        height: 15rem;
+        width: 15rem;
+        border-radius: 1rem;
+      }
+    }
   }
 
   .column2 {
@@ -399,25 +408,31 @@ input[type="number"] {
     flex-direction: column;
     align-items: center;
 
-    div {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin: 0.25rem;
-    color: white;
-    font-size: 1rem;
-  }
-
-  .rating {
-    display: flex;
-    flex-direction: row;
-
     img {
-      height: 2.5rem;
-      width: 2.5rem;
+      border-radius: 1rem;
+      height: 10rem;
+      width: 10rem;
     }
-  }
+
+    div {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin: 0.25rem;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .rating {
+      display: flex;
+      flex-direction: row;
+
+      img {
+        height: 2.5rem;
+        width: 2.5rem;
+      }
+    }
   }
 
   .userPublications {
@@ -476,8 +491,6 @@ input[type="number"] {
       }
     }
   }
-
-  
 
   img {
     margin-top: 1rem;

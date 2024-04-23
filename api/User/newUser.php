@@ -1,8 +1,6 @@
 <?php
 require_once __DIR__ . "/../../config.php";
 
-$_SESSION['error_message'] = "";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars($_POST['username']);
     $emailNettoye = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);

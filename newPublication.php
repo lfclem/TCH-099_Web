@@ -84,8 +84,10 @@ $etat = $stmt->fetchAll();
         <label for="etat">État:</label>
         <select id="etat" name="etat" required onfocus="this.options[0].hidden = true;">
           <option value="" selected disabled></option>
-          <?php foreach ($etat as $et) : ?>
-            <option value="<?php echo $et['id_etat']; ?>"><?php echo $et['nom']; ?></option>
+          <?php
+          $count = count($etat);
+          foreach ($etat as $index => $et) : ?>
+            <option value="<?php echo $et['id_etat']; ?>" <?php if ($index == $count - 1) echo 'hidden'; ?>><?php echo $et['nom']; ?></option>
           <?php endforeach; ?>
         </select>
       </div>

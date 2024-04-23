@@ -49,7 +49,7 @@ $_SESSION['error_message'] = "";
             </div>
             <div>
                 <label for="photo_profil">Photo de profil:</label>
-                <input type="url" id="photo_profil" name="photo_profil" accept=".jpg, .png">
+                <input type="url" id="photo_profil" name="photo_profil">
             </div>
             <div>
                 <label for="adresse">Adresse:</label>

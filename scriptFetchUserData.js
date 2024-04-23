@@ -44,6 +44,7 @@ function displayUser(user) {
     stars.appendChild(star);
   }
 
+  document.getElementById("photoProfil2").src = user.photo_profil;
   document.getElementById("username").value = user.username;
   document.getElementById("email").value = user.email;
   document.getElementById("photo_profil").value = user.photo_profil;
