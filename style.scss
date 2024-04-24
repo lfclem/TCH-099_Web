@@ -400,6 +400,7 @@ input[type="number"] {
   width: 100%;
   height: calc(100% - 5rem);
   display: flex;
+  color: white;
 
   .userInfo,
   .userPublications {
@@ -420,7 +421,6 @@ input[type="number"] {
       align-items: center;
       flex-direction: column;
       margin: 0.25rem;
-      color: white;
       font-size: 1rem;
     }
 
@@ -428,6 +428,10 @@ input[type="number"] {
       display: flex;
       flex-direction: row;
       align-items: center;
+
+      h2{
+        padding-top: 0.75rem;
+      }
 
       .stars {
         display: flex;

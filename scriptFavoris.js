@@ -61,7 +61,7 @@ window.onload = async function(){
                 textEtat.textContent = nomEtat;
 
                 const prix = document.getElementById('prix');
-                prix.textContent = "Prix: " + publication[0]['prix'];
+                prix.textContent = "Prix: " + publication[0]['prix'] + "$";
 
                 if (publication[0].id_etat == 5) {
                   console.log("acheter");

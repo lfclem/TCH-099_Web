@@ -69,8 +69,10 @@ if ($user2['nb_rating'] != 0) {
             <div>
                 <h3 for="adresse">Adresse : <?php echo $user2['adresse']; ?></h3>
             </div>
+            <p>
+                <?php echo $user2['bio']; ?>
+            </p>
             <div class="rating">
-                <h3>Rating (<?php echo $user2['nb_rating']; ?>) : </h3>
                 <div class="stars">
                     <?php
                     $fullStars = floor($rating);
@@ -89,7 +91,8 @@ if ($user2['nb_rating'] != 0) {
                         echo '<img src="./IMG/empty_star.png">';
                     }
                     ?>
-                    </div>
+                </div>
+                <h2>(<?php echo $user2['nb_rating']; ?>)</h2>
             </div>
             <?php
             if (isset($_SESSION['usager'])) {
