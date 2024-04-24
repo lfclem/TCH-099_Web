@@ -55,7 +55,7 @@ if (isset($_GET['publicationId'])) {
                     </form>
                 <?php else : ?>
                     <form method="post">
-                        <a href="/login" class="buttonAddListing">Acheter</a>
+                        <button type="button" onclick="window.location.href='/login';" class="buttonAddListing" id="buy" name="buy">Acheter</button>
                     </form>
                 <?php endif; ?>
         </article>

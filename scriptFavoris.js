@@ -64,8 +64,12 @@ window.onload = async function(){
                 prix.textContent = "Prix: " + publication[0]['prix'];
 
                 if (publication[0].id_etat == 5) {
-                    document.getElementById("buy").hidden = true;
-                } 
+                  console.log("acheter");
+                  const buyButton = document.getElementById("buy");
+                  if (buyButton) {
+                    buyButton.style.display = "none";
+                  }
+                }
             })
             .catch(error => {
 
